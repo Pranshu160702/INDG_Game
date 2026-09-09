@@ -1,0 +1,38 @@
+{
+  "ProductName": "INDG",
+  "ProductId": "002fb950cced4de49d8bec267a1dc4a4",
+  "ProductVersion": null,
+  "imported": true,
+  "Clients": [
+    {
+      "Value": {
+        "ClientId": "xyza7891bk443MydfRWe0c9gMAYK6413",
+        "ClientSecret": "QFwny7Qxwppm+z7eHkYbC1hbp+olcEZkYSq+uH/fbTE",
+        "EncryptionKey": "50FDB1A21DB7442CB3E0838C8AA51175D45D200FD98ECB388753B816E806E71B"
+      },
+      "Name": "Client"
+    }
+  ],
+  "Environments": {
+    "Deployments": [
+      {
+        "Value": {
+          "SandboxId": {
+            "Value": "9607033c478b4b65aa3d65a58b9243b5"
+          },
+          "DeploymentId": "38363367980547848e7a99993bd8fd1b"
+        },
+        "Name": "Deployment"
+      }
+    ],
+    "Sandboxes": [
+      {
+        "Value": {
+          "Value": "9607033c478b4b65aa3d65a58b9243b5"
+        },
+        "Name": "Sandbox"
+      }
+    ]
+  },
+  "schemaVersion": "1.0"
+}

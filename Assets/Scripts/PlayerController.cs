@@ -1,0 +1,188 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+[RequireComponent(typeof(CharacterController))]
+public class PlayerController : MonoBehaviour
+{
+    [Header("Movement Speeds")]
+    public float sprintSpeed = 21f;
+    public float walkSpeed = 9f;
+    public float crouchSpeed = 4.5f;
+
+    [Header("Jump")]
+    public float jumpHeight = 1.5f;
+    public float gravity = -20f;
+
+    [Header("Crouch")]
+    public float standHeight = 2f;
+    public float crouchHeight = 1f;
+
+    [Header("Mouse Look")]
+    public float mouseSensitivity = 2f;
+
+    private CharacterController cc;
+    private Animator animator;
+    private Transform cameraTarget;
+
+    private float xRotation;
+    private float yVelocity;
+    private bool isGroundedPrev;
+
+    // Exposed for NetworkPlayer sync
+    [HideInInspector] public float animHorizontal;
+    [HideInInspector] public float animVertical;
+    [HideInInspector] public bool animIsRunning;
+    [HideInInspector] public bool animIsWalking;
+    [HideInInspector] public bool animIsIdle;
+    [HideInInspector] public bool animIsJumping;
+    [HideInInspector] public bool animIsCrouching;
+
+    // Animator parameter hashes
+    private static readonly int H          = Animator.StringToHash("Horizontal");
+    private static readonly int V          = Animator.StringToHash("Vertical");
+    private static readonly int IsRunning  = Animator.StringToHash("isRunning");
+    private static readonly int IsWalking  = Animator.StringToHash("isWalking");
+    private static readonly int IsIdle     = Animator.StringToHash("isIdle");
+    private static readonly int IsJumping  = Animator.StringToHash("isJumping");
+    private static readonly int IsCrouch   = Animator.StringToHash("isCrouching");
+
+    void Start()
+    {
+        cc = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
+        if (animator == null)
+            Debug.LogError("[PlayerController] No Animator found in children!");
+
+        cameraTarget = transform.Find("CameraTarget");
+        if (cameraTarget == null)
+        {
+            GameObject ct = new GameObject("CameraTarget");
+            ct.transform.SetParent(transform);
+            ct.transform.localPosition = new Vector3(0f, 1.7f, 0f);
+            cameraTarget = ct.transform;
+        }
+
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void Update()
+    {
+        if (Keyboard.current == null || Mouse.current == null) return;
+        HandleLook();
+        HandleMovement();
+    }
+
+    void HandleLook()
+    {
+        Vector2 mouseDelta = Mouse.current.delta.ReadValue() * mouseSensitivity * 0.1f;
+        xRotation -= mouseDelta.y;
+        xRotation = Mathf.Clamp(xRotation, -60f, 60f);
+        cameraTarget.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        transform.Rotate(Vector3.up * mouseDelta.x);
+    }
+
+    void HandleMovement()
+    {
+        var keyboard = Keyboard.current;
+
+        bool isCrouching = keyboard.leftCtrlKey.isPressed;
+        animIsCrouching = isCrouching;
+
+        float targetHeight = isCrouching ? crouchHeight : standHeight;
+        cc.height = targetHeight;
+        cc.center = new Vector3(0f, targetHeight / 2f, 0f);
+
+        float h = (keyboard.dKey.isPressed ? 1f : 0f) - (keyboard.aKey.isPressed ? 1f : 0f);
+        float v = (keyboard.wKey.isPressed ? 1f : 0f) - (keyboard.sKey.isPressed ? 1f : 0f);
+        animHorizontal = h;
+        animVertical   = v;
+
+        float inputMag = Mathf.Abs(h) + Mathf.Abs(v);
+
+        float currentSpeed;
+        if (isCrouching)
+        {
+            currentSpeed   = crouchSpeed;
+            animIsRunning  = false;
+            animIsWalking  = false;
+            animIsIdle     = false;
+        }
+        else if (inputMag >= 0.85f)
+        {
+            currentSpeed   = sprintSpeed;
+            animIsRunning  = true;
+            animIsWalking  = false;
+            animIsIdle     = false;
+        }
+        else if (inputMag > 0f)
+        {
+            currentSpeed   = walkSpeed;
+            animIsRunning  = false;
+            animIsWalking  = true;
+            animIsIdle     = false;
+        }
+        else
+        {
+            currentSpeed   = 0f;
+            animIsRunning  = false;
+            animIsWalking  = false;
+            animIsIdle     = true;
+        }
+
+        bool grounded = cc.isGrounded;
+
+        if (grounded)
+        {
+            yVelocity = -2f;
+
+            // Trigger jump only on the exact frame Space is pressed
+            if (keyboard.spaceKey.wasPressedThisFrame && !isCrouching)
+            {
+                yVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                animIsJumping = true;
+            }
+            else
+            {
+                animIsJumping = false;
+            }
+        }
+        else
+        {
+            // Once airborne, clear the jump trigger immediately so it fires once
+            animIsJumping = false;
+        }
+
+        isGroundedPrev = grounded;
+        yVelocity += gravity * Time.deltaTime;
+
+        Vector3 moveDir = transform.right * h + transform.forward * v;
+        cc.Move(moveDir.normalized * currentSpeed * Time.deltaTime + Vector3.up * yVelocity * Time.deltaTime);
+
+        ApplyAnimatorState();
+    }
+
+    void ApplyAnimatorState()
+    {
+        if (animator == null) return;
+
+        animator.SetFloat(H,         animHorizontal);
+        animator.SetFloat(V,         animVertical);
+        animator.SetBool(IsRunning,  animIsRunning);
+        animator.SetBool(IsWalking,  animIsWalking);
+        animator.SetBool(IsIdle,     animIsIdle);
+        animator.SetBool(IsJumping,  animIsJumping);
+        animator.SetBool(IsCrouch,   animIsCrouching);
+    }
+
+    public void ApplyRemoteAnimState(float h, float v, bool running, bool walking, bool idle, bool jumping, bool crouching)
+    {
+        if (animator == null) return;
+        animator.SetFloat(H,         h);
+        animator.SetFloat(V,         v);
+        animator.SetBool(IsRunning,  running);
+        animator.SetBool(IsWalking,  walking);
+        animator.SetBool(IsIdle,     idle);
+        animator.SetBool(IsJumping,  jumping);
+        animator.SetBool(IsCrouch,   crouching);
+    }
+}
