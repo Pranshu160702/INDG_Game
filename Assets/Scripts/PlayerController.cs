@@ -20,6 +20,13 @@ public class PlayerController : MonoBehaviour
     [Header("Mouse Look")]
     public float mouseSensitivity = 2f;
 
+    [Header("Animation Smoothing")]
+    public float animSmoothTime = 0.1f;
+
+    [Header("Direction Change")]
+    public float angle90RecoverTime  = 0.25f;
+    public float angle180RecoverTime = 0.5f;
+
     private CharacterController cc;
     private Animator animator;
     private Transform cameraTarget;
@@ -27,6 +34,13 @@ public class PlayerController : MonoBehaviour
     private float xRotation;
     private float yVelocity;
     private bool isGroundedPrev;
+    private float smoothH;
+    private float smoothV;
+    private float smoothHVel;
+    private float smoothVVel;
+    private Vector2 lastInputDir;
+    private float speedMultiplier = 1f;
+    private float speedMultiplierVel;
 
     // Exposed for NetworkPlayer sync
     [HideInInspector] public float animHorizontal;
@@ -105,10 +119,38 @@ public class PlayerController : MonoBehaviour
 
         float h = (keyboard.dKey.isPressed ? 1f : 0f) - (keyboard.aKey.isPressed ? 1f : 0f);
         float v = (keyboard.wKey.isPressed ? 1f : 0f) - (keyboard.sKey.isPressed ? 1f : 0f);
-        animHorizontal = h;
-        animVertical   = v;
+
+        smoothH = Mathf.SmoothDamp(smoothH, h, ref smoothHVel, animSmoothTime);
+        smoothV = Mathf.SmoothDamp(smoothV, v, ref smoothVVel, animSmoothTime);
+
+        animHorizontal = smoothH;
+        animVertical   = smoothV;
 
         float inputMag = Mathf.Abs(h) + Mathf.Abs(v);
+
+        // --- Direction change speed penalty ---
+        Vector2 currentInputDir = new Vector2(h, v);
+        if (currentInputDir.magnitude > 0.1f && lastInputDir.magnitude > 0.1f)
+        {
+            float angle = Vector2.Angle(lastInputDir, currentInputDir);
+            if (angle > 135f)
+            {
+                // 180 degree change — start from 0.5
+                speedMultiplier = Mathf.Min(speedMultiplier, 0.5f);
+            }
+            else if (angle > 45f)
+            {
+                // 90 degree change — start from 0.75
+                speedMultiplier = Mathf.Min(speedMultiplier, 0.75f);
+            }
+        }
+        if (currentInputDir.magnitude > 0.1f)
+            lastInputDir = currentInputDir;
+
+        // Recover speed multiplier
+        float recoverTime = speedMultiplier < 0.6f ? angle180RecoverTime : angle90RecoverTime;
+        speedMultiplier = Mathf.SmoothDamp(speedMultiplier, 1f, ref speedMultiplierVel, recoverTime);
+        if (inputMag < 0.1f) { speedMultiplier = 1f; speedMultiplierVel = 0f; }
 
         bool isWalkingKey = keyboard.leftShiftKey.isPressed;
 
@@ -175,7 +217,7 @@ public class PlayerController : MonoBehaviour
         yVelocity += gravity * Time.deltaTime;
 
         Vector3 moveDir = transform.right * h + transform.forward * v;
-        cc.Move(moveDir.normalized * currentSpeed * Time.deltaTime + Vector3.up * yVelocity * Time.deltaTime);
+        cc.Move(moveDir.normalized * currentSpeed * speedMultiplier * Time.deltaTime + Vector3.up * yVelocity * Time.deltaTime);
 
         ApplyAnimatorState();
     }
@@ -192,6 +234,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool(IsJumping,  animIsJumping);
         animator.SetBool(IsCrouch,        animIsCrouching);
         animator.SetBool(IsCrouchWalking,  animIsCrouchWalking);
+        animator.speed = speedMultiplier;
     }
 
     public void ApplyRemoteAnimState(float h, float v, bool running, bool walking, bool idle, bool jumping, bool crouching, bool crouchWalking = false)

@@ -107,17 +107,14 @@ public class BuildCowboyAnimator : EditorWindow
         crouchWalkState.motion = crouchTree;
 
         // --- Jump ---
-        var jumpUpState   = rootSM.AddState("Jump Up",   new Vector3(850,   0));
-        var jumpLoopState = rootSM.AddState("Jump Loop", new Vector3(850,  80));
-        var jumpDownState = rootSM.AddState("Jump Down", new Vector3(850, 160));
-        jumpUpState.motion   = Clip("Jumping/jump up.fbx");
-        jumpLoopState.motion = Clip("Jumping/jump loop.fbx");
-        jumpDownState.motion = Clip("Jumping/jump down.fbx");
+        var jumpState = rootSM.AddState("Jump", new Vector3(850, -100));
+        jumpState.motion = Clip("Jumping/jump loop.fbx");
+        jumpState.speed  = 1.1f;
 
         // --- Death ---
-        var deathState        = rootSM.AddState("Death",         new Vector3(250, 240));
-        var deathHeadshotState= rootSM.AddState("Death Headshot",new Vector3(550, 240));
-        var deathCrouchState  = rootSM.AddState("Death Crouch",  new Vector3(850, 240));
+        var deathState        = rootSM.AddState("Death",         new Vector3(250, 160));
+        var deathHeadshotState= rootSM.AddState("Death Headshot",new Vector3(550, 160));
+        var deathCrouchState  = rootSM.AddState("Death Crouch",  new Vector3(850, 160));
         deathState.motion         = Clip("Dying/death from bodyshot.fbx");
         deathHeadshotState.motion = Clip("Dying/death from headshot.fbx");
         deathCrouchState.motion   = Clip("Dying/death crouching.fbx");
@@ -148,9 +145,9 @@ public class BuildCowboyAnimator : EditorWindow
         t.duration = td; t.hasExitTime = false;
 
         // Idle -> Jump
-        t = idleState.AddTransition(jumpUpState);
+        t = idleState.AddTransition(jumpState);
         t.AddCondition(AnimatorConditionMode.If, 0, "isJumping");
-        t.duration = 0.05f; t.hasExitTime = false;
+        t.duration = 0.32f; t.hasExitTime = false;
 
         // Walk -> Idle
         t = walkState.AddTransition(idleState);
@@ -235,18 +232,10 @@ public class BuildCowboyAnimator : EditorWindow
         t.AddCondition(AnimatorConditionMode.If, 0, "isRunning");
         t.duration = td; t.hasExitTime = false;
 
-        // Jump Up -> Jump Loop
-        t = jumpUpState.AddTransition(jumpLoopState);
-        t.hasExitTime = true; t.exitTime = 0.9f; t.duration = 0.05f;
-
-        // Jump Loop -> Jump Down
-        t = jumpLoopState.AddTransition(jumpDownState);
+        // Jump -> Idle
+        t = jumpState.AddTransition(idleState);
         t.AddCondition(AnimatorConditionMode.IfNot, 0, "isJumping");
-        t.duration = 0.05f; t.hasExitTime = false;
-
-        // Jump Down -> Idle
-        t = jumpDownState.AddTransition(idleState);
-        t.hasExitTime = true; t.exitTime = 0.9f; t.duration = td;
+        t.hasExitTime = true; t.exitTime = 0.39f; t.duration = 0.57f; t.hasFixedDuration = true;
 
         // Any State -> Death Crouch (priority — check crouching first)
         var anyDeathCrouch = rootSM.AddAnyStateTransition(deathCrouchState);

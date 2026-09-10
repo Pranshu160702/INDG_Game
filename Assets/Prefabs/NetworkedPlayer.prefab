@@ -130,6 +130,9 @@ MonoBehaviour:
   standHeight: 5
   crouchHeight: 2.5
   mouseSensitivity: 0.25
+  animSmoothTime: 0.1
+  angle90RecoverTime: 0.25
+  angle180RecoverTime: 0.5
   animHorizontal: 0
   animVertical: 0
   animIsRunning: 0
