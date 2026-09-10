@@ -19,7 +19,8 @@ public class BuildCowboyAnimator : EditorWindow
         controller.AddParameter("isCrouching", AnimatorControllerParameterType.Bool);
         controller.AddParameter("isJumping",   AnimatorControllerParameterType.Bool);
         controller.AddParameter("isDead",      AnimatorControllerParameterType.Bool);
-        controller.AddParameter("isHeadshot",  AnimatorControllerParameterType.Bool);
+        controller.AddParameter("isHeadshot",     AnimatorControllerParameterType.Bool);
+        controller.AddParameter("isCrouchWalking", AnimatorControllerParameterType.Bool);
         controller.AddParameter("Horizontal",  AnimatorControllerParameterType.Float);
         controller.AddParameter("Vertical",    AnimatorControllerParameterType.Float);
 
@@ -122,7 +123,7 @@ public class BuildCowboyAnimator : EditorWindow
         deathCrouchState.motion   = Clip("Dying/death crouching.fbx");
 
         // --- Transitions ---
-        float td = 0.1f; // transition duration
+        float td = 0.15f;
 
         // Idle -> Walk
         var t = idleState.AddTransition(walkState);
@@ -137,46 +138,66 @@ public class BuildCowboyAnimator : EditorWindow
         // Idle -> Idle Crouch
         t = idleState.AddTransition(idleCrouchState);
         t.AddCondition(AnimatorConditionMode.If, 0, "isCrouching");
+        t.AddCondition(AnimatorConditionMode.IfNot, 0, "isCrouchWalking");
         t.duration = td; t.hasExitTime = false;
 
-        // Idle -> Jump Up
+        // Idle -> Crouch Walk
+        t = idleState.AddTransition(crouchWalkState);
+        t.AddCondition(AnimatorConditionMode.If, 0, "isCrouching");
+        t.AddCondition(AnimatorConditionMode.If, 0, "isCrouchWalking");
+        t.duration = td; t.hasExitTime = false;
+
+        // Idle -> Jump
         t = idleState.AddTransition(jumpUpState);
         t.AddCondition(AnimatorConditionMode.If, 0, "isJumping");
         t.duration = 0.05f; t.hasExitTime = false;
 
-        // Idle -> Death
-        t = idleState.AddTransition(deathState);
-        t.AddCondition(AnimatorConditionMode.If, 0, "isDead");
-        t.duration = td; t.hasExitTime = false;
-
-        // Idle -> Death Headshot
-        t = idleState.AddTransition(deathHeadshotState);
-        t.AddCondition(AnimatorConditionMode.If, 0, "isHeadshot");
-        t.duration = td; t.hasExitTime = false;
-
         // Walk -> Idle
         t = walkState.AddTransition(idleState);
         t.AddCondition(AnimatorConditionMode.IfNot, 0, "isWalking");
+        t.AddCondition(AnimatorConditionMode.IfNot, 0, "isRunning");
+        t.AddCondition(AnimatorConditionMode.IfNot, 0, "isCrouching");
         t.duration = td; t.hasExitTime = false;
 
-        // Walk -> Sprint
+        // Walk -> Sprint (direct)
         t = walkState.AddTransition(sprintState);
         t.AddCondition(AnimatorConditionMode.If, 0, "isRunning");
         t.duration = td; t.hasExitTime = false;
 
-        // Walk -> Crouch Walk
+        // Walk -> Idle Crouch (direct)
+        t = walkState.AddTransition(idleCrouchState);
+        t.AddCondition(AnimatorConditionMode.If, 0, "isCrouching");
+        t.AddCondition(AnimatorConditionMode.IfNot, 0, "isCrouchWalking");
+        t.duration = td; t.hasExitTime = false;
+
+        // Walk -> Crouch Walk (direct)
         t = walkState.AddTransition(crouchWalkState);
         t.AddCondition(AnimatorConditionMode.If, 0, "isCrouching");
+        t.AddCondition(AnimatorConditionMode.If, 0, "isCrouchWalking");
         t.duration = td; t.hasExitTime = false;
 
         // Sprint -> Idle
         t = sprintState.AddTransition(idleState);
         t.AddCondition(AnimatorConditionMode.IfNot, 0, "isRunning");
+        t.AddCondition(AnimatorConditionMode.IfNot, 0, "isWalking");
+        t.AddCondition(AnimatorConditionMode.IfNot, 0, "isCrouching");
         t.duration = td; t.hasExitTime = false;
 
-        // Sprint -> Walk
+        // Sprint -> Walk (direct)
         t = sprintState.AddTransition(walkState);
         t.AddCondition(AnimatorConditionMode.If, 0, "isWalking");
+        t.duration = td; t.hasExitTime = false;
+
+        // Sprint -> Idle Crouch (direct)
+        t = sprintState.AddTransition(idleCrouchState);
+        t.AddCondition(AnimatorConditionMode.If, 0, "isCrouching");
+        t.AddCondition(AnimatorConditionMode.IfNot, 0, "isCrouchWalking");
+        t.duration = td; t.hasExitTime = false;
+
+        // Sprint -> Crouch Walk (direct)
+        t = sprintState.AddTransition(crouchWalkState);
+        t.AddCondition(AnimatorConditionMode.If, 0, "isCrouching");
+        t.AddCondition(AnimatorConditionMode.If, 0, "isCrouchWalking");
         t.duration = td; t.hasExitTime = false;
 
         // Idle Crouch -> Idle
@@ -186,20 +207,35 @@ public class BuildCowboyAnimator : EditorWindow
 
         // Idle Crouch -> Crouch Walk
         t = idleCrouchState.AddTransition(crouchWalkState);
-        t.AddCondition(AnimatorConditionMode.If, 0, "isWalking");
+        t.AddCondition(AnimatorConditionMode.If, 0, "isCrouchWalking");
         t.duration = td; t.hasExitTime = false;
 
         // Crouch Walk -> Idle Crouch
         t = crouchWalkState.AddTransition(idleCrouchState);
-        t.AddCondition(AnimatorConditionMode.IfNot, 0, "isWalking");
+        t.AddCondition(AnimatorConditionMode.IfNot, 0, "isCrouchWalking");
+        t.AddCondition(AnimatorConditionMode.If, 0, "isCrouching");
         t.duration = td; t.hasExitTime = false;
 
-        // Crouch Walk -> Idle
+        // Crouch Walk -> Idle (stand up while stopped)
         t = crouchWalkState.AddTransition(idleState);
         t.AddCondition(AnimatorConditionMode.IfNot, 0, "isCrouching");
+        t.AddCondition(AnimatorConditionMode.IfNot, 0, "isWalking");
+        t.AddCondition(AnimatorConditionMode.IfNot, 0, "isRunning");
         t.duration = td; t.hasExitTime = false;
 
-        // Jump Up -> Jump Loop (exit time)
+        // Crouch Walk -> Walk (direct)
+        t = crouchWalkState.AddTransition(walkState);
+        t.AddCondition(AnimatorConditionMode.IfNot, 0, "isCrouching");
+        t.AddCondition(AnimatorConditionMode.If, 0, "isWalking");
+        t.duration = td; t.hasExitTime = false;
+
+        // Crouch Walk -> Sprint (direct)
+        t = crouchWalkState.AddTransition(sprintState);
+        t.AddCondition(AnimatorConditionMode.IfNot, 0, "isCrouching");
+        t.AddCondition(AnimatorConditionMode.If, 0, "isRunning");
+        t.duration = td; t.hasExitTime = false;
+
+        // Jump Up -> Jump Loop
         t = jumpUpState.AddTransition(jumpLoopState);
         t.hasExitTime = true; t.exitTime = 0.9f; t.duration = 0.05f;
 
@@ -208,25 +244,28 @@ public class BuildCowboyAnimator : EditorWindow
         t.AddCondition(AnimatorConditionMode.IfNot, 0, "isJumping");
         t.duration = 0.05f; t.hasExitTime = false;
 
-        // Jump Down -> Idle (exit time)
+        // Jump Down -> Idle
         t = jumpDownState.AddTransition(idleState);
         t.hasExitTime = true; t.exitTime = 0.9f; t.duration = td;
 
-        // Any State -> Death
-        var anyDeath = rootSM.AddAnyStateTransition(deathState);
-        anyDeath.AddCondition(AnimatorConditionMode.If, 0, "isDead");
-        anyDeath.duration = td; anyDeath.hasExitTime = false; anyDeath.canTransitionToSelf = false;
-
-        // Any State -> Death Headshot
-        var anyHeadshot = rootSM.AddAnyStateTransition(deathHeadshotState);
-        anyHeadshot.AddCondition(AnimatorConditionMode.If, 0, "isHeadshot");
-        anyHeadshot.duration = td; anyHeadshot.hasExitTime = false; anyHeadshot.canTransitionToSelf = false;
-
-        // Death Crouch (from isCrouching + isDead via Any State)
+        // Any State -> Death Crouch (priority — check crouching first)
         var anyDeathCrouch = rootSM.AddAnyStateTransition(deathCrouchState);
         anyDeathCrouch.AddCondition(AnimatorConditionMode.If, 0, "isDead");
         anyDeathCrouch.AddCondition(AnimatorConditionMode.If, 0, "isCrouching");
         anyDeathCrouch.duration = td; anyDeathCrouch.hasExitTime = false; anyDeathCrouch.canTransitionToSelf = false;
+
+        // Any State -> Death Headshot
+        var anyHeadshot = rootSM.AddAnyStateTransition(deathHeadshotState);
+        anyHeadshot.AddCondition(AnimatorConditionMode.If, 0, "isHeadshot");
+        anyHeadshot.AddCondition(AnimatorConditionMode.IfNot, 0, "isCrouching");
+        anyHeadshot.duration = td; anyHeadshot.hasExitTime = false; anyHeadshot.canTransitionToSelf = false;
+
+        // Any State -> Death Body
+        var anyDeath = rootSM.AddAnyStateTransition(deathState);
+        anyDeath.AddCondition(AnimatorConditionMode.If, 0, "isDead");
+        anyDeath.AddCondition(AnimatorConditionMode.IfNot, 0, "isCrouching");
+        anyDeath.AddCondition(AnimatorConditionMode.IfNot, 0, "isHeadshot");
+        anyDeath.duration = td; anyDeath.hasExitTime = false; anyDeath.canTransitionToSelf = false;
 
         EditorUtility.SetDirty(controller);
         AssetDatabase.SaveAssets();

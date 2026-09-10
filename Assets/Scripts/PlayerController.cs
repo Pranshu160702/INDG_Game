@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool animIsIdle;
     [HideInInspector] public bool animIsJumping;
     [HideInInspector] public bool animIsCrouching;
+    [HideInInspector] public bool animIsCrouchWalking;
 
     // Animator parameter hashes
     private static readonly int H          = Animator.StringToHash("Horizontal");
@@ -44,7 +45,8 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsWalking  = Animator.StringToHash("isWalking");
     private static readonly int IsIdle     = Animator.StringToHash("isIdle");
     private static readonly int IsJumping  = Animator.StringToHash("isJumping");
-    private static readonly int IsCrouch   = Animator.StringToHash("isCrouching");
+    private static readonly int IsCrouch        = Animator.StringToHash("isCrouching");
+    private static readonly int IsCrouchWalking  = Animator.StringToHash("isCrouchWalking");
 
     void Awake()
     {
@@ -110,29 +112,35 @@ public class PlayerController : MonoBehaviour
 
         bool isWalkingKey = keyboard.leftShiftKey.isPressed;
 
-        float currentSpeed;
+        float currentSpeed = 0f;
         if (isCrouching)
         {
-            currentSpeed   = crouchSpeed;
-            animIsRunning  = false;
-            animIsWalking  = false;
-            animIsIdle     = false;
+            currentSpeed        = inputMag > 0f ? crouchSpeed : 0f;
+            animIsRunning       = false;
+            animIsWalking       = false;
+            animIsIdle          = false;
+            animIsCrouchWalking = inputMag > 0f;
         }
-        else if (inputMag > 0f && isWalkingKey)
+        else
+        {
+            animIsCrouchWalking = false;
+        }
+
+        if (!isCrouching && inputMag > 0f && isWalkingKey)
         {
             currentSpeed   = walkSpeed;
             animIsRunning  = false;
             animIsWalking  = true;
             animIsIdle     = false;
         }
-        else if (inputMag > 0f)
+        else if (!isCrouching && inputMag > 0f)
         {
             currentSpeed   = sprintSpeed;
             animIsRunning  = true;
             animIsWalking  = false;
             animIsIdle     = false;
         }
-        else
+        else if (!isCrouching)
         {
             currentSpeed   = 0f;
             animIsRunning  = false;
@@ -182,10 +190,11 @@ public class PlayerController : MonoBehaviour
         animator.SetBool(IsWalking,  animIsWalking);
         animator.SetBool(IsIdle,     animIsIdle);
         animator.SetBool(IsJumping,  animIsJumping);
-        animator.SetBool(IsCrouch,   animIsCrouching);
+        animator.SetBool(IsCrouch,        animIsCrouching);
+        animator.SetBool(IsCrouchWalking,  animIsCrouchWalking);
     }
 
-    public void ApplyRemoteAnimState(float h, float v, bool running, bool walking, bool idle, bool jumping, bool crouching)
+    public void ApplyRemoteAnimState(float h, float v, bool running, bool walking, bool idle, bool jumping, bool crouching, bool crouchWalking = false)
     {
         if (animator == null) return;
         animator.SetFloat(H,         h);
@@ -194,6 +203,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool(IsWalking,  walking);
         animator.SetBool(IsIdle,     idle);
         animator.SetBool(IsJumping,  jumping);
-        animator.SetBool(IsCrouch,   crouching);
+        animator.SetBool(IsCrouch,        crouching);
+        animator.SetBool(IsCrouchWalking,  crouchWalking);
     }
 }

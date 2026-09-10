@@ -16,6 +16,7 @@ public class NetworkPlayer : NetworkBehaviour
     [SyncVar] private bool syncIdle;
     [SyncVar] private bool syncJumping;
     [SyncVar] private bool syncCrouching;
+    [SyncVar] private bool syncCrouchWalking;
 
     private Transform cameraTarget;
     private PlayerController controller;
@@ -117,7 +118,8 @@ public class NetworkPlayer : NetworkBehaviour
             controller.animIsWalking   != syncWalking   ||
             controller.animIsIdle      != syncIdle      ||
             controller.animIsJumping   != syncJumping   ||
-            controller.animIsCrouching != syncCrouching;
+            controller.animIsCrouching != syncCrouching   ||
+            controller.animIsCrouchWalking != syncCrouchWalking;
 
         if ((transformChanged || animChanged) && NetworkClient.active)
         {
@@ -133,7 +135,8 @@ public class NetworkPlayer : NetworkBehaviour
                 controller.animIsWalking,
                 controller.animIsIdle,
                 controller.animIsJumping,
-                controller.animIsCrouching
+                controller.animIsCrouching,
+                controller.animIsCrouchWalking
             );
         }
     }
@@ -157,13 +160,14 @@ public class NetworkPlayer : NetworkBehaviour
 
         if (animator != null)
         {
-            animator.SetFloat("Horizontal", syncAnimH);
-            animator.SetFloat("Vertical",   syncAnimV);
-            animator.SetBool("isRunning",   syncRunning);
-            animator.SetBool("isWalking",   syncWalking);
-            animator.SetBool("isIdle",      syncIdle);
-            animator.SetBool("isJumping",   syncJumping);
-            animator.SetBool("isCrouching", syncCrouching);
+            animator.SetFloat("Horizontal",    syncAnimH);
+            animator.SetFloat("Vertical",      syncAnimV);
+            animator.SetBool("isRunning",      syncRunning);
+            animator.SetBool("isWalking",      syncWalking);
+            animator.SetBool("isIdle",         syncIdle);
+            animator.SetBool("isJumping",      syncJumping);
+            animator.SetBool("isCrouching",    syncCrouching);
+            animator.SetBool("isCrouchWalking",syncCrouchWalking);
         }
     }
 
@@ -172,17 +176,18 @@ public class NetworkPlayer : NetworkBehaviour
         Vector3 pos, float yRot, float headXRot,
         float animH, float animV,
         bool running, bool walking, bool idle,
-        bool jumping, bool crouching)
+        bool jumping, bool crouching, bool crouchWalking)
     {
-        syncPos       = pos;
-        syncYRot      = yRot;
-        syncHeadXRot  = headXRot;
-        syncAnimH     = animH;
-        syncAnimV     = animV;
-        syncRunning   = running;
-        syncWalking   = walking;
-        syncIdle      = idle;
-        syncJumping   = jumping;
-        syncCrouching = crouching;
+        syncPos          = pos;
+        syncYRot         = yRot;
+        syncHeadXRot     = headXRot;
+        syncAnimH        = animH;
+        syncAnimV        = animV;
+        syncRunning      = running;
+        syncWalking      = walking;
+        syncIdle         = idle;
+        syncJumping      = jumping;
+        syncCrouching    = crouching;
+        syncCrouchWalking= crouchWalking;
     }
 }

@@ -137,6 +137,7 @@ MonoBehaviour:
   animIsIdle: 1
   animIsJumping: 0
   animIsCrouching: 0
+  animIsCrouchWalking: 0
 --- !u!114 &8632369049263787533
 MonoBehaviour:
   m_ObjectHideFlags: 0
