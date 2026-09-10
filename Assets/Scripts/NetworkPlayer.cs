@@ -19,6 +19,7 @@ public class NetworkPlayer : NetworkBehaviour
 
     private Transform cameraTarget;
     private PlayerController controller;
+    private Animator animator;
     private Camera fpsCamera;
 
     private Vector3 lastPos;
@@ -35,6 +36,16 @@ public class NetworkPlayer : NetworkBehaviour
             cam.enabled = false;
         foreach (var al in GetComponentsInChildren<AudioListener>(true))
             al.enabled = false;
+    }
+
+    void Start()
+    {
+        animator = GetComponentInChildren<Animator>(true);
+        Debug.Log($"[NetworkPlayer] Start — animator={(animator != null ? animator.gameObject.name : "NULL")}, isLocalPlayer={isLocalPlayer}");
+        if (animator == null)
+            Debug.LogError("[NetworkPlayer] No Animator found in children!");
+        else
+            Debug.Log($"[NetworkPlayer] Animator found: controller={(animator.runtimeAnimatorController != null ? animator.runtimeAnimatorController.name : "NULL")}, avatar={(animator.avatar != null ? animator.avatar.name : "NULL")}, enabled={animator.enabled}, isHuman={animator.isHuman}");
     }
 
     [Header("Debug")]
@@ -144,12 +155,16 @@ public class NetworkPlayer : NetworkBehaviour
                 Time.deltaTime * 15f
             );
 
-        if (controller != null)
-            controller.ApplyRemoteAnimState(
-                syncAnimH, syncAnimV,
-                syncRunning, syncWalking, syncIdle,
-                syncJumping, syncCrouching
-            );
+        if (animator != null)
+        {
+            animator.SetFloat("Horizontal", syncAnimH);
+            animator.SetFloat("Vertical",   syncAnimV);
+            animator.SetBool("isRunning",   syncRunning);
+            animator.SetBool("isWalking",   syncWalking);
+            animator.SetBool("isIdle",      syncIdle);
+            animator.SetBool("isJumping",   syncJumping);
+            animator.SetBool("isCrouching", syncCrouching);
+        }
     }
 
     [Command]

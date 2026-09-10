@@ -11,13 +11,15 @@ public class ForceMenuSceneOnPlay
 
     static void OnPlayModeStateChanged(PlayModeStateChange state)
     {
+        string[] targetScenes = { "Game", "Lobby", "Rooms", "Menu" };
+        string currentPath = EditorSceneManager.GetActiveScene().path;
+        bool isTargetScene = System.Array.Exists(targetScenes, s => currentPath.Contains(s));
+
         if (state == PlayModeStateChange.ExitingEditMode)
         {
-            // Save current scene path so we can restore it after play
-            EditorPrefs.SetString("LastEditScene", EditorSceneManager.GetActiveScene().path);
+            EditorPrefs.SetString("LastEditScene", currentPath);
 
-            // Force open Menu scene before entering play mode
-            if (!EditorSceneManager.GetActiveScene().path.Contains("Menu"))
+            if (isTargetScene && !currentPath.Contains("Menu"))
             {
                 if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
                     EditorSceneManager.OpenScene("Assets/Scenes/Menu.unity");
@@ -25,7 +27,6 @@ public class ForceMenuSceneOnPlay
         }
         else if (state == PlayModeStateChange.EnteredEditMode)
         {
-            // Restore the scene we were editing before play
             string lastScene = EditorPrefs.GetString("LastEditScene", "");
             if (!string.IsNullOrEmpty(lastScene) && !lastScene.Contains("Menu"))
                 EditorSceneManager.OpenScene(lastScene);

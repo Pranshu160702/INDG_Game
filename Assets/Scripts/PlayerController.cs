@@ -46,13 +46,21 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsJumping  = Animator.StringToHash("isJumping");
     private static readonly int IsCrouch   = Animator.StringToHash("isCrouching");
 
-    void Start()
+    void Awake()
     {
         cc = GetComponent<CharacterController>();
-        animator = GetComponentInChildren<Animator>();
+    }
+
+    void OnEnable()
+    {
+        if (animator == null)
+            animator = GetComponentInChildren<Animator>(true);
         if (animator == null)
             Debug.LogError("[PlayerController] No Animator found in children!");
+        else
+            Debug.Log($"[PlayerController] OnEnable — animator found on {animator.gameObject.name}, controller={(animator.runtimeAnimatorController != null ? animator.runtimeAnimatorController.name : "NULL")}");
 
+        animIsIdle = true;
         cameraTarget = transform.Find("CameraTarget");
         if (cameraTarget == null)
         {
@@ -74,6 +82,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleLook()
     {
+        if (cameraTarget == null) return;
         Vector2 mouseDelta = Mouse.current.delta.ReadValue() * mouseSensitivity * 0.1f;
         xRotation -= mouseDelta.y;
         xRotation = Mathf.Clamp(xRotation, -60f, 60f);
@@ -99,6 +108,8 @@ public class PlayerController : MonoBehaviour
 
         float inputMag = Mathf.Abs(h) + Mathf.Abs(v);
 
+        bool isWalkingKey = keyboard.leftShiftKey.isPressed;
+
         float currentSpeed;
         if (isCrouching)
         {
@@ -107,18 +118,18 @@ public class PlayerController : MonoBehaviour
             animIsWalking  = false;
             animIsIdle     = false;
         }
-        else if (inputMag >= 0.85f)
-        {
-            currentSpeed   = sprintSpeed;
-            animIsRunning  = true;
-            animIsWalking  = false;
-            animIsIdle     = false;
-        }
-        else if (inputMag > 0f)
+        else if (inputMag > 0f && isWalkingKey)
         {
             currentSpeed   = walkSpeed;
             animIsRunning  = false;
             animIsWalking  = true;
+            animIsIdle     = false;
+        }
+        else if (inputMag > 0f)
+        {
+            currentSpeed   = sprintSpeed;
+            animIsRunning  = true;
+            animIsWalking  = false;
             animIsIdle     = false;
         }
         else
