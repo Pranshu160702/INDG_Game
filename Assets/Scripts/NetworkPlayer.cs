@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Mirror;
 
 public class NetworkPlayer : NetworkBehaviour
@@ -22,6 +23,8 @@ public class NetworkPlayer : NetworkBehaviour
     private PlayerController controller;
     private Animator animator;
     private Camera fpsCamera;
+    private Camera tpsCamera;
+    private bool isFPS = false;
 
     private Vector3 lastPos;
     private float lastYRot;
@@ -60,42 +63,31 @@ public class NetworkPlayer : NetworkBehaviour
             foreach (var r in GetComponentsInChildren<Renderer>(true))
                 r.enabled = false;
 
-        cameraTarget = transform.Find("CameraTarget");
-        if (cameraTarget == null)
-        {
-            StartCoroutine(SetupCameraNextFrame());
-            return;
-        }
-        SetupFPSCamera();
-    }
+        cameraTarget = transform.Find("TPSCamera");
+        tpsCamera = cameraTarget?.GetComponent<Camera>();
+        fpsCamera = transform.Find("FPSCamera")?.GetComponent<Camera>();
 
-    private System.Collections.IEnumerator SetupCameraNextFrame()
-    {
-        yield return null;
-        cameraTarget = transform.Find("CameraTarget");
-        SetupFPSCamera();
-    }
-
-    private void SetupFPSCamera()
-    {
-        if (cameraTarget == null) return;
-
-        GameObject camObj = new GameObject("FPSCamera");
-        camObj.transform.SetParent(cameraTarget);
-        camObj.transform.localPosition = Vector3.zero;
-        camObj.transform.localRotation = Quaternion.identity;
-
-        fpsCamera = camObj.AddComponent<Camera>();
-        fpsCamera.enabled = true;
-        camObj.AddComponent<AudioListener>();
+        if (tpsCamera != null) tpsCamera.enabled = true;
+        if (fpsCamera != null) fpsCamera.enabled = false;
     }
 
     void Update()
     {
         if (isLocalPlayer)
+        {
             SyncLocalPlayer();
+            if (Keyboard.current != null && Keyboard.current.leftAltKey.wasPressedThisFrame)
+                ToggleCamera();
+        }
         else
             ApplyRemoteState();
+    }
+
+    void ToggleCamera()
+    {
+        isFPS = !isFPS;
+        tpsCamera.enabled = !isFPS;
+        fpsCamera.enabled = isFPS;
     }
 
     void SyncLocalPlayer()
@@ -150,7 +142,7 @@ public class NetworkPlayer : NetworkBehaviour
             Time.deltaTime * 15f
         );
 
-        if (cameraTarget == null) cameraTarget = transform.Find("CameraTarget");
+        if (cameraTarget == null) cameraTarget = transform.Find("TPSCamera");
         if (cameraTarget != null)
             cameraTarget.localRotation = Quaternion.Lerp(
                 cameraTarget.localRotation,

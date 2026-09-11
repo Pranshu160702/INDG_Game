@@ -1,14 +1,14 @@
---- Log started 9/11/2026 12:39:27 AM ---
-[Log] [CowboyAnimator] Built successfully!
-UnityEngine.Debug:Log (object)
-BuildCowboyAnimator:Build () (at Assets/Editor/BuildCowboyAnimator.cs:263)
-
+--- Log started 9/11/2026 5:35:08 PM ---
 [Warning] Account API did not become accessible within 30 seconds. This may be due to network issues or editor focus.
 UnityEngine.Debug:LogWarning (object)
 Unity.AI.Toolkit.Accounts.Services.States.ApiAccessibleState/<WaitForCloudProjectSettings>d__4:MoveNext () (at ./Library/PackageCache/com.unity.ai.assistant@8d1e3e89e3a7/Modules/Unity.AI.Toolkit.Accounts/Services/States/ApiAccessibleState.cs:46)
 System.Threading.Tasks.TaskCompletionSource`1<bool>:TrySetResult (bool)
 Unity.AI.Toolkit.EditorTask/<>c__DisplayClass22_0:<WaitForCondition>b__0 () (at ./Library/PackageCache/com.unity.ai.assistant@8d1e3e89e3a7/Modules/Unity.AI.Toolkit.Async/EditorTask.cs:420)
 UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+[Log] [JamesAnimator] Built successfully!
+UnityEngine.Debug:Log (object)
+BuildJamesAnimator:Build () (at Assets/Editor/BuildJamesAnimator.cs:260)
 
 [Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
 UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
@@ -33,15 +33,69 @@ EpicTransport.EOSSDKComponent:InitializeImplementation () (at Assets/EpicOnlineT
 EpicTransport.EOSSDKComponent:Initialize () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:330)
 EpicTransport.EOSSDKComponent:Awake () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:228)
 
-[Log] [EosTransport] Awake
-UnityEngine.Debug:Log (object)
-EpicTransport.EosTransport:Awake () (at Assets/EpicOnlineTransport/EosTransport.cs:45)
-
 [Log] [EOSLobbyCode] Awake — Instance set
 UnityEngine.Debug:Log (object)
 EpicTransport.EOSLobbyCode:Awake () (at Assets/Scripts/EOSLobbyCode.cs:30)
 UnityEngine.GameObject:AddComponent<EpicTransport.EOSLobbyCode> ()
 GameNetworkManager:Awake () (at Assets/Scripts/GameNetworkManager.cs:42)
+
+[Log] [EosTransport] Awake
+UnityEngine.Debug:Log (object)
+EpicTransport.EosTransport:Awake () (at Assets/EpicOnlineTransport/EosTransport.cs:45)
+
+[Log] [EOSSDKComponent] DeleteDeviceId result: Success
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:<InitializeImplementation>b__72_2 (Epic.OnlineServices.Connect.DeleteDeviceIdCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:312)
+Epic.OnlineServices.Connect.OnDeleteDeviceIdCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.DeleteDeviceIdCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnDeleteDeviceIdCallback.cs:44)
+Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
+EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
+EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
+Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
+Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
+
+[Log] [EOSSDKComponent] Creating device ID with model: EDITOR_DESKTOP-QFOP35B
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:CreateUniqueDeviceId () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:358)
+EpicTransport.EOSSDKComponent:<InitializeImplementation>b__72_2 (Epic.OnlineServices.Connect.DeleteDeviceIdCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:313)
+Epic.OnlineServices.Connect.OnDeleteDeviceIdCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.DeleteDeviceIdCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnDeleteDeviceIdCallback.cs:44)
+Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
+EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
+EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
+Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
+Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
+
+[Log] Connect Interface Login succeeded
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:OnConnectInterfaceLogin (Epic.OnlineServices.Connect.LoginCallbackInfo) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:399)
+EpicTransport.EOSSDKComponent:<ConnectInterfaceLogin>b__77_0 (Epic.OnlineServices.Connect.LoginCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:394)
+Epic.OnlineServices.Connect.OnLoginCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.LoginCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnLoginCallback.cs:44)
+Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
+EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
+EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
+Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
+Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
+
+[Log] EOS User Product ID:0002af3644484b7e9394b4efb8881bed
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:OnConnectInterfaceLogin (Epic.OnlineServices.Connect.LoginCallbackInfo) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:404)
+EpicTransport.EOSSDKComponent:<ConnectInterfaceLogin>b__77_0 (Epic.OnlineServices.Connect.LoginCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:394)
+Epic.OnlineServices.Connect.OnLoginCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.LoginCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnLoginCallback.cs:44)
+Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
+EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
+EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
+Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
+Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
+
+[Log] [EOSSDKComponent] EOS fully initialized. ProductId: 0002af3644484b7e9394b4efb8881bed
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:OnConnectInterfaceLogin (Epic.OnlineServices.Connect.LoginCallbackInfo) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:412)
+EpicTransport.EOSSDKComponent:<ConnectInterfaceLogin>b__77_0 (Epic.OnlineServices.Connect.LoginCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:394)
+Epic.OnlineServices.Connect.OnLoginCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.LoginCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnLoginCallback.cs:44)
+Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
+EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
+EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
+Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
+Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
 
 [Log] [LoadingOverlay] Shown
 UnityEngine.Debug:Log (object)
@@ -49,9 +103,9 @@ LoadingOverlay:Show () (at Assets/Scripts/LoadingOverlay.cs:49)
 MenuUI:OnTestingClicked () (at Assets/Scripts/MenuUI.cs:226)
 UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/UGUI/EventSystem/EventSystem.cs:527)
 
-[Error] EOS not initialized. Server could not be started.
-UnityEngine.Debug:LogError (object)
-EpicTransport.EosTransport:ServerStart () (at Assets/EpicOnlineTransport/EosTransport.cs:170)
+[Log] [EosTransport] ServerStart: starting server
+UnityEngine.Debug:Log (object)
+EpicTransport.EosTransport:ServerStart () (at Assets/EpicOnlineTransport/EosTransport.cs:182)
 Mirror.NetworkServer:Listen (int) (at Assets/Mirror/Core/NetworkServer.cs:149)
 Mirror.NetworkManager:SetupServer () (at Assets/Mirror/Core/NetworkManager.cs:305)
 Mirror.NetworkManager:StartHost () (at Assets/Mirror/Core/NetworkManager.cs:471)
@@ -126,30 +180,9 @@ Mirror.LocalConnectionToServer:Update () (at Assets/Mirror/Core/LocalConnectionT
 Mirror.NetworkClient:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkClient.cs:1619)
 Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:208)
 
-[Log] [EOSSDKComponent] DeleteDeviceId result: Success
+[Log] [PlayerController] OnEnable — animator found on James, controller=JamesAnimator
 UnityEngine.Debug:Log (object)
-EpicTransport.EOSSDKComponent:<InitializeImplementation>b__72_2 (Epic.OnlineServices.Connect.DeleteDeviceIdCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:312)
-Epic.OnlineServices.Connect.OnDeleteDeviceIdCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.DeleteDeviceIdCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnDeleteDeviceIdCallback.cs:44)
-Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
-EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
-EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
-Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
-Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
-
-[Log] [EOSSDKComponent] Creating device ID with model: EDITOR_DESKTOP-QFOP35B
-UnityEngine.Debug:Log (object)
-EpicTransport.EOSSDKComponent:CreateUniqueDeviceId () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:358)
-EpicTransport.EOSSDKComponent:<InitializeImplementation>b__72_2 (Epic.OnlineServices.Connect.DeleteDeviceIdCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:313)
-Epic.OnlineServices.Connect.OnDeleteDeviceIdCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.DeleteDeviceIdCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnDeleteDeviceIdCallback.cs:44)
-Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
-EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
-EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
-Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
-Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
-
-[Log] [PlayerController] OnEnable — animator found on cowboy_mesh, controller=CowboyAnimator
-UnityEngine.Debug:Log (object)
-PlayerController:OnEnable () (at Assets/Scripts/PlayerController.cs:77)
+PlayerController:OnEnable () (at Assets/Scripts/PlayerController.cs:88)
 UnityEngine.Object:Instantiate<UnityEngine.GameObject> (UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Quaternion)
 GameNetworkManager:OnServerAddPlayer (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:142)
 Mirror.NetworkManager:OnServerAddPlayerInternal (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage) (at Assets/Mirror/Core/NetworkManager.cs:1194)
@@ -175,11 +208,11 @@ Mirror.NetworkServer:Broadcast () (at Assets/Mirror/Core/NetworkServer.cs:2029)
 Mirror.NetworkServer:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2080)
 Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:207)
 
-[Log] [PlayerController] OnEnable — animator found on cowboy_mesh, controller=CowboyAnimator
+[Log] [PlayerController] OnEnable — animator found on James, controller=JamesAnimator
 UnityEngine.Debug:Log (object)
-PlayerController:OnEnable () (at Assets/Scripts/PlayerController.cs:77)
+PlayerController:OnEnable () (at Assets/Scripts/PlayerController.cs:88)
 UnityEngine.Behaviour:set_enabled (bool)
-NetworkPlayer:OnStartLocalPlayer () (at Assets/Scripts/NetworkPlayer.cs:57)
+NetworkPlayer:OnStartLocalPlayer () (at Assets/Scripts/NetworkPlayer.cs:60)
 Mirror.NetworkIdentity:OnStartLocalPlayer () (at Assets/Mirror/Core/NetworkIdentity.cs:826)
 Mirror.NetworkClient:InvokeIdentityCallbacks (Mirror.NetworkIdentity) (at Assets/Mirror/Core/NetworkClient.cs:1414)
 Mirror.NetworkClient:BootstrapIdentity (Mirror.NetworkIdentity) (at Assets/Mirror/Core/NetworkClient.cs:1380)
@@ -193,46 +226,23 @@ Mirror.LocalConnectionToServer:Update () (at Assets/Mirror/Core/LocalConnectionT
 Mirror.NetworkClient:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkClient.cs:1619)
 Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:208)
 
-[Log] [NetworkPlayer] Start — animator=cowboy_mesh, isLocalPlayer=True
+[Log] [NetworkPlayer] Start — animator=James, isLocalPlayer=True
 UnityEngine.Debug:Log (object)
-NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:45)
+NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:48)
 
-[Log] [NetworkPlayer] Animator found: controller=CowboyAnimator, avatar=cowboy_meshAvatar, enabled=True, isHuman=True
+[Log] [NetworkPlayer] Animator found: controller=JamesAnimator, avatar=JamesAvatar, enabled=True, isHuman=True
 UnityEngine.Debug:Log (object)
-NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:49)
+NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:52)
 
-[Log] Connect Interface Login succeeded
-UnityEngine.Debug:Log (object)
-EpicTransport.EOSSDKComponent:OnConnectInterfaceLogin (Epic.OnlineServices.Connect.LoginCallbackInfo) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:399)
-EpicTransport.EOSSDKComponent:<ConnectInterfaceLogin>b__77_0 (Epic.OnlineServices.Connect.LoginCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:394)
-Epic.OnlineServices.Connect.OnLoginCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.LoginCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnLoginCallback.cs:44)
-Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
-EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
-EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
-Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
-Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
-
-[Log] EOS User Product ID:0002b19c30d64b0a9bd68c8437490815
-UnityEngine.Debug:Log (object)
-EpicTransport.EOSSDKComponent:OnConnectInterfaceLogin (Epic.OnlineServices.Connect.LoginCallbackInfo) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:404)
-EpicTransport.EOSSDKComponent:<ConnectInterfaceLogin>b__77_0 (Epic.OnlineServices.Connect.LoginCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:394)
-Epic.OnlineServices.Connect.OnLoginCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.LoginCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnLoginCallback.cs:44)
-Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
-EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
-EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
-Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
-Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
-
-[Log] [EOSSDKComponent] EOS fully initialized. ProductId: 0002b19c30d64b0a9bd68c8437490815
-UnityEngine.Debug:Log (object)
-EpicTransport.EOSSDKComponent:OnConnectInterfaceLogin (Epic.OnlineServices.Connect.LoginCallbackInfo) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:412)
-EpicTransport.EOSSDKComponent:<ConnectInterfaceLogin>b__77_0 (Epic.OnlineServices.Connect.LoginCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:394)
-Epic.OnlineServices.Connect.OnLoginCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.LoginCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnLoginCallback.cs:44)
-Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
-EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
-EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
-Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
-Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
+[Exception] NullReferenceException: Object reference not set to an instance of an object
+EpicTransport.EOSSDKComponent.get_LocalUserProductId () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:110)
+EpicTransport.Common.Receive (Epic.OnlineServices.ProductUserId& clientProductUserId, Epic.OnlineServices.P2P.SocketId& socketId, System.Byte[]& receiveBuffer, System.Byte channel) (at Assets/EpicOnlineTransport/Common.cs:154)
+EpicTransport.Common.ReceiveData () (at Assets/EpicOnlineTransport/Common.cs:206)
+UnityEngine.Debug:LogException(Exception)
+EpicTransport.Common:ReceiveData() (at Assets/EpicOnlineTransport/Common.cs:298)
+EpicTransport.Server:Shutdown() (at Assets/EpicOnlineTransport/Server.cs:143)
+EpicTransport.EosTransport:Shutdown() (at Assets/EpicOnlineTransport/EosTransport.cs:274)
+Mirror.Transport:OnApplicationQuit() (at Assets/Mirror/Core/Transport.cs:207)
 
 [Log] [EosTransport] Transport shut down.
 UnityEngine.Debug:Log (object)

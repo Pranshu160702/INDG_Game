@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController cc;
     private Animator animator;
-    private Transform cameraTarget;
+    private Transform cameraTarget; // TPSCamera
 
     private float xRotation;
     private float yVelocity;
@@ -41,6 +41,15 @@ public class PlayerController : MonoBehaviour
     private Vector2 lastInputDir;
     private float speedMultiplier = 1f;
     private float speedMultiplierVel;
+    private float rawH;
+    private float rawV;
+
+    [Header("Model Rotation")]
+    public float modelYRotDefault = 45f;
+    public float modelYRotSmooth = 0.15f;
+    private Transform modelTransform;
+    private float currentModelYRot;
+    private float modelYRotVel;
 
     // Exposed for NetworkPlayer sync
     [HideInInspector] public float animHorizontal;
@@ -71,16 +80,18 @@ public class PlayerController : MonoBehaviour
     {
         if (animator == null)
             animator = GetComponentInChildren<Animator>(true);
+        if (animator != null)
+            modelTransform = animator.transform;
         if (animator == null)
             Debug.LogError("[PlayerController] No Animator found in children!");
         else
             Debug.Log($"[PlayerController] OnEnable — animator found on {animator.gameObject.name}, controller={(animator.runtimeAnimatorController != null ? animator.runtimeAnimatorController.name : "NULL")}");
 
         animIsIdle = true;
-        cameraTarget = transform.Find("CameraTarget");
+        cameraTarget = transform.Find("TPSCamera");
         if (cameraTarget == null)
         {
-            GameObject ct = new GameObject("CameraTarget");
+            GameObject ct = new GameObject("TPSCamera");
             ct.transform.SetParent(transform);
             ct.transform.localPosition = new Vector3(0f, 1.7f, 0f);
             cameraTarget = ct.transform;
@@ -119,6 +130,8 @@ public class PlayerController : MonoBehaviour
 
         float h = (keyboard.dKey.isPressed ? 1f : 0f) - (keyboard.aKey.isPressed ? 1f : 0f);
         float v = (keyboard.wKey.isPressed ? 1f : 0f) - (keyboard.sKey.isPressed ? 1f : 0f);
+        rawH = h;
+        rawV = v;
 
         smoothH = Mathf.SmoothDamp(smoothH, h, ref smoothHVel, animSmoothTime);
         smoothV = Mathf.SmoothDamp(smoothV, v, ref smoothVVel, animSmoothTime);
@@ -220,6 +233,20 @@ public class PlayerController : MonoBehaviour
         cc.Move(moveDir.normalized * currentSpeed * speedMultiplier * Time.deltaTime + Vector3.up * yVelocity * Time.deltaTime);
 
         ApplyAnimatorState();
+        ApplyModelRotation();
+    }
+
+    void ApplyModelRotation()
+    {
+        if (modelTransform == null) return;
+        bool sprintZeroRot = animIsRunning && (Mathf.Abs(rawH) < 0.1f || rawV * rawH < 0f);
+        float targetY = (animIsIdle || sprintZeroRot) ? 0f : modelYRotDefault;
+        currentModelYRot = Mathf.SmoothDamp(currentModelYRot, targetY, ref modelYRotVel, modelYRotSmooth);
+        modelTransform.localEulerAngles = new Vector3(
+            modelTransform.localEulerAngles.x,
+            currentModelYRot,
+            modelTransform.localEulerAngles.z
+        );
     }
 
     void ApplyAnimatorState()
