@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     private float xRotation;
     private float yVelocity;
     private bool isGroundedPrev;
+    private bool wasAirborne;
+    private bool landingLocked;
     private float smoothH;
     private float smoothV;
     private float smoothHVel;
@@ -43,6 +45,18 @@ public class PlayerController : MonoBehaviour
     private float speedMultiplierVel;
     private float rawH;
     private float rawV;
+
+    [Header("Body Collider")]
+    public CapsuleCollider bodyCollider;
+    private float colliderHeight;
+    private float colliderRadius;
+    private Vector3 colliderCenter;
+    private float colliderXRot;
+    private float colliderHeightVel;
+    private float colliderRadiusVel;
+    private Vector3 colliderCenterVel;
+    private float colliderXRotVel;
+    [SerializeField] private float colliderSmoothTime;
 
     [Header("Model Rotation")]
     public float modelYRotDefault = 45f;
@@ -58,6 +72,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool animIsWalking;
     [HideInInspector] public bool animIsIdle;
     [HideInInspector] public bool animIsJumping;
+    [HideInInspector] public bool animIsFalling;
+    [HideInInspector] public bool animIsLanding;
     [HideInInspector] public bool animIsCrouching;
     [HideInInspector] public bool animIsCrouchWalking;
 
@@ -68,6 +84,8 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsWalking  = Animator.StringToHash("isWalking");
     private static readonly int IsIdle     = Animator.StringToHash("isIdle");
     private static readonly int IsJumping  = Animator.StringToHash("isJumping");
+    private static readonly int IsFalling  = Animator.StringToHash("isFalling");
+    private static readonly int IsLanding  = Animator.StringToHash("isLanding");
     private static readonly int IsCrouch        = Animator.StringToHash("isCrouching");
     private static readonly int IsCrouchWalking  = Animator.StringToHash("isCrouchWalking");
 
@@ -88,6 +106,13 @@ public class PlayerController : MonoBehaviour
             Debug.Log($"[PlayerController] OnEnable — animator found on {animator.gameObject.name}, controller={(animator.runtimeAnimatorController != null ? animator.runtimeAnimatorController.name : "NULL")}");
 
         animIsIdle = true;
+        if (bodyCollider != null)
+        {
+            colliderHeight  = bodyCollider.height;
+            colliderRadius  = bodyCollider.radius;
+            colliderCenter  = bodyCollider.center;
+            colliderXRot    = bodyCollider.transform.localEulerAngles.x;
+        }
         cameraTarget = transform.Find("TPSCamera");
         if (cameraTarget == null)
         {
@@ -205,6 +230,71 @@ public class PlayerController : MonoBehaviour
 
         bool grounded = cc.isGrounded;
 
+        // --- Height above ground (raycast down from feet) ---
+        float heightAboveGround = 0f;
+        if (!grounded)
+        {
+            if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 100f))
+                heightAboveGround = hit.distance;
+            else
+                heightAboveGround = 100f;
+        }
+
+        float fallThreshold   = jumpHeight * 2f;
+        float landingThreshold = jumpHeight * 1.5f;
+
+        // --- Falling / Landing detection ---
+        if (!grounded)
+        {
+            if (heightAboveGround > fallThreshold)
+            {
+                animIsFalling = true;
+                animIsLanding = false;
+            }
+            else if (heightAboveGround <= fallThreshold && heightAboveGround > landingThreshold)
+            {
+                animIsFalling = false;
+                animIsLanding = true;
+                landingLocked = true;
+            }
+        }
+        else
+        {
+            animIsFalling = false;
+            // Keep isLanding true until the Landing animator state finishes
+            if (landingLocked)
+            {
+                AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
+                if (info.IsName("Landing") && info.normalizedTime >= 0.95f)
+                {
+                    animIsLanding = false;
+                    landingLocked = false;
+                }
+                else if (!info.IsName("Landing"))
+                {
+                    // Already transitioned out (e.g. death), release lock
+                    animIsLanding = false;
+                    landingLocked = false;
+                }
+            }
+            else
+            {
+                animIsLanding = false;
+            }
+        }
+
+        wasAirborne = !grounded;
+
+        // Block all other anim states while landing is locked
+        if (landingLocked)
+        {
+            animIsRunning = false;
+            animIsWalking = false;
+            animIsIdle    = false;
+            animIsCrouching    = false;
+            animIsCrouchWalking = false;
+        }
+
         if (grounded)
         {
             yVelocity = -2f;
@@ -228,6 +318,29 @@ public class PlayerController : MonoBehaviour
 
         isGroundedPrev = grounded;
         yVelocity += gravity * Time.deltaTime;
+
+        if (bodyCollider != null)
+        {
+            bool isAirborne = !grounded;
+            float targetColliderHeight   = isCrouching ? (animIsCrouchWalking ? 1.3f : 1.1f) : (isAirborne ? 1.3f : 1.6f);
+            float targetColliderRadius   = isCrouching ? 0.3f : (isAirborne ? 0.3f : 0.2f);
+            Vector3 targetColliderCenter = isCrouching ? new Vector3(0f, 0.15f, 0.05f) : (isAirborne ? new Vector3(0f, 0.02f, 0.03f) : new Vector3(0f, -0.045f, 0f));
+            float targetColliderXRot     = isCrouching ? 15f : 5f;
+
+            colliderHeight = Mathf.SmoothDamp(colliderHeight, targetColliderHeight, ref colliderHeightVel, colliderSmoothTime);
+            colliderRadius = Mathf.SmoothDamp(colliderRadius, targetColliderRadius, ref colliderRadiusVel, colliderSmoothTime);
+            colliderCenter = new Vector3(
+                Mathf.SmoothDamp(colliderCenter.x, targetColliderCenter.x, ref colliderCenterVel.x, colliderSmoothTime),
+                Mathf.SmoothDamp(colliderCenter.y, targetColliderCenter.y, ref colliderCenterVel.y, colliderSmoothTime),
+                Mathf.SmoothDamp(colliderCenter.z, targetColliderCenter.z, ref colliderCenterVel.z, colliderSmoothTime)
+            );
+            colliderXRot = Mathf.SmoothDamp(colliderXRot, targetColliderXRot, ref colliderXRotVel, colliderSmoothTime);
+
+            bodyCollider.height = colliderHeight;
+            bodyCollider.radius = colliderRadius;
+            bodyCollider.center = colliderCenter;
+            bodyCollider.transform.localEulerAngles = new Vector3(colliderXRot, bodyCollider.transform.localEulerAngles.y, bodyCollider.transform.localEulerAngles.z);
+        }
 
         Vector3 moveDir = transform.right * h + transform.forward * v;
         cc.Move(moveDir.normalized * currentSpeed * speedMultiplier * Time.deltaTime + Vector3.up * yVelocity * Time.deltaTime);
@@ -259,6 +372,8 @@ public class PlayerController : MonoBehaviour
         animator.SetBool(IsWalking,  animIsWalking);
         animator.SetBool(IsIdle,     animIsIdle);
         animator.SetBool(IsJumping,  animIsJumping);
+        animator.SetBool(IsFalling,  animIsFalling);
+        animator.SetBool(IsLanding,  animIsLanding);
         animator.SetBool(IsCrouch,        animIsCrouching);
         animator.SetBool(IsCrouchWalking,  animIsCrouchWalking);
         animator.speed = speedMultiplier;

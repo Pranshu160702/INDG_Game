@@ -18,6 +18,8 @@ public class BuildJamesAnimator : EditorWindow
         controller.AddParameter("isRunning",         AnimatorControllerParameterType.Bool);
         controller.AddParameter("isCrouching",       AnimatorControllerParameterType.Bool);
         controller.AddParameter("isJumping",         AnimatorControllerParameterType.Bool);
+        controller.AddParameter("isFalling",         AnimatorControllerParameterType.Bool);
+        controller.AddParameter("isLanding",         AnimatorControllerParameterType.Bool);
         controller.AddParameter("isDead",            AnimatorControllerParameterType.Bool);
         controller.AddParameter("isHeadshot",        AnimatorControllerParameterType.Bool);
         controller.AddParameter("isCrouchWalking",   AnimatorControllerParameterType.Bool);
@@ -107,6 +109,14 @@ public class BuildJamesAnimator : EditorWindow
         var jumpState = rootSM.AddState("Jump", new Vector3(850, -100));
         jumpState.motion = Clip("Jumping/jump loop.fbx");
         jumpState.speed  = 1.1f;
+
+        // Falling
+        var fallingState = rootSM.AddState("Falling Idle", new Vector3(1150, -100));
+        fallingState.motion = Clip("Falling/falling idle.fbx");
+
+        // Landing
+        var landingState = rootSM.AddState("Landing", new Vector3(1150, 0));
+        landingState.motion = Clip("Falling/falling to landing.fbx");
 
         // Death states
         var deathState         = rootSM.AddState("Death",          new Vector3(250, 160));
@@ -233,6 +243,26 @@ public class BuildJamesAnimator : EditorWindow
         t = jumpState.AddTransition(idleState);
         t.AddCondition(AnimatorConditionMode.IfNot, 0, "isJumping");
         t.hasExitTime = true; t.exitTime = 0.39f; t.duration = 0.57f; t.hasFixedDuration = true;
+
+        // Jump -> Falling (fell off ledge mid-jump or jump transitions to fall)
+        t = jumpState.AddTransition(fallingState);
+        t.AddCondition(AnimatorConditionMode.If, 0, "isFalling");
+        t.duration = td; t.hasExitTime = false;
+
+        // Falling Idle -> Landing
+        t = fallingState.AddTransition(landingState);
+        t.AddCondition(AnimatorConditionMode.If, 0, "isLanding");
+        t.duration = td; t.hasExitTime = false;
+
+        // Landing -> Idle (play through then return)
+        t = landingState.AddTransition(idleState);
+        t.AddCondition(AnimatorConditionMode.IfNot, 0, "isLanding");
+        t.hasExitTime = true; t.exitTime = 0.95f; t.duration = td; t.hasFixedDuration = true;
+
+        // Any State -> Falling Idle
+        var anyFalling = rootSM.AddAnyStateTransition(fallingState);
+        anyFalling.AddCondition(AnimatorConditionMode.If, 0, "isFalling");
+        anyFalling.duration = td; anyFalling.hasExitTime = false; anyFalling.canTransitionToSelf = false;
 
         // Any State -> Death Crouch
         var anyDeathCrouch = rootSM.AddAnyStateTransition(deathCrouchState);
