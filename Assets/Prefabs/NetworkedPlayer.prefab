@@ -2216,13 +2216,14 @@ MonoBehaviour:
   animSmoothTime: 0.2
   angle90RecoverTime: 0.25
   angle180RecoverTime: 0.5
-  bodyCollider: {fileID: 0}
+  bodyCollider: {fileID: 9140232833401628903}
   colliderSmoothTime: 0.05
-  spineTransform: {fileID: 0}
+  spineTransform: {fileID: 5038159404279220401}
   spineWeight: 0.2
-  chestTransform: {fileID: 0}
-  headTransform: {fileID: 0}
-  upperWeight: 0.5
+  chestTransform: {fileID: 1012506054982207867}
+  headTransform: {fileID: 3213974257427700947}
+  upperWeight: 0.2
+  spineAngleOffset: -25
   animHorizontal: 3.6232216e-27
   animVertical: 2.1975702e-33
   animIsRunning: 0
@@ -2232,6 +2233,7 @@ MonoBehaviour:
   animIsCrouching: 0
   animIsAirborne: 0
   animIsCrouchWalking: 0
+  animIsAiming: 0
 --- !u!114 &8632369049263787533
 MonoBehaviour:
   m_ObjectHideFlags: 0

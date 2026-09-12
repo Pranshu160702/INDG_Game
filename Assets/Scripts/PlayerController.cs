@@ -37,6 +37,9 @@ public class PlayerController : MonoBehaviour
     private float idleTimer;
     private bool jumpLock;
     private float jumpLockTimer;
+    private bool jumpWasCrouching;
+    private bool jumpWasCrouchWalking;
+    private bool isAirborneFromJump;
     private float smoothH;
     private float smoothV;
     private float smoothHVel;
@@ -65,6 +68,7 @@ public class PlayerController : MonoBehaviour
     public Transform chestTransform;
     public Transform headTransform;
     [Range(0f, 1f)] public float upperWeight = 0.85f;
+    public float spineAngleOffset = 15f;
 
     // Exposed for NetworkPlayer sync
     [HideInInspector] public float animHorizontal;
@@ -76,6 +80,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool animIsCrouching;
     [HideInInspector] public bool animIsAirborne;
     [HideInInspector] public bool animIsCrouchWalking;
+    [HideInInspector] public bool animIsAiming;
 
     // Animator parameter hashes
     private static readonly int H          = Animator.StringToHash("Horizontal");
@@ -84,9 +89,10 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsWalking  = Animator.StringToHash("isWalking");
     private static readonly int IsIdle     = Animator.StringToHash("isIdle");
     private static readonly int IsJumping        = Animator.StringToHash("isJumping");
-    private static readonly int IsAirborne        = Animator.StringToHash("isAirborne");
+    private static readonly int IsAirborne       = Animator.StringToHash("isAirborne");
     private static readonly int IsCrouch          = Animator.StringToHash("isCrouching");
-    private static readonly int IsCrouchWalking  = Animator.StringToHash("isCrouchWalking");
+    private static readonly int IsCrouchWalking   = Animator.StringToHash("isCrouchWalking");
+    private static readonly int IsAiming          = Animator.StringToHash("isAiming");
 
     void Awake()
     {
@@ -148,6 +154,9 @@ public class PlayerController : MonoBehaviour
     void HandleMovement()
     {
         var keyboard = Keyboard.current;
+
+        if (Mouse.current.rightButton.wasPressedThisFrame)
+            animIsAiming = !animIsAiming;
 
         bool isCrouching = keyboard.leftCtrlKey.isPressed;
         animIsCrouching = isCrouching;
@@ -234,15 +243,23 @@ public class PlayerController : MonoBehaviour
         bool grounded = cc.isGrounded;
         animIsAirborne = !grounded;
 
+        if (grounded) isAirborneFromJump = false;
+
+        // while airborne from a jump, freeze crouch state to jump-time snapshot
+        if (isAirborneFromJump)
+        {
+            animIsCrouching     = jumpWasCrouching;
+            animIsCrouchWalking = jumpWasCrouchWalking;
+        }
+
         // jumpLock: suppress movement bools for 0.15s after jumping to prevent mid-air state flicker
         if (jumpLock)
         {
             jumpLockTimer -= Time.deltaTime;
             if (jumpLockTimer <= 0f) jumpLock = false;
-            animIsRunning       = false;
-            animIsWalking       = false;
-            animIsIdle          = false;
-            animIsCrouchWalking = false;
+            animIsRunning = false;
+            animIsWalking = false;
+            animIsIdle    = false;
         }
 
         // --- Fix 1: only go idle after 0.2s of no input ---
@@ -271,18 +288,24 @@ public class PlayerController : MonoBehaviour
 
             if (keyboard.spaceKey.wasPressedThisFrame && !isCrouching)
             {
-                yVelocity     = Mathf.Sqrt(jumpHeight * -2f * gravity);
-                animIsJumping = true;
-                jumpLock      = true;
-                jumpLockTimer = 0.15f;
+                yVelocity             = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                animIsJumping         = true;
+                jumpLock              = true;
+                jumpLockTimer         = 0.15f;
+                jumpWasCrouching      = false;
+                jumpWasCrouchWalking  = false;
+                isAirborneFromJump    = true;
                 if (animator != null) animator.SetTrigger(IsJumping);
             }
             else if (keyboard.spaceKey.wasPressedThisFrame && isCrouching)
             {
-                yVelocity     = Mathf.Sqrt(crouchJumpHeight * -2f * gravity);
-                animIsJumping = true;
-                jumpLock      = true;
-                jumpLockTimer = 0.15f;
+                yVelocity             = Mathf.Sqrt(crouchJumpHeight * -2f * gravity);
+                animIsJumping         = true;
+                jumpLock              = true;
+                jumpLockTimer         = 0.15f;
+                jumpWasCrouching      = true;
+                jumpWasCrouchWalking  = animIsCrouchWalking;
+                isAirborneFromJump    = true;
                 if (animator != null) animator.SetTrigger(IsJumping);
             }
         }
@@ -318,15 +341,20 @@ public class PlayerController : MonoBehaviour
         ApplyAnimatorState();
     }
 
+    private float smoothSpineX;
+    private float smoothSpineXVel;
+
     void LateUpdate()
     {
-        float x = xRotation;
+        smoothSpineX = Mathf.SmoothDamp(smoothSpineX, xRotation, ref smoothSpineXVel, 0.08f);
+        float x = smoothSpineX + spineAngleOffset;
         if (spineTransform != null)
             spineTransform.localRotation *= Quaternion.Euler(x * spineWeight, 0f, 0f);
+        float xBase = smoothSpineX;
         if (chestTransform != null)
-            chestTransform.localRotation *= Quaternion.Euler(x * upperWeight, 0f, 0f);
+            chestTransform.localRotation *= Quaternion.Euler(xBase * upperWeight, 0f, 0f);
         if (headTransform != null)
-            headTransform.localRotation *= Quaternion.Euler(x * upperWeight, 0f, 0f);
+            headTransform.localRotation *= Quaternion.Euler(xBase * upperWeight, 0f, 0f);
     }
 
     void ApplyAnimatorState()
@@ -338,9 +366,10 @@ public class PlayerController : MonoBehaviour
         animator.SetBool(IsRunning,  animIsRunning);
         animator.SetBool(IsWalking,  animIsWalking);
         animator.SetBool(IsIdle,     animIsIdle);
-        animator.SetBool(IsAirborne,       animIsAirborne);
+        animator.SetBool(IsAirborne,      animIsAirborne);
         animator.SetBool(IsCrouch,        animIsCrouching);
-        animator.SetBool(IsCrouchWalking,  animIsCrouchWalking);
+        animator.SetBool(IsCrouchWalking, animIsCrouchWalking);
+        animator.SetBool(IsAiming,        animIsAiming);
         animator.speed = speedMultiplier;
     }
 
