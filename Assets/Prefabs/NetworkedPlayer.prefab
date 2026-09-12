@@ -1497,7 +1497,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5531823102161810668}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1505,7 +1505,7 @@ Transform:
   - {fileID: 5797489534051196984}
   - {fileID: 1956654941195522190}
   m_Father: {fileID: 3929948329146413396}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!95 &1256231296832304172
 Animator:
   serializedVersion: 7
@@ -2217,16 +2217,17 @@ MonoBehaviour:
   angle180RecoverTime: 0.5
   bodyCollider: {fileID: 9140232833401628903}
   colliderSmoothTime: 0.05
-  modelYRotDefault: 35
-  modelYRotSmooth: 0.1
-  animHorizontal: -3e-45
-  animVertical: 3e-45
+  spineTransform: {fileID: 5038159404279220401}
+  spineWeight: 0.2
+  chestTransform: {fileID: 9017011691454970763}
+  headTransform: {fileID: 3213974257427700947}
+  upperWeight: 0.5
+  animHorizontal: 0
+  animVertical: 0
   animIsRunning: 0
   animIsWalking: 0
   animIsIdle: 1
   animIsJumping: 0
-  animIsFalling: 0
-  animIsLanding: 0
   animIsCrouching: 0
   animIsCrouchWalking: 0
 --- !u!114 &8632369049263787533

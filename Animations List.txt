@@ -1,0 +1,25 @@
+Animation List:
+
+Character : 
+
+Idle
+Idle crouch
+Body above hips turns with mouse smmothly
+Turning animations > 89 degree then turn to that direction
+Sprint in all 8 directions
+Walk in all 8 directions
+Jump animation same for all directions
+Immediately after landing new animation plays
+crouch jump animation
+crouch walking in all 8 directions
+if in jump and crouch pressed (immediatley starts falling down )
+
+Gun : 
+
+Shooting
+Scope in 
+Scope in shooting
+Reload (for both same)
+
+
+THE MAIN DIFFERENCE (UPPER BODY HAS SEPERATE ANIMATIONS AND LOWER BODY SEPERATE) SO LOWER BODY ANIMATIONS REUSED FOR ALL MOVEMENTS ANIMATIONS

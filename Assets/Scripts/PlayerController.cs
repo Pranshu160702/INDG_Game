@@ -12,8 +12,6 @@ public class PlayerController : MonoBehaviour
     [Header("Jump")]
     public float jumpHeight = 1.5f;
     public float gravity = -20f;
-    public float fallAnimDelay = 0.4f;
-    public float shortFallThreshold = 1.5f;
 
     [Header("Crouch")]
     public float standHeight = 2f;
@@ -35,10 +33,6 @@ public class PlayerController : MonoBehaviour
 
     private float xRotation;
     private float yVelocity;
-    private bool wasAirborne;
-    private bool landingLocked;
-    private float airborneTime;
-    private float distanceToGround;
     private float smoothH;
     private float smoothV;
     private float smoothHVel;
@@ -61,12 +55,12 @@ public class PlayerController : MonoBehaviour
     private float colliderXRotVel;
     [SerializeField] private float colliderSmoothTime;
 
-    [Header("Model Rotation")]
-    public float modelYRotDefault = 45f;
-    public float modelYRotSmooth = 0.15f;
-    private Transform modelTransform;
-    private float currentModelYRot;
-    private float modelYRotVel;
+    [Header("Upper Body")]
+    public Transform spineTransform;
+    [Range(0f, 1f)] public float spineWeight = 0.6f;
+    public Transform chestTransform;
+    public Transform headTransform;
+    [Range(0f, 1f)] public float upperWeight = 0.85f;
 
     // Exposed for NetworkPlayer sync
     [HideInInspector] public float animHorizontal;
@@ -75,8 +69,6 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool animIsWalking;
     [HideInInspector] public bool animIsIdle;
     [HideInInspector] public bool animIsJumping;
-    [HideInInspector] public bool animIsFalling;
-    [HideInInspector] public bool animIsLanding;
     [HideInInspector] public bool animIsCrouching;
     [HideInInspector] public bool animIsCrouchWalking;
 
@@ -87,8 +79,6 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsWalking  = Animator.StringToHash("isWalking");
     private static readonly int IsIdle     = Animator.StringToHash("isIdle");
     private static readonly int IsJumping  = Animator.StringToHash("isJumping");
-    private static readonly int IsFalling  = Animator.StringToHash("isFalling");
-    private static readonly int IsLanding  = Animator.StringToHash("isLanding");
     private static readonly int IsCrouch        = Animator.StringToHash("isCrouching");
     private static readonly int IsCrouchWalking  = Animator.StringToHash("isCrouchWalking");
 
@@ -101,20 +91,12 @@ public class PlayerController : MonoBehaviour
     {
         if (animator == null)
             animator = GetComponentInChildren<Animator>(true);
-        if (animator != null)
-            modelTransform = animator.transform;
         if (animator == null)
             Debug.LogError("[PlayerController] No Animator found in children!");
         else
             Debug.Log($"[PlayerController] OnEnable — animator found on {animator.gameObject.name}, controller={(animator.runtimeAnimatorController != null ? animator.runtimeAnimatorController.name : "NULL")}");
 
         animIsIdle = true;
-        animIsFalling = false;
-        animIsLanding = false;
-        landingLocked = false;
-        wasAirborne = false;
-        airborneTime = 0f;
-        distanceToGround = 0f;
         yVelocity = -2f;
         if (bodyCollider != null)
         {
@@ -124,6 +106,7 @@ public class PlayerController : MonoBehaviour
             colliderXRot    = bodyCollider.transform.localEulerAngles.x;
         }
         cameraTarget = transform.Find("TPSCamera");
+        fpsCamera = transform.Find("FPSCamera");
         if (cameraTarget == null)
         {
             GameObject ct = new GameObject("TPSCamera");
@@ -142,13 +125,17 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
     }
 
+    private Transform fpsCamera;
+
     void HandleLook()
     {
         if (cameraTarget == null) return;
         Vector2 mouseDelta = Mouse.current.delta.ReadValue() * mouseSensitivity * 0.1f;
         xRotation -= mouseDelta.y;
-        xRotation = Mathf.Clamp(xRotation, -60f, 60f);
+        xRotation = Mathf.Clamp(xRotation, -80f, 80f);
         cameraTarget.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        if (fpsCamera != null)
+            fpsCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseDelta.x);
     }
 
@@ -240,66 +227,6 @@ public class PlayerController : MonoBehaviour
 
         bool grounded = cc.isGrounded;
 
-        // --- Raycast distance to ground ---
-        if (!grounded)
-        {
-            if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 100f))
-                distanceToGround = hit.distance;
-            else
-                distanceToGround = 100f;
-        }
-
-        // --- Falling / Landing detection ---
-        if (!grounded)
-        {
-            if (yVelocity < 0f)
-                airborneTime += Time.deltaTime;
-            else
-                airborneTime = 0f;
-
-            bool longFall = distanceToGround > shortFallThreshold;
-
-            if (airborneTime > fallAnimDelay)
-            {
-                if (longFall)
-                    animIsFalling = true;
-                wasAirborne = true;
-            }
-            animIsLanding = false;
-        }
-        else
-        {
-            airborneTime = 0f;
-            animIsFalling = false;
-
-            if (wasAirborne)
-            {
-                animIsLanding = true;
-                landingLocked = true;
-                wasAirborne = false;
-            }
-
-            if (landingLocked)
-            {
-                AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
-                if (info.IsName("Landing") && info.normalizedTime >= 0.95f)
-                {
-                    animIsLanding = false;
-                    landingLocked = false;
-                }
-            }
-        }
-
-        // Block all other anim states while landing is locked
-        if (landingLocked)
-        {
-            animIsRunning = false;
-            animIsWalking = false;
-            animIsIdle    = false;
-            animIsCrouching    = false;
-            animIsCrouchWalking = false;
-        }
-
         if (grounded)
         {
             yVelocity = -2f;
@@ -348,20 +275,17 @@ public class PlayerController : MonoBehaviour
         cc.Move(moveDir.normalized * currentSpeed * speedMultiplier * Time.deltaTime + Vector3.up * yVelocity * Time.deltaTime);
 
         ApplyAnimatorState();
-        ApplyModelRotation();
     }
 
-    void ApplyModelRotation()
+    void LateUpdate()
     {
-        if (modelTransform == null) return;
-        bool sprintZeroRot = animIsRunning && (Mathf.Abs(rawH) < 0.1f || rawV * rawH < 0f);
-        float targetY = (animIsIdle || sprintZeroRot) ? 0f : modelYRotDefault;
-        currentModelYRot = Mathf.SmoothDamp(currentModelYRot, targetY, ref modelYRotVel, modelYRotSmooth);
-        modelTransform.localEulerAngles = new Vector3(
-            modelTransform.localEulerAngles.x,
-            currentModelYRot,
-            modelTransform.localEulerAngles.z
-        );
+        float x = xRotation;
+        if (spineTransform != null)
+            spineTransform.localRotation *= Quaternion.Euler(x * spineWeight, 0f, 0f);
+        if (chestTransform != null)
+            chestTransform.localRotation *= Quaternion.Euler(x * upperWeight, 0f, 0f);
+        if (headTransform != null)
+            headTransform.localRotation *= Quaternion.Euler(x * upperWeight, 0f, 0f);
     }
 
     void ApplyAnimatorState()
@@ -374,8 +298,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool(IsWalking,  animIsWalking);
         animator.SetBool(IsIdle,     animIsIdle);
         animator.SetBool(IsJumping,  animIsJumping);
-        animator.SetBool(IsFalling,  animIsFalling);
-        animator.SetBool(IsLanding,  animIsLanding);
         animator.SetBool(IsCrouch,        animIsCrouching);
         animator.SetBool(IsCrouchWalking,  animIsCrouchWalking);
         animator.speed = speedMultiplier;
