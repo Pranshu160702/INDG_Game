@@ -138,7 +138,6 @@ public class GameNetworkManager : NetworkManager
         {
             if (playerPrefab == null) { Debug.LogError("[GNM] playerPrefab not assigned!"); return; }
             var pos = GetStartPosition()?.position ?? Vector3.zero;
-            pos.y = 0f;
             NetworkServer.AddPlayerForConnection(conn, Instantiate(playerPrefab, pos, Quaternion.identity));
         }
         Debug.Log($"[GNM] OnServerAddPlayer conn={conn.connectionId} scene={networkSceneName}");

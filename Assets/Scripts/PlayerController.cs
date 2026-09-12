@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [Header("Jump")]
     public float jumpHeight = 1.5f;
     public float gravity = -20f;
+    public float fallAnimDelay = 0.4f;
+    public float shortFallThreshold = 1.5f;
 
     [Header("Crouch")]
     public float standHeight = 2f;
@@ -33,9 +35,10 @@ public class PlayerController : MonoBehaviour
 
     private float xRotation;
     private float yVelocity;
-    private bool isGroundedPrev;
     private bool wasAirborne;
     private bool landingLocked;
+    private float airborneTime;
+    private float distanceToGround;
     private float smoothH;
     private float smoothV;
     private float smoothHVel;
@@ -106,6 +109,13 @@ public class PlayerController : MonoBehaviour
             Debug.Log($"[PlayerController] OnEnable — animator found on {animator.gameObject.name}, controller={(animator.runtimeAnimatorController != null ? animator.runtimeAnimatorController.name : "NULL")}");
 
         animIsIdle = true;
+        animIsFalling = false;
+        animIsLanding = false;
+        landingLocked = false;
+        wasAirborne = false;
+        airborneTime = 0f;
+        distanceToGround = 0f;
+        yVelocity = -2f;
         if (bodyCollider != null)
         {
             colliderHeight  = bodyCollider.height;
@@ -230,38 +240,45 @@ public class PlayerController : MonoBehaviour
 
         bool grounded = cc.isGrounded;
 
-        // --- Height above ground (raycast down from feet) ---
-        float heightAboveGround = 0f;
+        // --- Raycast distance to ground ---
         if (!grounded)
         {
             if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 100f))
-                heightAboveGround = hit.distance;
+                distanceToGround = hit.distance;
             else
-                heightAboveGround = 100f;
+                distanceToGround = 100f;
         }
-
-        float fallThreshold   = jumpHeight * 2f;
-        float landingThreshold = jumpHeight * 1.5f;
 
         // --- Falling / Landing detection ---
         if (!grounded)
         {
-            if (heightAboveGround > fallThreshold)
+            if (yVelocity < 0f)
+                airborneTime += Time.deltaTime;
+            else
+                airborneTime = 0f;
+
+            bool longFall = distanceToGround > shortFallThreshold;
+
+            if (airborneTime > fallAnimDelay)
             {
-                animIsFalling = true;
-                animIsLanding = false;
+                if (longFall)
+                    animIsFalling = true;
+                wasAirborne = true;
             }
-            else if (heightAboveGround <= fallThreshold && heightAboveGround > landingThreshold)
-            {
-                animIsFalling = false;
-                animIsLanding = true;
-                landingLocked = true;
-            }
+            animIsLanding = false;
         }
         else
         {
+            airborneTime = 0f;
             animIsFalling = false;
-            // Keep isLanding true until the Landing animator state finishes
+
+            if (wasAirborne)
+            {
+                animIsLanding = true;
+                landingLocked = true;
+                wasAirborne = false;
+            }
+
             if (landingLocked)
             {
                 AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
@@ -270,20 +287,8 @@ public class PlayerController : MonoBehaviour
                     animIsLanding = false;
                     landingLocked = false;
                 }
-                else if (!info.IsName("Landing"))
-                {
-                    // Already transitioned out (e.g. death), release lock
-                    animIsLanding = false;
-                    landingLocked = false;
-                }
-            }
-            else
-            {
-                animIsLanding = false;
             }
         }
-
-        wasAirborne = !grounded;
 
         // Block all other anim states while landing is locked
         if (landingLocked)
@@ -299,7 +304,6 @@ public class PlayerController : MonoBehaviour
         {
             yVelocity = -2f;
 
-            // Trigger jump only on the exact frame Space is pressed
             if (keyboard.spaceKey.wasPressedThisFrame && !isCrouching)
             {
                 yVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
@@ -312,11 +316,9 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            // Once airborne, clear the jump trigger immediately so it fires once
             animIsJumping = false;
         }
 
-        isGroundedPrev = grounded;
         yVelocity += gravity * Time.deltaTime;
 
         if (bodyCollider != null)

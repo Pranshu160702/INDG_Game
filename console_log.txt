@@ -1,11 +1,4 @@
---- Log started 9/11/2026 10:42:48 PM ---
-[Warning] Account API did not become accessible within 30 seconds. This may be due to network issues or editor focus.
-UnityEngine.Debug:LogWarning (object)
-Unity.AI.Toolkit.Accounts.Services.States.ApiAccessibleState/<WaitForCloudProjectSettings>d__4:MoveNext () (at ./Library/PackageCache/com.unity.ai.assistant@8d1e3e89e3a7/Modules/Unity.AI.Toolkit.Accounts/Services/States/ApiAccessibleState.cs:46)
-System.Threading.Tasks.TaskCompletionSource`1<bool>:TrySetResult (bool)
-Unity.AI.Toolkit.EditorTask/<>c__DisplayClass22_0:<WaitForCondition>b__0 () (at ./Library/PackageCache/com.unity.ai.assistant@8d1e3e89e3a7/Modules/Unity.AI.Toolkit.Async/EditorTask.cs:420)
-UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
-
+--- Log started 9/12/2026 9:58:56 AM ---
 [Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
 UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
 TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
@@ -28,6 +21,289 @@ UnityEngine.Debug:Log (object)
 EpicTransport.EOSSDKComponent:InitializeImplementation () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:269)
 EpicTransport.EOSSDKComponent:Initialize () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:330)
 EpicTransport.EOSSDKComponent:Awake () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:228)
+
+[Log] [EOSLobbyCode] Awake — Instance set
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSLobbyCode:Awake () (at Assets/Scripts/EOSLobbyCode.cs:30)
+UnityEngine.GameObject:AddComponent<EpicTransport.EOSLobbyCode> ()
+GameNetworkManager:Awake () (at Assets/Scripts/GameNetworkManager.cs:42)
+
+[Log] [EosTransport] Awake
+UnityEngine.Debug:Log (object)
+EpicTransport.EosTransport:Awake () (at Assets/EpicOnlineTransport/EosTransport.cs:45)
+
+[Log] [LoadingOverlay] Shown
+UnityEngine.Debug:Log (object)
+LoadingOverlay:Show () (at Assets/Scripts/LoadingOverlay.cs:49)
+MenuUI:OnTestingClicked () (at Assets/Scripts/MenuUI.cs:226)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/UGUI/EventSystem/EventSystem.cs:527)
+
+[Error] EOS not initialized. Server could not be started.
+UnityEngine.Debug:LogError (object)
+EpicTransport.EosTransport:ServerStart () (at Assets/EpicOnlineTransport/EosTransport.cs:170)
+Mirror.NetworkServer:Listen (int) (at Assets/Mirror/Core/NetworkServer.cs:149)
+Mirror.NetworkManager:SetupServer () (at Assets/Mirror/Core/NetworkManager.cs:305)
+Mirror.NetworkManager:StartHost () (at Assets/Mirror/Core/NetworkManager.cs:471)
+GameNetworkManager:QuickTestGame () (at Assets/Scripts/GameNetworkManager.cs:98)
+MenuUI:OnTestingClicked () (at Assets/Scripts/MenuUI.cs:227)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/UGUI/EventSystem/EventSystem.cs:527)
+
+[Log] Server started listening
+UnityEngine.Debug:Log (object)
+Mirror.NetworkServer:Listen (int) (at Assets/Mirror/Core/NetworkServer.cs:165)
+Mirror.NetworkManager:SetupServer () (at Assets/Mirror/Core/NetworkManager.cs:305)
+Mirror.NetworkManager:StartHost () (at Assets/Mirror/Core/NetworkManager.cs:471)
+GameNetworkManager:QuickTestGame () (at Assets/Scripts/GameNetworkManager.cs:98)
+MenuUI:OnTestingClicked () (at Assets/Scripts/MenuUI.cs:227)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/UGUI/EventSystem/EventSystem.cs:527)
+
+[Log] [GNM] OnStartServer
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStartServer () (at Assets/Scripts/GameNetworkManager.cs:223)
+Mirror.NetworkManager:FinishStartHost () (at Assets/Mirror/Core/NetworkManager.cs:537)
+Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1021)
+Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
+Mirror.NetworkManager:UpdateScene () (at Assets/Mirror/Core/NetworkManager.cs:963)
+Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257)
+
+[Log] [GNM] OnStartHost
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStartHost () (at Assets/Scripts/GameNetworkManager.cs:201)
+Mirror.NetworkManager:FinishStartHost () (at Assets/Mirror/Core/NetworkManager.cs:542)
+Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1021)
+Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
+Mirror.NetworkManager:UpdateScene () (at Assets/Mirror/Core/NetworkManager.cs:963)
+Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257)
+
+[Log] [GNM] OnStartClient
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStartClient () (at Assets/Scripts/GameNetworkManager.cs:211)
+Mirror.NetworkManager:FinishStartHost () (at Assets/Mirror/Core/NetworkManager.cs:559)
+Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1021)
+Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
+Mirror.NetworkManager:UpdateScene () (at Assets/Mirror/Core/NetworkManager.cs:963)
+Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257)
+
+[Log] [GNM] ServerSceneChanged: Game
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnServerSceneChanged (string) (at Assets/Scripts/GameNetworkManager.cs:229)
+Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1024)
+Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
+Mirror.NetworkManager:UpdateScene () (at Assets/Mirror/Core/NetworkManager.cs:963)
+Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257)
+
+[Log] [GNM] OnClientConnect
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnClientConnect () (at Assets/Scripts/GameNetworkManager.cs:240)
+Mirror.NetworkManager:OnClientAuthenticated () (at Assets/Mirror/Core/NetworkManager.cs:1234)
+Mirror.NetworkManager:OnClientConnectInternal () (at Assets/Mirror/Core/NetworkManager.cs:1209)
+Mirror.LocalConnectionToServer:Update () (at Assets/Mirror/Core/LocalConnectionToServer.cs:50)
+Mirror.NetworkClient:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkClient.cs:1619)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:208)
+
+[Log] [GNM] ClientChangeScene: Game
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnClientChangeScene (string,Mirror.SceneOperation,bool) (at Assets/Scripts/GameNetworkManager.cs:237)
+Mirror.NetworkManager:ClientChangeScene (string,Mirror.SceneOperation,bool) (at Assets/Mirror/Core/NetworkManager.cs:861)
+Mirror.NetworkManager:OnClientSceneInternal (Mirror.SceneMessage) (at Assets/Mirror/Core/NetworkManager.cs:1314)
+Mirror.NetworkClient/<>c__DisplayClass61_0`1<Mirror.SceneMessage>:<RegisterHandler>g__HandlerWrapped|0 (Mirror.NetworkConnection,Mirror.SceneMessage) (at Assets/Mirror/Core/NetworkClient.cs:544)
+Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.SceneMessage, Mirror.NetworkConnection>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnection,Mirror.SceneMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
+Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.SceneMessage, Mirror.NetworkConnection>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
+Mirror.NetworkClient:UnpackAndInvoke (Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkClient.cs:282)
+Mirror.NetworkClient:OnTransportData (System.ArraySegment`1<byte>,int) (at Assets/Mirror/Core/NetworkClient.cs:358)
+Mirror.LocalConnectionToServer:Update () (at Assets/Mirror/Core/LocalConnectionToServer.cs:70)
+Mirror.NetworkClient:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkClient.cs:1619)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:208)
+
+[Log] [PlayerController] OnEnable — animator found on James, controller=JamesAnimator
+UnityEngine.Debug:Log (object)
+PlayerController:OnEnable () (at Assets/Scripts/PlayerController.cs:109)
+UnityEngine.Object:Instantiate<UnityEngine.GameObject> (UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Quaternion)
+GameNetworkManager:OnServerAddPlayer (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:141)
+Mirror.NetworkManager:OnServerAddPlayerInternal (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage) (at Assets/Mirror/Core/NetworkManager.cs:1194)
+Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
+Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
+Mirror.NetworkServer:UnpackAndInvoke (Mirror.NetworkConnectionToClient,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkServer.cs:742)
+Mirror.NetworkServer:OnTransportData (int,System.ArraySegment`1<byte>,int) (at Assets/Mirror/Core/NetworkServer.cs:813)
+Mirror.LocalConnectionToClient:Update () (at Assets/Mirror/Core/LocalConnectionToClient.cs:57)
+Mirror.NetworkServer:Broadcast () (at Assets/Mirror/Core/NetworkServer.cs:2029)
+Mirror.NetworkServer:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2080)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:207)
+
+[Log] [GNM] OnServerAddPlayer conn=0 scene=Game
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnServerAddPlayer (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:143)
+Mirror.NetworkManager:OnServerAddPlayerInternal (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage) (at Assets/Mirror/Core/NetworkManager.cs:1194)
+Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
+Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
+Mirror.NetworkServer:UnpackAndInvoke (Mirror.NetworkConnectionToClient,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkServer.cs:742)
+Mirror.NetworkServer:OnTransportData (int,System.ArraySegment`1<byte>,int) (at Assets/Mirror/Core/NetworkServer.cs:813)
+Mirror.LocalConnectionToClient:Update () (at Assets/Mirror/Core/LocalConnectionToClient.cs:57)
+Mirror.NetworkServer:Broadcast () (at Assets/Mirror/Core/NetworkServer.cs:2029)
+Mirror.NetworkServer:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2080)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:207)
+
+[Log] [PlayerController] OnEnable — animator found on James, controller=JamesAnimator
+UnityEngine.Debug:Log (object)
+PlayerController:OnEnable () (at Assets/Scripts/PlayerController.cs:109)
+UnityEngine.Behaviour:set_enabled (bool)
+NetworkPlayer:OnStartLocalPlayer () (at Assets/Scripts/NetworkPlayer.cs:60)
+Mirror.NetworkIdentity:OnStartLocalPlayer () (at Assets/Mirror/Core/NetworkIdentity.cs:826)
+Mirror.NetworkClient:InvokeIdentityCallbacks (Mirror.NetworkIdentity) (at Assets/Mirror/Core/NetworkClient.cs:1414)
+Mirror.NetworkClient:BootstrapIdentity (Mirror.NetworkIdentity) (at Assets/Mirror/Core/NetworkClient.cs:1380)
+Mirror.NetworkClient:OnHostClientSpawn (Mirror.SpawnMessage) (at Assets/Mirror/Core/NetworkClient.cs:1372)
+Mirror.NetworkClient/<>c__DisplayClass61_0`1<Mirror.SpawnMessage>:<RegisterHandler>g__HandlerWrapped|0 (Mirror.NetworkConnection,Mirror.SpawnMessage) (at Assets/Mirror/Core/NetworkClient.cs:544)
+Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.SpawnMessage, Mirror.NetworkConnection>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnection,Mirror.SpawnMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
+Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.SpawnMessage, Mirror.NetworkConnection>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
+Mirror.NetworkClient:UnpackAndInvoke (Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkClient.cs:282)
+Mirror.NetworkClient:OnTransportData (System.ArraySegment`1<byte>,int) (at Assets/Mirror/Core/NetworkClient.cs:358)
+Mirror.LocalConnectionToServer:Update () (at Assets/Mirror/Core/LocalConnectionToServer.cs:70)
+Mirror.NetworkClient:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkClient.cs:1619)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:208)
+
+[Log] [NetworkPlayer] Start — animator=James, isLocalPlayer=True
+UnityEngine.Debug:Log (object)
+NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:48)
+
+[Log] [NetworkPlayer] Animator found: controller=JamesAnimator, avatar=JamesAvatar, enabled=True, isHuman=True
+UnityEngine.Debug:Log (object)
+NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:52)
+
+[Log] [EOSSDKComponent] DeleteDeviceId result: Success
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:<InitializeImplementation>b__72_2 (Epic.OnlineServices.Connect.DeleteDeviceIdCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:312)
+Epic.OnlineServices.Connect.OnDeleteDeviceIdCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.DeleteDeviceIdCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnDeleteDeviceIdCallback.cs:44)
+Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
+EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
+EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
+Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
+Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
+
+[Log] [EOSSDKComponent] Creating device ID with model: EDITOR_DESKTOP-QFOP35B
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:CreateUniqueDeviceId () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:358)
+EpicTransport.EOSSDKComponent:<InitializeImplementation>b__72_2 (Epic.OnlineServices.Connect.DeleteDeviceIdCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:313)
+Epic.OnlineServices.Connect.OnDeleteDeviceIdCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.DeleteDeviceIdCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnDeleteDeviceIdCallback.cs:44)
+Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
+EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
+EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
+Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
+Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
+
+[Log] Connect Interface Login succeeded
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:OnConnectInterfaceLogin (Epic.OnlineServices.Connect.LoginCallbackInfo) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:399)
+EpicTransport.EOSSDKComponent:<ConnectInterfaceLogin>b__77_0 (Epic.OnlineServices.Connect.LoginCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:394)
+Epic.OnlineServices.Connect.OnLoginCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.LoginCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnLoginCallback.cs:44)
+Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
+EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
+EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
+Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
+Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
+
+[Log] EOS User Product ID:00021de066d642ce93ead8c09c295c77
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:OnConnectInterfaceLogin (Epic.OnlineServices.Connect.LoginCallbackInfo) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:404)
+EpicTransport.EOSSDKComponent:<ConnectInterfaceLogin>b__77_0 (Epic.OnlineServices.Connect.LoginCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:394)
+Epic.OnlineServices.Connect.OnLoginCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.LoginCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnLoginCallback.cs:44)
+Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
+EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
+EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
+Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
+Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
+
+[Log] [EOSSDKComponent] EOS fully initialized. ProductId: 00021de066d642ce93ead8c09c295c77
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:OnConnectInterfaceLogin (Epic.OnlineServices.Connect.LoginCallbackInfo) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:412)
+EpicTransport.EOSSDKComponent:<ConnectInterfaceLogin>b__77_0 (Epic.OnlineServices.Connect.LoginCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:394)
+Epic.OnlineServices.Connect.OnLoginCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.LoginCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnLoginCallback.cs:44)
+Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
+EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
+EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
+Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
+Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
+
+[Warning] Account API did not become accessible within 30 seconds. This may be due to network issues or editor focus.
+UnityEngine.Debug:LogWarning (object)
+Unity.AI.Toolkit.Accounts.Services.States.ApiAccessibleState/<WaitForCloudProjectSettings>d__4:MoveNext () (at ./Library/PackageCache/com.unity.ai.assistant@8d1e3e89e3a7/Modules/Unity.AI.Toolkit.Accounts/Services/States/ApiAccessibleState.cs:46)
+System.Threading.Tasks.TaskCompletionSource`1<bool>:TrySetResult (bool)
+Unity.AI.Toolkit.EditorTask/<>c__DisplayClass22_0:<WaitForCondition>b__0 () (at ./Library/PackageCache/com.unity.ai.assistant@8d1e3e89e3a7/Modules/Unity.AI.Toolkit.Async/EditorTask.cs:420)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+[Log] [EosTransport] Transport shut down.
+UnityEngine.Debug:Log (object)
+EpicTransport.EosTransport:Shutdown () (at Assets/EpicOnlineTransport/EosTransport.cs:280)
+Mirror.Transport:OnApplicationQuit () (at Assets/Mirror/Core/Transport.cs:207)
+
+[Log] [GNM] OnServerDisconnect conn=0 wasHost=True remaining=0
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnServerDisconnect (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:159)
+Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:622)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
+
+[Log] [GNM] Last player left — closing room
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnServerDisconnect (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:163)
+Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:622)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
+
+[Log] [GNM] OnClientDisconnect
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnClientDisconnect () (at Assets/Scripts/GameNetworkManager.cs:196)
+Mirror.NetworkManager:OnClientDisconnectInternal () (at Assets/Mirror/Core/NetworkManager.cs:1249)
+Mirror.NetworkClient:OnTransportDisconnected () (at Assets/Mirror/Core/NetworkClient.cs:439)
+Mirror.LocalConnectionToServer:Disconnect () (at Assets/Mirror/Core/LocalConnectionToServer.cs:111)
+Mirror.NetworkClient:Disconnect () (at Assets/Mirror/Core/NetworkClient.cs:248)
+Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:634)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
+
+[Log] [GNM] OnStopClient
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStopClient () (at Assets/Scripts/GameNetworkManager.cs:216)
+Mirror.NetworkManager:OnClientDisconnectInternal () (at Assets/Mirror/Core/NetworkManager.cs:1268)
+Mirror.NetworkClient:OnTransportDisconnected () (at Assets/Mirror/Core/NetworkClient.cs:439)
+Mirror.LocalConnectionToServer:Disconnect () (at Assets/Mirror/Core/LocalConnectionToServer.cs:111)
+Mirror.NetworkClient:Disconnect () (at Assets/Mirror/Core/NetworkClient.cs:248)
+Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:634)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
+
+[Log] [GNM] OnStopServer
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStopServer () (at Assets/Scripts/GameNetworkManager.cs:224)
+Mirror.NetworkManager:StopServer () (at Assets/Mirror/Core/NetworkManager.cs:593)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:655)
+
+[Log] [GNM] OnStopHost
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStopHost () (at Assets/Scripts/GameNetworkManager.cs:206)
+Mirror.NetworkManager:StopHost () (at Assets/Mirror/Core/NetworkManager.cs:565)
+Mirror.NetworkManager:ResetStatics () (at Assets/Mirror/Core/NetworkManager.cs:763)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:660)
+
+[Log] [EOSLobbyCode] OnDestroy
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSLobbyCode:OnDestroy () (at Assets/Scripts/EOSLobbyCode.cs:36)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.SceneManagement.EditorSceneManager:OpenScene (string)
+ForceMenuSceneOnPlay:OnPlayModeStateChanged (UnityEditor.PlayModeStateChange) (at Assets/Editor/ForceMenuSceneOnPlay.cs:25)
+UnityEditor.EditorApplication:EnterPlaymode ()
+Unity.PlayMode.Editor.PlayModeButtons:OnPlayButtonValueChanged (bool)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+[Log] [EOSSDKComponent] Awake
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:Awake () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:197)
+
+[Log] [EOSSDKComponent] Instance set
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:Awake () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:214)
 
 [Log] [EosTransport] Awake
 UnityEngine.Debug:Log (object)
@@ -66,7 +342,7 @@ UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.un
 
 [Log] [GNM] OnStartServer
 UnityEngine.Debug:Log (object)
-GameNetworkManager:OnStartServer () (at Assets/Scripts/GameNetworkManager.cs:224)
+GameNetworkManager:OnStartServer () (at Assets/Scripts/GameNetworkManager.cs:223)
 Mirror.NetworkManager:FinishStartHost () (at Assets/Mirror/Core/NetworkManager.cs:537)
 Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1021)
 Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
@@ -75,7 +351,7 @@ Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257
 
 [Log] [GNM] OnStartHost
 UnityEngine.Debug:Log (object)
-GameNetworkManager:OnStartHost () (at Assets/Scripts/GameNetworkManager.cs:202)
+GameNetworkManager:OnStartHost () (at Assets/Scripts/GameNetworkManager.cs:201)
 Mirror.NetworkManager:FinishStartHost () (at Assets/Mirror/Core/NetworkManager.cs:542)
 Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1021)
 Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
@@ -84,7 +360,7 @@ Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257
 
 [Log] [GNM] OnStartClient
 UnityEngine.Debug:Log (object)
-GameNetworkManager:OnStartClient () (at Assets/Scripts/GameNetworkManager.cs:212)
+GameNetworkManager:OnStartClient () (at Assets/Scripts/GameNetworkManager.cs:211)
 Mirror.NetworkManager:FinishStartHost () (at Assets/Mirror/Core/NetworkManager.cs:559)
 Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1021)
 Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
@@ -93,7 +369,7 @@ Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257
 
 [Log] [GNM] ServerSceneChanged: Game
 UnityEngine.Debug:Log (object)
-GameNetworkManager:OnServerSceneChanged (string) (at Assets/Scripts/GameNetworkManager.cs:230)
+GameNetworkManager:OnServerSceneChanged (string) (at Assets/Scripts/GameNetworkManager.cs:229)
 Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1024)
 Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
 Mirror.NetworkManager:UpdateScene () (at Assets/Mirror/Core/NetworkManager.cs:963)
@@ -101,7 +377,7 @@ Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257
 
 [Log] [GNM] OnClientConnect
 UnityEngine.Debug:Log (object)
-GameNetworkManager:OnClientConnect () (at Assets/Scripts/GameNetworkManager.cs:241)
+GameNetworkManager:OnClientConnect () (at Assets/Scripts/GameNetworkManager.cs:240)
 Mirror.NetworkManager:OnClientAuthenticated () (at Assets/Mirror/Core/NetworkManager.cs:1234)
 Mirror.NetworkManager:OnClientConnectInternal () (at Assets/Mirror/Core/NetworkManager.cs:1209)
 Mirror.LocalConnectionToServer:Update () (at Assets/Mirror/Core/LocalConnectionToServer.cs:50)
@@ -110,7 +386,7 @@ Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:20
 
 [Log] [GNM] ClientChangeScene: Game
 UnityEngine.Debug:Log (object)
-GameNetworkManager:OnClientChangeScene (string,Mirror.SceneOperation,bool) (at Assets/Scripts/GameNetworkManager.cs:238)
+GameNetworkManager:OnClientChangeScene (string,Mirror.SceneOperation,bool) (at Assets/Scripts/GameNetworkManager.cs:237)
 Mirror.NetworkManager:ClientChangeScene (string,Mirror.SceneOperation,bool) (at Assets/Mirror/Core/NetworkManager.cs:861)
 Mirror.NetworkManager:OnClientSceneInternal (Mirror.SceneMessage) (at Assets/Mirror/Core/NetworkManager.cs:1314)
 Mirror.NetworkClient/<>c__DisplayClass61_0`1<Mirror.SceneMessage>:<RegisterHandler>g__HandlerWrapped|0 (Mirror.NetworkConnection,Mirror.SceneMessage) (at Assets/Mirror/Core/NetworkClient.cs:544)
@@ -122,32 +398,11 @@ Mirror.LocalConnectionToServer:Update () (at Assets/Mirror/Core/LocalConnectionT
 Mirror.NetworkClient:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkClient.cs:1619)
 Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:208)
 
-[Log] [EOSSDKComponent] DeleteDeviceId result: Success
-UnityEngine.Debug:Log (object)
-EpicTransport.EOSSDKComponent:<InitializeImplementation>b__72_2 (Epic.OnlineServices.Connect.DeleteDeviceIdCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:312)
-Epic.OnlineServices.Connect.OnDeleteDeviceIdCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.DeleteDeviceIdCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnDeleteDeviceIdCallback.cs:44)
-Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
-EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
-EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
-Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
-Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
-
-[Log] [EOSSDKComponent] Creating device ID with model: EDITOR_DESKTOP-QFOP35B
-UnityEngine.Debug:Log (object)
-EpicTransport.EOSSDKComponent:CreateUniqueDeviceId () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:358)
-EpicTransport.EOSSDKComponent:<InitializeImplementation>b__72_2 (Epic.OnlineServices.Connect.DeleteDeviceIdCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:313)
-Epic.OnlineServices.Connect.OnDeleteDeviceIdCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.DeleteDeviceIdCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnDeleteDeviceIdCallback.cs:44)
-Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
-EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
-EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
-Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
-Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
-
 [Log] [PlayerController] OnEnable — animator found on James, controller=JamesAnimator
 UnityEngine.Debug:Log (object)
-PlayerController:OnEnable () (at Assets/Scripts/PlayerController.cs:106)
+PlayerController:OnEnable () (at Assets/Scripts/PlayerController.cs:109)
 UnityEngine.Object:Instantiate<UnityEngine.GameObject> (UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Quaternion)
-GameNetworkManager:OnServerAddPlayer (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:142)
+GameNetworkManager:OnServerAddPlayer (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:141)
 Mirror.NetworkManager:OnServerAddPlayerInternal (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage) (at Assets/Mirror/Core/NetworkManager.cs:1194)
 Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
 Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
@@ -160,7 +415,7 @@ Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:20
 
 [Log] [GNM] OnServerAddPlayer conn=0 scene=Game
 UnityEngine.Debug:Log (object)
-GameNetworkManager:OnServerAddPlayer (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:144)
+GameNetworkManager:OnServerAddPlayer (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:143)
 Mirror.NetworkManager:OnServerAddPlayerInternal (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage) (at Assets/Mirror/Core/NetworkManager.cs:1194)
 Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
 Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
@@ -173,7 +428,7 @@ Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:20
 
 [Log] [PlayerController] OnEnable — animator found on James, controller=JamesAnimator
 UnityEngine.Debug:Log (object)
-PlayerController:OnEnable () (at Assets/Scripts/PlayerController.cs:106)
+PlayerController:OnEnable () (at Assets/Scripts/PlayerController.cs:109)
 UnityEngine.Behaviour:set_enabled (bool)
 NetworkPlayer:OnStartLocalPlayer () (at Assets/Scripts/NetworkPlayer.cs:60)
 Mirror.NetworkIdentity:OnStartLocalPlayer () (at Assets/Mirror/Core/NetworkIdentity.cs:826)
@@ -197,39 +452,6 @@ NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:48)
 UnityEngine.Debug:Log (object)
 NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:52)
 
-[Log] Connect Interface Login succeeded
-UnityEngine.Debug:Log (object)
-EpicTransport.EOSSDKComponent:OnConnectInterfaceLogin (Epic.OnlineServices.Connect.LoginCallbackInfo) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:399)
-EpicTransport.EOSSDKComponent:<ConnectInterfaceLogin>b__77_0 (Epic.OnlineServices.Connect.LoginCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:394)
-Epic.OnlineServices.Connect.OnLoginCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.LoginCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnLoginCallback.cs:44)
-Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
-EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
-EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
-Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
-Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
-
-[Log] EOS User Product ID:00026dce5c344ecc969546e1bb4b94a6
-UnityEngine.Debug:Log (object)
-EpicTransport.EOSSDKComponent:OnConnectInterfaceLogin (Epic.OnlineServices.Connect.LoginCallbackInfo) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:404)
-EpicTransport.EOSSDKComponent:<ConnectInterfaceLogin>b__77_0 (Epic.OnlineServices.Connect.LoginCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:394)
-Epic.OnlineServices.Connect.OnLoginCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.LoginCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnLoginCallback.cs:44)
-Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
-EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
-EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
-Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
-Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
-
-[Log] [EOSSDKComponent] EOS fully initialized. ProductId: 00026dce5c344ecc969546e1bb4b94a6
-UnityEngine.Debug:Log (object)
-EpicTransport.EOSSDKComponent:OnConnectInterfaceLogin (Epic.OnlineServices.Connect.LoginCallbackInfo) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:412)
-EpicTransport.EOSSDKComponent:<ConnectInterfaceLogin>b__77_0 (Epic.OnlineServices.Connect.LoginCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:394)
-Epic.OnlineServices.Connect.OnLoginCallbackInternalImplementation:EntryPoint (Epic.OnlineServices.Connect.LoginCallbackInfoInternal&) (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Connect/OnLoginCallback.cs:44)
-Epic.OnlineServices.Platform.PlatformInterface:Tick () (at ./Packages/com.playeveryware.eos/Runtime/EOS_SDK/Generated/Platform/PlatformInterface.cs:984)
-EpicTransport.EOSSDKComponent:Tick () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:152)
-EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/EosTransport.cs:91)
-Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
-Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
-
 [Log] [EosTransport] Transport shut down.
 UnityEngine.Debug:Log (object)
 EpicTransport.EosTransport:Shutdown () (at Assets/EpicOnlineTransport/EosTransport.cs:280)
@@ -237,19 +459,19 @@ Mirror.Transport:OnApplicationQuit () (at Assets/Mirror/Core/Transport.cs:207)
 
 [Log] [GNM] OnServerDisconnect conn=0 wasHost=True remaining=0
 UnityEngine.Debug:Log (object)
-GameNetworkManager:OnServerDisconnect (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:160)
+GameNetworkManager:OnServerDisconnect (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:159)
 Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:622)
 Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
 
 [Log] [GNM] Last player left — closing room
 UnityEngine.Debug:Log (object)
-GameNetworkManager:OnServerDisconnect (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:164)
+GameNetworkManager:OnServerDisconnect (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:163)
 Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:622)
 Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
 
 [Log] [GNM] OnClientDisconnect
 UnityEngine.Debug:Log (object)
-GameNetworkManager:OnClientDisconnect () (at Assets/Scripts/GameNetworkManager.cs:197)
+GameNetworkManager:OnClientDisconnect () (at Assets/Scripts/GameNetworkManager.cs:196)
 Mirror.NetworkManager:OnClientDisconnectInternal () (at Assets/Mirror/Core/NetworkManager.cs:1249)
 Mirror.NetworkClient:OnTransportDisconnected () (at Assets/Mirror/Core/NetworkClient.cs:439)
 Mirror.LocalConnectionToServer:Disconnect () (at Assets/Mirror/Core/LocalConnectionToServer.cs:111)
@@ -259,7 +481,7 @@ Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager
 
 [Log] [GNM] OnStopClient
 UnityEngine.Debug:Log (object)
-GameNetworkManager:OnStopClient () (at Assets/Scripts/GameNetworkManager.cs:217)
+GameNetworkManager:OnStopClient () (at Assets/Scripts/GameNetworkManager.cs:216)
 Mirror.NetworkManager:OnClientDisconnectInternal () (at Assets/Mirror/Core/NetworkManager.cs:1268)
 Mirror.NetworkClient:OnTransportDisconnected () (at Assets/Mirror/Core/NetworkClient.cs:439)
 Mirror.LocalConnectionToServer:Disconnect () (at Assets/Mirror/Core/LocalConnectionToServer.cs:111)
@@ -269,13 +491,679 @@ Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager
 
 [Log] [GNM] OnStopServer
 UnityEngine.Debug:Log (object)
-GameNetworkManager:OnStopServer () (at Assets/Scripts/GameNetworkManager.cs:225)
+GameNetworkManager:OnStopServer () (at Assets/Scripts/GameNetworkManager.cs:224)
 Mirror.NetworkManager:StopServer () (at Assets/Mirror/Core/NetworkManager.cs:593)
 Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:655)
 
 [Log] [GNM] OnStopHost
 UnityEngine.Debug:Log (object)
-GameNetworkManager:OnStopHost () (at Assets/Scripts/GameNetworkManager.cs:207)
+GameNetworkManager:OnStopHost () (at Assets/Scripts/GameNetworkManager.cs:206)
+Mirror.NetworkManager:StopHost () (at Assets/Mirror/Core/NetworkManager.cs:565)
+Mirror.NetworkManager:ResetStatics () (at Assets/Mirror/Core/NetworkManager.cs:763)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:660)
+
+[Log] [EOSLobbyCode] OnDestroy
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSLobbyCode:OnDestroy () (at Assets/Scripts/EOSLobbyCode.cs:36)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.SceneManagement.EditorSceneManager:OpenScene (string)
+ForceMenuSceneOnPlay:OnPlayModeStateChanged (UnityEditor.PlayModeStateChange) (at Assets/Editor/ForceMenuSceneOnPlay.cs:25)
+UnityEditor.EditorApplication:EnterPlaymode ()
+Unity.PlayMode.Editor.PlayModeButtons:OnPlayButtonValueChanged (bool)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+[Log] [EOSSDKComponent] Awake
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:Awake () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:197)
+
+[Log] [EOSSDKComponent] Instance set
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:Awake () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:214)
+
+[Log] [EosTransport] Awake
+UnityEngine.Debug:Log (object)
+EpicTransport.EosTransport:Awake () (at Assets/EpicOnlineTransport/EosTransport.cs:45)
+
+[Log] [EOSLobbyCode] Awake — Instance set
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSLobbyCode:Awake () (at Assets/Scripts/EOSLobbyCode.cs:30)
+UnityEngine.GameObject:AddComponent<EpicTransport.EOSLobbyCode> ()
+GameNetworkManager:Awake () (at Assets/Scripts/GameNetworkManager.cs:42)
+
+[Log] [LoadingOverlay] Shown
+UnityEngine.Debug:Log (object)
+LoadingOverlay:Show () (at Assets/Scripts/LoadingOverlay.cs:49)
+MenuUI:OnTestingClicked () (at Assets/Scripts/MenuUI.cs:226)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/UGUI/EventSystem/EventSystem.cs:527)
+
+[Error] EOS not initialized. Server could not be started.
+UnityEngine.Debug:LogError (object)
+EpicTransport.EosTransport:ServerStart () (at Assets/EpicOnlineTransport/EosTransport.cs:170)
+Mirror.NetworkServer:Listen (int) (at Assets/Mirror/Core/NetworkServer.cs:149)
+Mirror.NetworkManager:SetupServer () (at Assets/Mirror/Core/NetworkManager.cs:305)
+Mirror.NetworkManager:StartHost () (at Assets/Mirror/Core/NetworkManager.cs:471)
+GameNetworkManager:QuickTestGame () (at Assets/Scripts/GameNetworkManager.cs:98)
+MenuUI:OnTestingClicked () (at Assets/Scripts/MenuUI.cs:227)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/UGUI/EventSystem/EventSystem.cs:527)
+
+[Log] Server started listening
+UnityEngine.Debug:Log (object)
+Mirror.NetworkServer:Listen (int) (at Assets/Mirror/Core/NetworkServer.cs:165)
+Mirror.NetworkManager:SetupServer () (at Assets/Mirror/Core/NetworkManager.cs:305)
+Mirror.NetworkManager:StartHost () (at Assets/Mirror/Core/NetworkManager.cs:471)
+GameNetworkManager:QuickTestGame () (at Assets/Scripts/GameNetworkManager.cs:98)
+MenuUI:OnTestingClicked () (at Assets/Scripts/MenuUI.cs:227)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/UGUI/EventSystem/EventSystem.cs:527)
+
+[Log] [GNM] OnStartServer
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStartServer () (at Assets/Scripts/GameNetworkManager.cs:223)
+Mirror.NetworkManager:FinishStartHost () (at Assets/Mirror/Core/NetworkManager.cs:537)
+Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1021)
+Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
+Mirror.NetworkManager:UpdateScene () (at Assets/Mirror/Core/NetworkManager.cs:963)
+Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257)
+
+[Log] [GNM] OnStartHost
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStartHost () (at Assets/Scripts/GameNetworkManager.cs:201)
+Mirror.NetworkManager:FinishStartHost () (at Assets/Mirror/Core/NetworkManager.cs:542)
+Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1021)
+Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
+Mirror.NetworkManager:UpdateScene () (at Assets/Mirror/Core/NetworkManager.cs:963)
+Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257)
+
+[Log] [GNM] OnStartClient
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStartClient () (at Assets/Scripts/GameNetworkManager.cs:211)
+Mirror.NetworkManager:FinishStartHost () (at Assets/Mirror/Core/NetworkManager.cs:559)
+Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1021)
+Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
+Mirror.NetworkManager:UpdateScene () (at Assets/Mirror/Core/NetworkManager.cs:963)
+Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257)
+
+[Log] [GNM] ServerSceneChanged: Game
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnServerSceneChanged (string) (at Assets/Scripts/GameNetworkManager.cs:229)
+Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1024)
+Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
+Mirror.NetworkManager:UpdateScene () (at Assets/Mirror/Core/NetworkManager.cs:963)
+Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257)
+
+[Log] [GNM] OnClientConnect
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnClientConnect () (at Assets/Scripts/GameNetworkManager.cs:240)
+Mirror.NetworkManager:OnClientAuthenticated () (at Assets/Mirror/Core/NetworkManager.cs:1234)
+Mirror.NetworkManager:OnClientConnectInternal () (at Assets/Mirror/Core/NetworkManager.cs:1209)
+Mirror.LocalConnectionToServer:Update () (at Assets/Mirror/Core/LocalConnectionToServer.cs:50)
+Mirror.NetworkClient:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkClient.cs:1619)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:208)
+
+[Log] [GNM] ClientChangeScene: Game
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnClientChangeScene (string,Mirror.SceneOperation,bool) (at Assets/Scripts/GameNetworkManager.cs:237)
+Mirror.NetworkManager:ClientChangeScene (string,Mirror.SceneOperation,bool) (at Assets/Mirror/Core/NetworkManager.cs:861)
+Mirror.NetworkManager:OnClientSceneInternal (Mirror.SceneMessage) (at Assets/Mirror/Core/NetworkManager.cs:1314)
+Mirror.NetworkClient/<>c__DisplayClass61_0`1<Mirror.SceneMessage>:<RegisterHandler>g__HandlerWrapped|0 (Mirror.NetworkConnection,Mirror.SceneMessage) (at Assets/Mirror/Core/NetworkClient.cs:544)
+Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.SceneMessage, Mirror.NetworkConnection>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnection,Mirror.SceneMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
+Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.SceneMessage, Mirror.NetworkConnection>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
+Mirror.NetworkClient:UnpackAndInvoke (Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkClient.cs:282)
+Mirror.NetworkClient:OnTransportData (System.ArraySegment`1<byte>,int) (at Assets/Mirror/Core/NetworkClient.cs:358)
+Mirror.LocalConnectionToServer:Update () (at Assets/Mirror/Core/LocalConnectionToServer.cs:70)
+Mirror.NetworkClient:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkClient.cs:1619)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:208)
+
+[Log] [PlayerController] OnEnable — animator found on James, controller=JamesAnimator
+UnityEngine.Debug:Log (object)
+PlayerController:OnEnable () (at Assets/Scripts/PlayerController.cs:109)
+UnityEngine.Object:Instantiate<UnityEngine.GameObject> (UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Quaternion)
+GameNetworkManager:OnServerAddPlayer (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:141)
+Mirror.NetworkManager:OnServerAddPlayerInternal (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage) (at Assets/Mirror/Core/NetworkManager.cs:1194)
+Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
+Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
+Mirror.NetworkServer:UnpackAndInvoke (Mirror.NetworkConnectionToClient,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkServer.cs:742)
+Mirror.NetworkServer:OnTransportData (int,System.ArraySegment`1<byte>,int) (at Assets/Mirror/Core/NetworkServer.cs:813)
+Mirror.LocalConnectionToClient:Update () (at Assets/Mirror/Core/LocalConnectionToClient.cs:57)
+Mirror.NetworkServer:Broadcast () (at Assets/Mirror/Core/NetworkServer.cs:2029)
+Mirror.NetworkServer:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2080)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:207)
+
+[Log] [GNM] OnServerAddPlayer conn=0 scene=Game
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnServerAddPlayer (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:143)
+Mirror.NetworkManager:OnServerAddPlayerInternal (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage) (at Assets/Mirror/Core/NetworkManager.cs:1194)
+Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
+Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
+Mirror.NetworkServer:UnpackAndInvoke (Mirror.NetworkConnectionToClient,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkServer.cs:742)
+Mirror.NetworkServer:OnTransportData (int,System.ArraySegment`1<byte>,int) (at Assets/Mirror/Core/NetworkServer.cs:813)
+Mirror.LocalConnectionToClient:Update () (at Assets/Mirror/Core/LocalConnectionToClient.cs:57)
+Mirror.NetworkServer:Broadcast () (at Assets/Mirror/Core/NetworkServer.cs:2029)
+Mirror.NetworkServer:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2080)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:207)
+
+[Log] [PlayerController] OnEnable — animator found on James, controller=JamesAnimator
+UnityEngine.Debug:Log (object)
+PlayerController:OnEnable () (at Assets/Scripts/PlayerController.cs:109)
+UnityEngine.Behaviour:set_enabled (bool)
+NetworkPlayer:OnStartLocalPlayer () (at Assets/Scripts/NetworkPlayer.cs:60)
+Mirror.NetworkIdentity:OnStartLocalPlayer () (at Assets/Mirror/Core/NetworkIdentity.cs:826)
+Mirror.NetworkClient:InvokeIdentityCallbacks (Mirror.NetworkIdentity) (at Assets/Mirror/Core/NetworkClient.cs:1414)
+Mirror.NetworkClient:BootstrapIdentity (Mirror.NetworkIdentity) (at Assets/Mirror/Core/NetworkClient.cs:1380)
+Mirror.NetworkClient:OnHostClientSpawn (Mirror.SpawnMessage) (at Assets/Mirror/Core/NetworkClient.cs:1372)
+Mirror.NetworkClient/<>c__DisplayClass61_0`1<Mirror.SpawnMessage>:<RegisterHandler>g__HandlerWrapped|0 (Mirror.NetworkConnection,Mirror.SpawnMessage) (at Assets/Mirror/Core/NetworkClient.cs:544)
+Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.SpawnMessage, Mirror.NetworkConnection>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnection,Mirror.SpawnMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
+Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.SpawnMessage, Mirror.NetworkConnection>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
+Mirror.NetworkClient:UnpackAndInvoke (Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkClient.cs:282)
+Mirror.NetworkClient:OnTransportData (System.ArraySegment`1<byte>,int) (at Assets/Mirror/Core/NetworkClient.cs:358)
+Mirror.LocalConnectionToServer:Update () (at Assets/Mirror/Core/LocalConnectionToServer.cs:70)
+Mirror.NetworkClient:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkClient.cs:1619)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:208)
+
+[Log] [NetworkPlayer] Start — animator=James, isLocalPlayer=True
+UnityEngine.Debug:Log (object)
+NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:48)
+
+[Log] [NetworkPlayer] Animator found: controller=JamesAnimator, avatar=JamesAvatar, enabled=True, isHuman=True
+UnityEngine.Debug:Log (object)
+NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:52)
+
+[Log] [EosTransport] Transport shut down.
+UnityEngine.Debug:Log (object)
+EpicTransport.EosTransport:Shutdown () (at Assets/EpicOnlineTransport/EosTransport.cs:280)
+Mirror.Transport:OnApplicationQuit () (at Assets/Mirror/Core/Transport.cs:207)
+
+[Log] [GNM] OnServerDisconnect conn=0 wasHost=True remaining=0
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnServerDisconnect (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:159)
+Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:622)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
+
+[Log] [GNM] Last player left — closing room
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnServerDisconnect (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:163)
+Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:622)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
+
+[Log] [GNM] OnClientDisconnect
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnClientDisconnect () (at Assets/Scripts/GameNetworkManager.cs:196)
+Mirror.NetworkManager:OnClientDisconnectInternal () (at Assets/Mirror/Core/NetworkManager.cs:1249)
+Mirror.NetworkClient:OnTransportDisconnected () (at Assets/Mirror/Core/NetworkClient.cs:439)
+Mirror.LocalConnectionToServer:Disconnect () (at Assets/Mirror/Core/LocalConnectionToServer.cs:111)
+Mirror.NetworkClient:Disconnect () (at Assets/Mirror/Core/NetworkClient.cs:248)
+Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:634)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
+
+[Log] [GNM] OnStopClient
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStopClient () (at Assets/Scripts/GameNetworkManager.cs:216)
+Mirror.NetworkManager:OnClientDisconnectInternal () (at Assets/Mirror/Core/NetworkManager.cs:1268)
+Mirror.NetworkClient:OnTransportDisconnected () (at Assets/Mirror/Core/NetworkClient.cs:439)
+Mirror.LocalConnectionToServer:Disconnect () (at Assets/Mirror/Core/LocalConnectionToServer.cs:111)
+Mirror.NetworkClient:Disconnect () (at Assets/Mirror/Core/NetworkClient.cs:248)
+Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:634)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
+
+[Log] [GNM] OnStopServer
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStopServer () (at Assets/Scripts/GameNetworkManager.cs:224)
+Mirror.NetworkManager:StopServer () (at Assets/Mirror/Core/NetworkManager.cs:593)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:655)
+
+[Log] [GNM] OnStopHost
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStopHost () (at Assets/Scripts/GameNetworkManager.cs:206)
+Mirror.NetworkManager:StopHost () (at Assets/Mirror/Core/NetworkManager.cs:565)
+Mirror.NetworkManager:ResetStatics () (at Assets/Mirror/Core/NetworkManager.cs:763)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:660)
+
+[Log] [EOSLobbyCode] OnDestroy
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSLobbyCode:OnDestroy () (at Assets/Scripts/EOSLobbyCode.cs:36)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.SceneManagement.EditorSceneManager:OpenScene (string)
+ForceMenuSceneOnPlay:OnPlayModeStateChanged (UnityEditor.PlayModeStateChange) (at Assets/Editor/ForceMenuSceneOnPlay.cs:25)
+UnityEditor.EditorApplication:EnterPlaymode ()
+Unity.PlayMode.Editor.PlayModeButtons:OnPlayButtonValueChanged (bool)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+[Log] [EOSSDKComponent] Awake
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:Awake () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:197)
+
+[Log] [EOSSDKComponent] Instance set
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:Awake () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:214)
+
+[Log] [EOSLobbyCode] Awake — Instance set
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSLobbyCode:Awake () (at Assets/Scripts/EOSLobbyCode.cs:30)
+UnityEngine.GameObject:AddComponent<EpicTransport.EOSLobbyCode> ()
+GameNetworkManager:Awake () (at Assets/Scripts/GameNetworkManager.cs:42)
+
+[Log] [EosTransport] Awake
+UnityEngine.Debug:Log (object)
+EpicTransport.EosTransport:Awake () (at Assets/EpicOnlineTransport/EosTransport.cs:45)
+
+[Log] [LoadingOverlay] Shown
+UnityEngine.Debug:Log (object)
+LoadingOverlay:Show () (at Assets/Scripts/LoadingOverlay.cs:49)
+MenuUI:OnTestingClicked () (at Assets/Scripts/MenuUI.cs:226)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/UGUI/EventSystem/EventSystem.cs:527)
+
+[Error] EOS not initialized. Server could not be started.
+UnityEngine.Debug:LogError (object)
+EpicTransport.EosTransport:ServerStart () (at Assets/EpicOnlineTransport/EosTransport.cs:170)
+Mirror.NetworkServer:Listen (int) (at Assets/Mirror/Core/NetworkServer.cs:149)
+Mirror.NetworkManager:SetupServer () (at Assets/Mirror/Core/NetworkManager.cs:305)
+Mirror.NetworkManager:StartHost () (at Assets/Mirror/Core/NetworkManager.cs:471)
+GameNetworkManager:QuickTestGame () (at Assets/Scripts/GameNetworkManager.cs:98)
+MenuUI:OnTestingClicked () (at Assets/Scripts/MenuUI.cs:227)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/UGUI/EventSystem/EventSystem.cs:527)
+
+[Log] Server started listening
+UnityEngine.Debug:Log (object)
+Mirror.NetworkServer:Listen (int) (at Assets/Mirror/Core/NetworkServer.cs:165)
+Mirror.NetworkManager:SetupServer () (at Assets/Mirror/Core/NetworkManager.cs:305)
+Mirror.NetworkManager:StartHost () (at Assets/Mirror/Core/NetworkManager.cs:471)
+GameNetworkManager:QuickTestGame () (at Assets/Scripts/GameNetworkManager.cs:98)
+MenuUI:OnTestingClicked () (at Assets/Scripts/MenuUI.cs:227)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/UGUI/EventSystem/EventSystem.cs:527)
+
+[Log] [GNM] OnStartServer
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStartServer () (at Assets/Scripts/GameNetworkManager.cs:223)
+Mirror.NetworkManager:FinishStartHost () (at Assets/Mirror/Core/NetworkManager.cs:537)
+Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1021)
+Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
+Mirror.NetworkManager:UpdateScene () (at Assets/Mirror/Core/NetworkManager.cs:963)
+Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257)
+
+[Log] [GNM] OnStartHost
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStartHost () (at Assets/Scripts/GameNetworkManager.cs:201)
+Mirror.NetworkManager:FinishStartHost () (at Assets/Mirror/Core/NetworkManager.cs:542)
+Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1021)
+Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
+Mirror.NetworkManager:UpdateScene () (at Assets/Mirror/Core/NetworkManager.cs:963)
+Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257)
+
+[Log] [GNM] OnStartClient
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStartClient () (at Assets/Scripts/GameNetworkManager.cs:211)
+Mirror.NetworkManager:FinishStartHost () (at Assets/Mirror/Core/NetworkManager.cs:559)
+Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1021)
+Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
+Mirror.NetworkManager:UpdateScene () (at Assets/Mirror/Core/NetworkManager.cs:963)
+Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257)
+
+[Log] [GNM] ServerSceneChanged: Game
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnServerSceneChanged (string) (at Assets/Scripts/GameNetworkManager.cs:229)
+Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1024)
+Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
+Mirror.NetworkManager:UpdateScene () (at Assets/Mirror/Core/NetworkManager.cs:963)
+Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257)
+
+[Log] [GNM] OnClientConnect
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnClientConnect () (at Assets/Scripts/GameNetworkManager.cs:240)
+Mirror.NetworkManager:OnClientAuthenticated () (at Assets/Mirror/Core/NetworkManager.cs:1234)
+Mirror.NetworkManager:OnClientConnectInternal () (at Assets/Mirror/Core/NetworkManager.cs:1209)
+Mirror.LocalConnectionToServer:Update () (at Assets/Mirror/Core/LocalConnectionToServer.cs:50)
+Mirror.NetworkClient:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkClient.cs:1619)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:208)
+
+[Log] [GNM] ClientChangeScene: Game
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnClientChangeScene (string,Mirror.SceneOperation,bool) (at Assets/Scripts/GameNetworkManager.cs:237)
+Mirror.NetworkManager:ClientChangeScene (string,Mirror.SceneOperation,bool) (at Assets/Mirror/Core/NetworkManager.cs:861)
+Mirror.NetworkManager:OnClientSceneInternal (Mirror.SceneMessage) (at Assets/Mirror/Core/NetworkManager.cs:1314)
+Mirror.NetworkClient/<>c__DisplayClass61_0`1<Mirror.SceneMessage>:<RegisterHandler>g__HandlerWrapped|0 (Mirror.NetworkConnection,Mirror.SceneMessage) (at Assets/Mirror/Core/NetworkClient.cs:544)
+Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.SceneMessage, Mirror.NetworkConnection>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnection,Mirror.SceneMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
+Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.SceneMessage, Mirror.NetworkConnection>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
+Mirror.NetworkClient:UnpackAndInvoke (Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkClient.cs:282)
+Mirror.NetworkClient:OnTransportData (System.ArraySegment`1<byte>,int) (at Assets/Mirror/Core/NetworkClient.cs:358)
+Mirror.LocalConnectionToServer:Update () (at Assets/Mirror/Core/LocalConnectionToServer.cs:70)
+Mirror.NetworkClient:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkClient.cs:1619)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:208)
+
+[Log] [PlayerController] OnEnable — animator found on James, controller=JamesAnimator
+UnityEngine.Debug:Log (object)
+PlayerController:OnEnable () (at Assets/Scripts/PlayerController.cs:109)
+UnityEngine.Object:Instantiate<UnityEngine.GameObject> (UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Quaternion)
+GameNetworkManager:OnServerAddPlayer (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:141)
+Mirror.NetworkManager:OnServerAddPlayerInternal (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage) (at Assets/Mirror/Core/NetworkManager.cs:1194)
+Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
+Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
+Mirror.NetworkServer:UnpackAndInvoke (Mirror.NetworkConnectionToClient,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkServer.cs:742)
+Mirror.NetworkServer:OnTransportData (int,System.ArraySegment`1<byte>,int) (at Assets/Mirror/Core/NetworkServer.cs:813)
+Mirror.LocalConnectionToClient:Update () (at Assets/Mirror/Core/LocalConnectionToClient.cs:57)
+Mirror.NetworkServer:Broadcast () (at Assets/Mirror/Core/NetworkServer.cs:2029)
+Mirror.NetworkServer:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2080)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:207)
+
+[Log] [GNM] OnServerAddPlayer conn=0 scene=Game
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnServerAddPlayer (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:143)
+Mirror.NetworkManager:OnServerAddPlayerInternal (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage) (at Assets/Mirror/Core/NetworkManager.cs:1194)
+Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
+Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
+Mirror.NetworkServer:UnpackAndInvoke (Mirror.NetworkConnectionToClient,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkServer.cs:742)
+Mirror.NetworkServer:OnTransportData (int,System.ArraySegment`1<byte>,int) (at Assets/Mirror/Core/NetworkServer.cs:813)
+Mirror.LocalConnectionToClient:Update () (at Assets/Mirror/Core/LocalConnectionToClient.cs:57)
+Mirror.NetworkServer:Broadcast () (at Assets/Mirror/Core/NetworkServer.cs:2029)
+Mirror.NetworkServer:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2080)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:207)
+
+[Log] [PlayerController] OnEnable — animator found on James, controller=JamesAnimator
+UnityEngine.Debug:Log (object)
+PlayerController:OnEnable () (at Assets/Scripts/PlayerController.cs:109)
+UnityEngine.Behaviour:set_enabled (bool)
+NetworkPlayer:OnStartLocalPlayer () (at Assets/Scripts/NetworkPlayer.cs:60)
+Mirror.NetworkIdentity:OnStartLocalPlayer () (at Assets/Mirror/Core/NetworkIdentity.cs:826)
+Mirror.NetworkClient:InvokeIdentityCallbacks (Mirror.NetworkIdentity) (at Assets/Mirror/Core/NetworkClient.cs:1414)
+Mirror.NetworkClient:BootstrapIdentity (Mirror.NetworkIdentity) (at Assets/Mirror/Core/NetworkClient.cs:1380)
+Mirror.NetworkClient:OnHostClientSpawn (Mirror.SpawnMessage) (at Assets/Mirror/Core/NetworkClient.cs:1372)
+Mirror.NetworkClient/<>c__DisplayClass61_0`1<Mirror.SpawnMessage>:<RegisterHandler>g__HandlerWrapped|0 (Mirror.NetworkConnection,Mirror.SpawnMessage) (at Assets/Mirror/Core/NetworkClient.cs:544)
+Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.SpawnMessage, Mirror.NetworkConnection>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnection,Mirror.SpawnMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
+Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.SpawnMessage, Mirror.NetworkConnection>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
+Mirror.NetworkClient:UnpackAndInvoke (Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkClient.cs:282)
+Mirror.NetworkClient:OnTransportData (System.ArraySegment`1<byte>,int) (at Assets/Mirror/Core/NetworkClient.cs:358)
+Mirror.LocalConnectionToServer:Update () (at Assets/Mirror/Core/LocalConnectionToServer.cs:70)
+Mirror.NetworkClient:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkClient.cs:1619)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:208)
+
+[Log] [NetworkPlayer] Start — animator=James, isLocalPlayer=True
+UnityEngine.Debug:Log (object)
+NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:48)
+
+[Log] [NetworkPlayer] Animator found: controller=JamesAnimator, avatar=JamesAvatar, enabled=True, isHuman=True
+UnityEngine.Debug:Log (object)
+NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:52)
+
+[Log] [EosTransport] Transport shut down.
+UnityEngine.Debug:Log (object)
+EpicTransport.EosTransport:Shutdown () (at Assets/EpicOnlineTransport/EosTransport.cs:280)
+Mirror.Transport:OnApplicationQuit () (at Assets/Mirror/Core/Transport.cs:207)
+
+[Log] [GNM] OnServerDisconnect conn=0 wasHost=True remaining=0
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnServerDisconnect (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:159)
+Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:622)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
+
+[Log] [GNM] Last player left — closing room
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnServerDisconnect (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:163)
+Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:622)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
+
+[Log] [GNM] OnClientDisconnect
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnClientDisconnect () (at Assets/Scripts/GameNetworkManager.cs:196)
+Mirror.NetworkManager:OnClientDisconnectInternal () (at Assets/Mirror/Core/NetworkManager.cs:1249)
+Mirror.NetworkClient:OnTransportDisconnected () (at Assets/Mirror/Core/NetworkClient.cs:439)
+Mirror.LocalConnectionToServer:Disconnect () (at Assets/Mirror/Core/LocalConnectionToServer.cs:111)
+Mirror.NetworkClient:Disconnect () (at Assets/Mirror/Core/NetworkClient.cs:248)
+Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:634)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
+
+[Log] [GNM] OnStopClient
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStopClient () (at Assets/Scripts/GameNetworkManager.cs:216)
+Mirror.NetworkManager:OnClientDisconnectInternal () (at Assets/Mirror/Core/NetworkManager.cs:1268)
+Mirror.NetworkClient:OnTransportDisconnected () (at Assets/Mirror/Core/NetworkClient.cs:439)
+Mirror.LocalConnectionToServer:Disconnect () (at Assets/Mirror/Core/LocalConnectionToServer.cs:111)
+Mirror.NetworkClient:Disconnect () (at Assets/Mirror/Core/NetworkClient.cs:248)
+Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:634)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
+
+[Log] [GNM] OnStopServer
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStopServer () (at Assets/Scripts/GameNetworkManager.cs:224)
+Mirror.NetworkManager:StopServer () (at Assets/Mirror/Core/NetworkManager.cs:593)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:655)
+
+[Log] [GNM] OnStopHost
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStopHost () (at Assets/Scripts/GameNetworkManager.cs:206)
+Mirror.NetworkManager:StopHost () (at Assets/Mirror/Core/NetworkManager.cs:565)
+Mirror.NetworkManager:ResetStatics () (at Assets/Mirror/Core/NetworkManager.cs:763)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:660)
+
+[Log] [EOSLobbyCode] OnDestroy
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSLobbyCode:OnDestroy () (at Assets/Scripts/EOSLobbyCode.cs:36)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.SceneManagement.EditorSceneManager:OpenScene (string)
+ForceMenuSceneOnPlay:OnPlayModeStateChanged (UnityEditor.PlayModeStateChange) (at Assets/Editor/ForceMenuSceneOnPlay.cs:25)
+UnityEditor.EditorApplication:EnterPlaymode ()
+Unity.PlayMode.Editor.PlayModeButtons:OnPlayButtonValueChanged (bool)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+[Log] [EOSSDKComponent] Awake
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:Awake () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:197)
+
+[Log] [EOSSDKComponent] Instance set
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSSDKComponent:Awake () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:214)
+
+[Log] [EOSLobbyCode] Awake — Instance set
+UnityEngine.Debug:Log (object)
+EpicTransport.EOSLobbyCode:Awake () (at Assets/Scripts/EOSLobbyCode.cs:30)
+UnityEngine.GameObject:AddComponent<EpicTransport.EOSLobbyCode> ()
+GameNetworkManager:Awake () (at Assets/Scripts/GameNetworkManager.cs:42)
+
+[Log] [EosTransport] Awake
+UnityEngine.Debug:Log (object)
+EpicTransport.EosTransport:Awake () (at Assets/EpicOnlineTransport/EosTransport.cs:45)
+
+[Log] [LoadingOverlay] Shown
+UnityEngine.Debug:Log (object)
+LoadingOverlay:Show () (at Assets/Scripts/LoadingOverlay.cs:49)
+MenuUI:OnTestingClicked () (at Assets/Scripts/MenuUI.cs:226)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/UGUI/EventSystem/EventSystem.cs:527)
+
+[Error] EOS not initialized. Server could not be started.
+UnityEngine.Debug:LogError (object)
+EpicTransport.EosTransport:ServerStart () (at Assets/EpicOnlineTransport/EosTransport.cs:170)
+Mirror.NetworkServer:Listen (int) (at Assets/Mirror/Core/NetworkServer.cs:149)
+Mirror.NetworkManager:SetupServer () (at Assets/Mirror/Core/NetworkManager.cs:305)
+Mirror.NetworkManager:StartHost () (at Assets/Mirror/Core/NetworkManager.cs:471)
+GameNetworkManager:QuickTestGame () (at Assets/Scripts/GameNetworkManager.cs:98)
+MenuUI:OnTestingClicked () (at Assets/Scripts/MenuUI.cs:227)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/UGUI/EventSystem/EventSystem.cs:527)
+
+[Log] Server started listening
+UnityEngine.Debug:Log (object)
+Mirror.NetworkServer:Listen (int) (at Assets/Mirror/Core/NetworkServer.cs:165)
+Mirror.NetworkManager:SetupServer () (at Assets/Mirror/Core/NetworkManager.cs:305)
+Mirror.NetworkManager:StartHost () (at Assets/Mirror/Core/NetworkManager.cs:471)
+GameNetworkManager:QuickTestGame () (at Assets/Scripts/GameNetworkManager.cs:98)
+MenuUI:OnTestingClicked () (at Assets/Scripts/MenuUI.cs:227)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/UGUI/EventSystem/EventSystem.cs:527)
+
+[Log] [GNM] OnStartServer
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStartServer () (at Assets/Scripts/GameNetworkManager.cs:223)
+Mirror.NetworkManager:FinishStartHost () (at Assets/Mirror/Core/NetworkManager.cs:537)
+Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1021)
+Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
+Mirror.NetworkManager:UpdateScene () (at Assets/Mirror/Core/NetworkManager.cs:963)
+Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257)
+
+[Log] [GNM] OnStartHost
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStartHost () (at Assets/Scripts/GameNetworkManager.cs:201)
+Mirror.NetworkManager:FinishStartHost () (at Assets/Mirror/Core/NetworkManager.cs:542)
+Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1021)
+Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
+Mirror.NetworkManager:UpdateScene () (at Assets/Mirror/Core/NetworkManager.cs:963)
+Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257)
+
+[Log] [GNM] OnStartClient
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStartClient () (at Assets/Scripts/GameNetworkManager.cs:211)
+Mirror.NetworkManager:FinishStartHost () (at Assets/Mirror/Core/NetworkManager.cs:559)
+Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1021)
+Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
+Mirror.NetworkManager:UpdateScene () (at Assets/Mirror/Core/NetworkManager.cs:963)
+Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257)
+
+[Log] [GNM] ServerSceneChanged: Game
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnServerSceneChanged (string) (at Assets/Scripts/GameNetworkManager.cs:229)
+Mirror.NetworkManager:FinishLoadSceneHost () (at Assets/Mirror/Core/NetworkManager.cs:1024)
+Mirror.NetworkManager:FinishLoadScene () (at Assets/Mirror/Core/NetworkManager.cs:985)
+Mirror.NetworkManager:UpdateScene () (at Assets/Mirror/Core/NetworkManager.cs:963)
+Mirror.NetworkManager:LateUpdate () (at Assets/Mirror/Core/NetworkManager.cs:257)
+
+[Log] [GNM] OnClientConnect
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnClientConnect () (at Assets/Scripts/GameNetworkManager.cs:240)
+Mirror.NetworkManager:OnClientAuthenticated () (at Assets/Mirror/Core/NetworkManager.cs:1234)
+Mirror.NetworkManager:OnClientConnectInternal () (at Assets/Mirror/Core/NetworkManager.cs:1209)
+Mirror.LocalConnectionToServer:Update () (at Assets/Mirror/Core/LocalConnectionToServer.cs:50)
+Mirror.NetworkClient:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkClient.cs:1619)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:208)
+
+[Log] [GNM] ClientChangeScene: Game
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnClientChangeScene (string,Mirror.SceneOperation,bool) (at Assets/Scripts/GameNetworkManager.cs:237)
+Mirror.NetworkManager:ClientChangeScene (string,Mirror.SceneOperation,bool) (at Assets/Mirror/Core/NetworkManager.cs:861)
+Mirror.NetworkManager:OnClientSceneInternal (Mirror.SceneMessage) (at Assets/Mirror/Core/NetworkManager.cs:1314)
+Mirror.NetworkClient/<>c__DisplayClass61_0`1<Mirror.SceneMessage>:<RegisterHandler>g__HandlerWrapped|0 (Mirror.NetworkConnection,Mirror.SceneMessage) (at Assets/Mirror/Core/NetworkClient.cs:544)
+Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.SceneMessage, Mirror.NetworkConnection>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnection,Mirror.SceneMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
+Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.SceneMessage, Mirror.NetworkConnection>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
+Mirror.NetworkClient:UnpackAndInvoke (Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkClient.cs:282)
+Mirror.NetworkClient:OnTransportData (System.ArraySegment`1<byte>,int) (at Assets/Mirror/Core/NetworkClient.cs:358)
+Mirror.LocalConnectionToServer:Update () (at Assets/Mirror/Core/LocalConnectionToServer.cs:70)
+Mirror.NetworkClient:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkClient.cs:1619)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:208)
+
+[Log] [PlayerController] OnEnable — animator found on James, controller=JamesAnimator
+UnityEngine.Debug:Log (object)
+PlayerController:OnEnable () (at Assets/Scripts/PlayerController.cs:109)
+UnityEngine.Object:Instantiate<UnityEngine.GameObject> (UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Quaternion)
+GameNetworkManager:OnServerAddPlayer (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:141)
+Mirror.NetworkManager:OnServerAddPlayerInternal (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage) (at Assets/Mirror/Core/NetworkManager.cs:1194)
+Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
+Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
+Mirror.NetworkServer:UnpackAndInvoke (Mirror.NetworkConnectionToClient,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkServer.cs:742)
+Mirror.NetworkServer:OnTransportData (int,System.ArraySegment`1<byte>,int) (at Assets/Mirror/Core/NetworkServer.cs:813)
+Mirror.LocalConnectionToClient:Update () (at Assets/Mirror/Core/LocalConnectionToClient.cs:57)
+Mirror.NetworkServer:Broadcast () (at Assets/Mirror/Core/NetworkServer.cs:2029)
+Mirror.NetworkServer:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2080)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:207)
+
+[Log] [GNM] OnServerAddPlayer conn=0 scene=Game
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnServerAddPlayer (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:143)
+Mirror.NetworkManager:OnServerAddPlayerInternal (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage) (at Assets/Mirror/Core/NetworkManager.cs:1194)
+Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnectionToClient,Mirror.AddPlayerMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
+Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.AddPlayerMessage, Mirror.NetworkConnectionToClient>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
+Mirror.NetworkServer:UnpackAndInvoke (Mirror.NetworkConnectionToClient,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkServer.cs:742)
+Mirror.NetworkServer:OnTransportData (int,System.ArraySegment`1<byte>,int) (at Assets/Mirror/Core/NetworkServer.cs:813)
+Mirror.LocalConnectionToClient:Update () (at Assets/Mirror/Core/LocalConnectionToClient.cs:57)
+Mirror.NetworkServer:Broadcast () (at Assets/Mirror/Core/NetworkServer.cs:2029)
+Mirror.NetworkServer:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2080)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:207)
+
+[Log] [PlayerController] OnEnable — animator found on James, controller=JamesAnimator
+UnityEngine.Debug:Log (object)
+PlayerController:OnEnable () (at Assets/Scripts/PlayerController.cs:109)
+UnityEngine.Behaviour:set_enabled (bool)
+NetworkPlayer:OnStartLocalPlayer () (at Assets/Scripts/NetworkPlayer.cs:60)
+Mirror.NetworkIdentity:OnStartLocalPlayer () (at Assets/Mirror/Core/NetworkIdentity.cs:826)
+Mirror.NetworkClient:InvokeIdentityCallbacks (Mirror.NetworkIdentity) (at Assets/Mirror/Core/NetworkClient.cs:1414)
+Mirror.NetworkClient:BootstrapIdentity (Mirror.NetworkIdentity) (at Assets/Mirror/Core/NetworkClient.cs:1380)
+Mirror.NetworkClient:OnHostClientSpawn (Mirror.SpawnMessage) (at Assets/Mirror/Core/NetworkClient.cs:1372)
+Mirror.NetworkClient/<>c__DisplayClass61_0`1<Mirror.SpawnMessage>:<RegisterHandler>g__HandlerWrapped|0 (Mirror.NetworkConnection,Mirror.SpawnMessage) (at Assets/Mirror/Core/NetworkClient.cs:544)
+Mirror.NetworkMessages/<>c__DisplayClass9_0`2<Mirror.SpawnMessage, Mirror.NetworkConnection>:<WrapHandler>g__Wrapped|0 (Mirror.NetworkConnection,Mirror.SpawnMessage,int) (at Assets/Mirror/Core/NetworkMessages.cs:206)
+Mirror.NetworkMessages/<>c__DisplayClass8_0`2<Mirror.SpawnMessage, Mirror.NetworkConnection>:<WrapHandler>b__0 (Mirror.NetworkConnection,Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkMessages.cs:179)
+Mirror.NetworkClient:UnpackAndInvoke (Mirror.NetworkReader,int) (at Assets/Mirror/Core/NetworkClient.cs:282)
+Mirror.NetworkClient:OnTransportData (System.ArraySegment`1<byte>,int) (at Assets/Mirror/Core/NetworkClient.cs:358)
+Mirror.LocalConnectionToServer:Update () (at Assets/Mirror/Core/LocalConnectionToServer.cs:70)
+Mirror.NetworkClient:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkClient.cs:1619)
+Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:208)
+
+[Log] [NetworkPlayer] Start — animator=James, isLocalPlayer=True
+UnityEngine.Debug:Log (object)
+NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:48)
+
+[Log] [NetworkPlayer] Animator found: controller=JamesAnimator, avatar=JamesAvatar, enabled=True, isHuman=True
+UnityEngine.Debug:Log (object)
+NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:52)
+
+[Log] [EosTransport] Transport shut down.
+UnityEngine.Debug:Log (object)
+EpicTransport.EosTransport:Shutdown () (at Assets/EpicOnlineTransport/EosTransport.cs:280)
+Mirror.Transport:OnApplicationQuit () (at Assets/Mirror/Core/Transport.cs:207)
+
+[Log] [GNM] OnServerDisconnect conn=0 wasHost=True remaining=0
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnServerDisconnect (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:159)
+Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:622)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
+
+[Log] [GNM] Last player left — closing room
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnServerDisconnect (Mirror.NetworkConnectionToClient) (at Assets/Scripts/GameNetworkManager.cs:163)
+Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:622)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
+
+[Log] [GNM] OnClientDisconnect
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnClientDisconnect () (at Assets/Scripts/GameNetworkManager.cs:196)
+Mirror.NetworkManager:OnClientDisconnectInternal () (at Assets/Mirror/Core/NetworkManager.cs:1249)
+Mirror.NetworkClient:OnTransportDisconnected () (at Assets/Mirror/Core/NetworkClient.cs:439)
+Mirror.LocalConnectionToServer:Disconnect () (at Assets/Mirror/Core/LocalConnectionToServer.cs:111)
+Mirror.NetworkClient:Disconnect () (at Assets/Mirror/Core/NetworkClient.cs:248)
+Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:634)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
+
+[Log] [GNM] OnStopClient
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStopClient () (at Assets/Scripts/GameNetworkManager.cs:216)
+Mirror.NetworkManager:OnClientDisconnectInternal () (at Assets/Mirror/Core/NetworkManager.cs:1268)
+Mirror.NetworkClient:OnTransportDisconnected () (at Assets/Mirror/Core/NetworkClient.cs:439)
+Mirror.LocalConnectionToServer:Disconnect () (at Assets/Mirror/Core/LocalConnectionToServer.cs:111)
+Mirror.NetworkClient:Disconnect () (at Assets/Mirror/Core/NetworkClient.cs:248)
+Mirror.NetworkManager:StopClient () (at Assets/Mirror/Core/NetworkManager.cs:634)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:648)
+
+[Log] [GNM] OnStopServer
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStopServer () (at Assets/Scripts/GameNetworkManager.cs:224)
+Mirror.NetworkManager:StopServer () (at Assets/Mirror/Core/NetworkManager.cs:593)
+Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:655)
+
+[Log] [GNM] OnStopHost
+UnityEngine.Debug:Log (object)
+GameNetworkManager:OnStopHost () (at Assets/Scripts/GameNetworkManager.cs:206)
 Mirror.NetworkManager:StopHost () (at Assets/Mirror/Core/NetworkManager.cs:565)
 Mirror.NetworkManager:ResetStatics () (at Assets/Mirror/Core/NetworkManager.cs:763)
 Mirror.NetworkManager:OnApplicationQuit () (at Assets/Mirror/Core/NetworkManager.cs:660)
