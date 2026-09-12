@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jump")]
     public float jumpHeight = 1.5f;
+    public float crouchJumpHeight = 0.8f;
     public float gravity = -20f;
 
     [Header("Crouch")]
@@ -33,6 +34,9 @@ public class PlayerController : MonoBehaviour
 
     private float xRotation;
     private float yVelocity;
+    private float idleTimer;
+    private bool jumpLock;
+    private float jumpLockTimer;
     private float smoothH;
     private float smoothV;
     private float smoothHVel;
@@ -70,6 +74,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool animIsIdle;
     [HideInInspector] public bool animIsJumping;
     [HideInInspector] public bool animIsCrouching;
+    [HideInInspector] public bool animIsAirborne;
     [HideInInspector] public bool animIsCrouchWalking;
 
     // Animator parameter hashes
@@ -78,8 +83,9 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsRunning  = Animator.StringToHash("isRunning");
     private static readonly int IsWalking  = Animator.StringToHash("isWalking");
     private static readonly int IsIdle     = Animator.StringToHash("isIdle");
-    private static readonly int IsJumping  = Animator.StringToHash("isJumping");
-    private static readonly int IsCrouch        = Animator.StringToHash("isCrouching");
+    private static readonly int IsJumping        = Animator.StringToHash("isJumping");
+    private static readonly int IsAirborne        = Animator.StringToHash("isAirborne");
+    private static readonly int IsCrouch          = Animator.StringToHash("isCrouching");
     private static readonly int IsCrouchWalking  = Animator.StringToHash("isCrouchWalking");
 
     void Awake()
@@ -226,6 +232,38 @@ public class PlayerController : MonoBehaviour
         }
 
         bool grounded = cc.isGrounded;
+        animIsAirborne = !grounded;
+
+        // jumpLock: suppress movement bools for 0.15s after jumping to prevent mid-air state flicker
+        if (jumpLock)
+        {
+            jumpLockTimer -= Time.deltaTime;
+            if (jumpLockTimer <= 0f) jumpLock = false;
+            animIsRunning       = false;
+            animIsWalking       = false;
+            animIsIdle          = false;
+            animIsCrouchWalking = false;
+        }
+
+        // --- Fix 1: only go idle after 0.2s of no input ---
+        if (inputMag < 0.1f && !isCrouching && grounded)
+        {
+            idleTimer += Time.deltaTime;
+            if (idleTimer >= 0.2f)
+            {
+                animIsRunning = false;
+                animIsWalking = false;
+                animIsIdle    = true;
+            }
+            else
+            {
+                animIsIdle = false;
+            }
+        }
+        else
+        {
+            idleTimer = 0f;
+        }
 
         if (grounded)
         {
@@ -233,17 +271,20 @@ public class PlayerController : MonoBehaviour
 
             if (keyboard.spaceKey.wasPressedThisFrame && !isCrouching)
             {
-                yVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                yVelocity     = Mathf.Sqrt(jumpHeight * -2f * gravity);
                 animIsJumping = true;
+                jumpLock      = true;
+                jumpLockTimer = 0.15f;
+                if (animator != null) animator.SetTrigger(IsJumping);
             }
-            else
+            else if (keyboard.spaceKey.wasPressedThisFrame && isCrouching)
             {
-                animIsJumping = false;
+                yVelocity     = Mathf.Sqrt(crouchJumpHeight * -2f * gravity);
+                animIsJumping = true;
+                jumpLock      = true;
+                jumpLockTimer = 0.15f;
+                if (animator != null) animator.SetTrigger(IsJumping);
             }
-        }
-        else
-        {
-            animIsJumping = false;
         }
 
         yVelocity += gravity * Time.deltaTime;
@@ -252,9 +293,9 @@ public class PlayerController : MonoBehaviour
         {
             bool isAirborne = !grounded;
             float targetColliderHeight   = isCrouching ? (animIsCrouchWalking ? 1.3f : 1.1f) : (isAirborne ? 1.3f : 1.6f);
-            float targetColliderRadius   = isCrouching ? 0.3f : (isAirborne ? 0.3f : 0.2f);
-            Vector3 targetColliderCenter = isCrouching ? new Vector3(0f, 0.15f, 0.05f) : (isAirborne ? new Vector3(0f, 0.02f, 0.03f) : new Vector3(0f, -0.045f, 0f));
-            float targetColliderXRot     = isCrouching ? 15f : 5f;
+            float targetColliderRadius   = isCrouching ? (animIsCrouchWalking ? 0.3f : 0.4f) : (isAirborne ? 0.3f : 0.25f);
+            Vector3 targetColliderCenter = isCrouching ? (animIsCrouchWalking ? new Vector3(0f, -0.2f, 0f) : new Vector3(0f, -0.3f, 0f)) : (isAirborne ? new Vector3(0f, -0.1f, 0f) : new Vector3(0f, -0.05f, 0f));
+            float targetColliderXRot     = 0f;
 
             colliderHeight = Mathf.SmoothDamp(colliderHeight, targetColliderHeight, ref colliderHeightVel, colliderSmoothTime);
             colliderRadius = Mathf.SmoothDamp(colliderRadius, targetColliderRadius, ref colliderRadiusVel, colliderSmoothTime);
@@ -297,7 +338,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool(IsRunning,  animIsRunning);
         animator.SetBool(IsWalking,  animIsWalking);
         animator.SetBool(IsIdle,     animIsIdle);
-        animator.SetBool(IsJumping,  animIsJumping);
+        animator.SetBool(IsAirborne,       animIsAirborne);
         animator.SetBool(IsCrouch,        animIsCrouching);
         animator.SetBool(IsCrouchWalking,  animIsCrouchWalking);
         animator.speed = speedMultiplier;

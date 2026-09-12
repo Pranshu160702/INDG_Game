@@ -127,7 +127,7 @@ public class BuildJamesAnimator : EditorWindow
         deathCrouchState.motion   = Clip("Dying/death crouching.fbx");
 
         // --- Transitions ---
-        float td = 0.15f;
+        float td = 0.1f;
 
         // Idle -> Walk
         var t = idleState.AddTransition(walkState);
@@ -151,10 +151,7 @@ public class BuildJamesAnimator : EditorWindow
         t.AddCondition(AnimatorConditionMode.If, 0, "isCrouchWalking");
         t.duration = td; t.hasExitTime = false;
 
-        // Idle -> Jump
-        t = idleState.AddTransition(jumpState);
-        t.AddCondition(AnimatorConditionMode.If, 0, "isJumping");
-        t.duration = 0.32f; t.hasExitTime = false;
+        // Idle -> Jump — removed, covered by Any State -> Jump
 
         // Walk -> Idle
         t = walkState.AddTransition(idleState);
@@ -242,7 +239,7 @@ public class BuildJamesAnimator : EditorWindow
         // Jump -> Idle
         t = jumpState.AddTransition(idleState);
         t.AddCondition(AnimatorConditionMode.IfNot, 0, "isJumping");
-        t.hasExitTime = true; t.exitTime = 0.39f; t.duration = 0.57f; t.hasFixedDuration = true;
+        t.hasExitTime = true; t.exitTime = 0.54f; t.duration = 0.1f; t.hasFixedDuration = true;
 
         // Jump -> Falling (fell off ledge mid-jump or jump transitions to fall)
         t = jumpState.AddTransition(fallingState);
@@ -263,6 +260,11 @@ public class BuildJamesAnimator : EditorWindow
         var anyFalling = rootSM.AddAnyStateTransition(fallingState);
         anyFalling.AddCondition(AnimatorConditionMode.If, 0, "isFalling");
         anyFalling.duration = td; anyFalling.hasExitTime = false; anyFalling.canTransitionToSelf = false;
+
+        // Any State -> Jump (from any movement state)
+        var anyJump = rootSM.AddAnyStateTransition(jumpState);
+        anyJump.AddCondition(AnimatorConditionMode.If, 0, "isJumping");
+        anyJump.duration = 0.1f; anyJump.hasExitTime = false; anyJump.canTransitionToSelf = false;
 
         // Any State -> Death Crouch
         var anyDeathCrouch = rootSM.AddAnyStateTransition(deathCrouchState);

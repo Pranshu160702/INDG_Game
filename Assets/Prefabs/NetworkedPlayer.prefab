@@ -1018,7 +1018,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5025544547740961714}
   - {fileID: 5076203968149410511}
   - {fileID: 798842380662828649}
   - {fileID: 5038159404279220401}
@@ -1274,13 +1273,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5056661226095185657}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.043619405, y: 0, z: 0, w: 0.9990483}
-  m_LocalPosition: {x: 0, y: -0.1, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1956654941195522190}
-  m_LocalEulerAnglesHint: {x: 5, y: 0, z: 0}
+  m_Father: {fileID: 3929948329146413396}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7167642996207308036
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1308,10 +1307,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.25
   m_Height: 1.6
   m_Direction: 1
-  m_Center: {x: 0, y: -0.045, z: 0}
+  m_Center: {x: 0, y: -0.05, z: 0}
 --- !u!1 &5296115027767340995
 GameObject:
   m_ObjectHideFlags: 0
@@ -2147,6 +2146,7 @@ Transform:
   m_Children:
   - {fileID: 1573687473262412708}
   - {fileID: 2245585401397451077}
+  - {fileID: 5025544547740961714}
   - {fileID: 5156387797968825942}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2204,31 +2204,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d5eefa9e9c82545a99dd68d0e90d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  sprintSpeed: 7.5
-  walkSpeed: 2.5
+  sprintSpeed: 4.5
+  walkSpeed: 1.5
   crouchSpeed: 1.5
   jumpHeight: 1
-  gravity: -9.8
+  crouchJumpHeight: 0.8
+  gravity: -19.6
   standHeight: 1
   crouchHeight: 0.5
   mouseSensitivity: 0.25
   animSmoothTime: 0.2
   angle90RecoverTime: 0.25
   angle180RecoverTime: 0.5
-  bodyCollider: {fileID: 9140232833401628903}
+  bodyCollider: {fileID: 0}
   colliderSmoothTime: 0.05
-  spineTransform: {fileID: 5038159404279220401}
+  spineTransform: {fileID: 0}
   spineWeight: 0.2
-  chestTransform: {fileID: 9017011691454970763}
-  headTransform: {fileID: 3213974257427700947}
+  chestTransform: {fileID: 0}
+  headTransform: {fileID: 0}
   upperWeight: 0.5
-  animHorizontal: 0
-  animVertical: 0
+  animHorizontal: 3.6232216e-27
+  animVertical: 2.1975702e-33
   animIsRunning: 0
   animIsWalking: 0
   animIsIdle: 1
-  animIsJumping: 0
+  animIsJumping: 1
   animIsCrouching: 0
+  animIsAirborne: 0
   animIsCrouchWalking: 0
 --- !u!114 &8632369049263787533
 MonoBehaviour:
