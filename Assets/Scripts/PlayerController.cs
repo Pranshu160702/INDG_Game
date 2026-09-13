@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Transform cameraTarget; // TPSCamera
 
-    private float xRotation;
+    [HideInInspector] public float xRotation;
     private float yVelocity;
     private float idleTimer;
     private bool jumpLock;
@@ -176,8 +176,7 @@ public class PlayerController : MonoBehaviour
         if (cameraTarget == null) return;
         Vector2 mouseDelta = Mouse.current.delta.ReadValue() * mouseSensitivity * 0.1f;
         xRotation -= mouseDelta.y;
-        xRotation = Mathf.Clamp(xRotation, -80f, 80f);
-        yRotationLocal = mouseDelta.x;
+        xRotation = Mathf.Clamp(xRotation, -70f, 70f);
         cameraTarget.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         if (fpsCamera != null)
             fpsCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
@@ -372,51 +371,6 @@ public class PlayerController : MonoBehaviour
         cc.Move(moveDir.normalized * currentSpeed * speedMultiplier * Time.deltaTime + Vector3.up * yVelocity * Time.deltaTime);
 
         ApplyAnimatorState();
-    }
-
-    private float smoothSpineX;
-    private float smoothSpineXVel;
-    private float smoothSpineY;
-    private float smoothSpineYVel;
-    // yRotationLocal accumulates mouse-X relative to body (resets when body rotates)
-    private float yRotationLocal;
-
-    void LateUpdate()
-    {
-        smoothSpineX = Mathf.SmoothDamp(smoothSpineX, xRotation,      ref smoothSpineXVel, 0.08f);
-        smoothSpineY = Mathf.SmoothDamp(smoothSpineY, yRotationLocal,  ref smoothSpineYVel, 0.08f);
-
-        // Hips, Spine, Chest, UpperChest — X axis only
-        if (hipsTransform != null)
-            hipsTransform.localRotation *= Quaternion.Euler((smoothSpineX + hipsAngleOffset) * hipsWeight, 0f, 0f);
-        if (spineTransform != null)
-            spineTransform.localRotation *= Quaternion.Euler((smoothSpineX + spineAngleOffset) * spineWeight, 0f, 0f);
-        if (chestTransform != null)
-            chestTransform.localRotation *= Quaternion.Euler((smoothSpineX + chestAngleOffset) * chestWeight, 0f, 0f);
-        if (upperChestTransform != null)
-            upperChestTransform.localRotation *= Quaternion.Euler((smoothSpineX + upperChestAngleOffset) * upperChestWeight, 0f, 0f);
-
-        // Neck, Head, Shoulders — full aim (X + Y) so they track the mouse
-        if (neckTransform != null)
-            neckTransform.localRotation *= Quaternion.Euler(
-                (smoothSpineX + neckAngleOffset) * neckWeight,
-                smoothSpineY * neckWeight,
-                0f);
-        if (headTransform != null)
-            headTransform.localRotation *= Quaternion.Euler(
-                (smoothSpineX + headAngleOffset) * headWeight,
-                smoothSpineY * headWeight,
-                0f);
-        if (leftShoulderTransform != null)
-            leftShoulderTransform.localRotation *= Quaternion.Euler(
-                (smoothSpineX + leftShoulderAngleOffset) * leftShoulderWeight,
-                smoothSpineY * leftShoulderWeight,
-                0f);
-        if (rightShoulderTransform != null)
-            rightShoulderTransform.localRotation *= Quaternion.Euler(
-                (smoothSpineX + rightShoulderAngleOffset) * rightShoulderWeight,
-                smoothSpineY * rightShoulderWeight,
-                0f);
     }
 
     void ApplyAnimatorState()
