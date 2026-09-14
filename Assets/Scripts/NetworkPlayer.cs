@@ -1,9 +1,97 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Mirror;
 
 public class NetworkPlayer : NetworkBehaviour
 {
+    // --- Health & Death ---
+    [SyncVar(hook = nameof(OnHealthChanged))] private float health = 100f;
+    private const float MaxHealth = 100f;
+    [SyncVar] public bool isDead = false;
+    [SyncVar] public int kills = 0;
+    private string lastKillerName = "";
+    public float HealthPct => health / MaxHealth;
+
+    [Server]
+    public void TakeDamage(float damage, string killerName = "")
+    {
+        if (isDead) return;
+        health = Mathf.Max(0f, health - damage);
+        if (health <= 0f)
+        {
+            isDead = true;
+            lastKillerName = killerName;
+
+            // Find killer and increment their kill count
+            foreach (var identity in NetworkServer.spawned.Values)
+            {
+                NetworkPlayer np = identity.GetComponent<NetworkPlayer>();
+                if (np != null && identity.name == killerName)
+                {
+                    np.kills++;
+                    if (GameManager.instance != null)
+                        GameManager.instance.RegisterKill(killerName, np.kills);
+                    break;
+                }
+            }
+
+            RpcOnDied(killerName, netIdentity.name);
+        }
+    }
+
+    [ClientRpc]
+    void RpcOnDied(string killer, string victim)
+    {
+        GameHUD.AddKillFeed(killer, victim);
+        if (!isLocalPlayer) return;
+        if (controller != null) controller.enabled = false;
+        if (GameHUD.instance != null) GameHUD.instance.ShowRespawnScreen(5f);
+        StartCoroutine(RespawnRoutine(5f));
+    }
+
+    IEnumerator RespawnRoutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (isLocalPlayer)
+        {
+            CmdRespawn();
+        }
+    }
+
+    [Command]
+    void CmdRespawn()
+    {
+        Transform spawn = SpawnManager.instance != null
+            ? SpawnManager.instance.GetBestSpawn()
+            : null;
+        Vector3 spawnPos = spawn != null ? spawn.position : Vector3.up;
+        ServerRespawn(spawnPos);
+    }
+
+    [ClientRpc]
+    void RpcRespawn(Vector3 spawnPos)
+    {
+        transform.position = spawnPos;
+        if (!isLocalPlayer) return;
+        if (controller != null) controller.enabled = true;
+        if (GameHUD.instance != null) GameHUD.instance.HideRespawnScreen();
+    }
+
+    [Server]
+    void ServerRespawn(Vector3 spawnPos)
+    {
+        health = MaxHealth;
+        isDead = false;
+        RpcRespawn(spawnPos);
+    }
+
+    void OnHealthChanged(float oldHealth, float newHealth)
+    {
+        if (!isLocalPlayer || GameHUD.instance == null) return;
+        if (newHealth < oldHealth) GameHUD.instance.ShowBloodHit();
+    }
+
     // --- Transform sync ---
     [SyncVar] private Vector3 syncPos;
     [SyncVar] private float syncYRot;
@@ -24,7 +112,7 @@ public class NetworkPlayer : NetworkBehaviour
     private Animator animator;
     private Camera fpsCamera;
     private Camera tpsCamera;
-    private bool isFPS = false;
+    private bool isFPS = true;
 
     private Vector3 lastPos;
     private float lastYRot;
@@ -55,6 +143,8 @@ public class NetworkPlayer : NetworkBehaviour
     [Header("Debug")]
     public bool hideLocalBody = false;
 
+    private GunScript gunScript;
+
     public override void OnStartLocalPlayer()
     {
         if (controller != null) controller.enabled = true;
@@ -67,8 +157,25 @@ public class NetworkPlayer : NetworkBehaviour
         tpsCamera = cameraTarget?.GetComponent<Camera>();
         fpsCamera = transform.Find("FPSCamera")?.GetComponent<Camera>();
 
-        if (tpsCamera != null) tpsCamera.enabled = true;
-        if (fpsCamera != null) fpsCamera.enabled = false;
+        if (tpsCamera != null) tpsCamera.enabled = false;
+        if (fpsCamera != null) fpsCamera.enabled = true;
+
+        // Re-enable the audio listener on the local player's FPS camera
+        var al = fpsCamera?.GetComponent<AudioListener>();
+        if (al != null) al.enabled = true;
+
+        gunScript = GetComponentInChildren<GunScript>(true);
+        if (gunScript != null)
+        {
+            gunScript.shootCamera = fpsCamera;
+            gunScript.isOwnedLocally = true;
+        }
+
+        if (GameHUD.instance != null)
+        {
+            GameHUD.instance.networkPlayer = this;
+            GameHUD.instance.gunScript = gunScript;
+        }
     }
 
     void Update()
@@ -89,6 +196,8 @@ public class NetworkPlayer : NetworkBehaviour
         isFPS = !isFPS;
         tpsCamera.enabled = !isFPS;
         fpsCamera.enabled = isFPS;
+        if (gunScript != null)
+            gunScript.shootCamera = isFPS ? fpsCamera : tpsCamera;
     }
 
     void SyncLocalPlayer()

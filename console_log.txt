@@ -1,4 +1,25 @@
---- Log started 9/14/2026 3:58:50 PM ---
+--- Log started 9/15/2026 12:48:04 AM ---
+[Warning] Account API did not become accessible within 30 seconds. This may be due to network issues or editor focus.
+UnityEngine.Debug:LogWarning (object)
+Unity.AI.Toolkit.Accounts.Services.States.ApiAccessibleState/<WaitForCloudProjectSettings>d__4:MoveNext () (at ./Library/PackageCache/com.unity.ai.assistant@8d1e3e89e3a7/Modules/Unity.AI.Toolkit.Accounts/Services/States/ApiAccessibleState.cs:46)
+System.Threading.Tasks.TaskCompletionSource`1<bool>:TrySetResult (bool)
+Unity.AI.Toolkit.EditorTask/<>c__DisplayClass22_0:<WaitForCondition>b__0 () (at ./Library/PackageCache/com.unity.ai.assistant@8d1e3e89e3a7/Modules/Unity.AI.Toolkit.Async/EditorTask.cs:420)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+[Error] GameManager on GameManager requires a NetworkIdentity. Please add a NetworkIdentity component to GameManager or its parents.
+UnityEngine.Debug:LogError (object,UnityEngine.Object)
+Mirror.NetworkBehaviour:OnValidate () (at Assets/Mirror/Core/NetworkBehaviour.cs:169)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.SceneManagement.EditorSceneManager:OpenScene (string)
+ForceMenuSceneOnPlay:OnPlayModeStateChanged (UnityEditor.PlayModeStateChange) (at Assets/Editor/ForceMenuSceneOnPlay.cs:25)
+UnityEditor.EditorApplication:EnterPlaymode ()
+Unity.PlayMode.Editor.PlayModeButtons:OnPlayButtonValueChanged (bool)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
 [Log] [EOSSDKComponent] Awake
 UnityEngine.Debug:Log (object)
 EpicTransport.EOSSDKComponent:Awake () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:201)
@@ -61,7 +82,7 @@ EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/E
 Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
 Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
 
-[Log] EOS User Product ID:00022811ffce438fa95cf4633ea0830e
+[Log] EOS User Product ID:0002350fac0c481d907c0b785ecb7455
 UnityEngine.Debug:Log (object)
 EpicTransport.EOSSDKComponent:OnConnectInterfaceLogin (Epic.OnlineServices.Connect.LoginCallbackInfo) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:409)
 EpicTransport.EOSSDKComponent:<ConnectInterfaceLogin>b__78_0 (Epic.OnlineServices.Connect.LoginCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:399)
@@ -72,7 +93,7 @@ EpicTransport.EosTransport:ServerEarlyUpdate () (at Assets/EpicOnlineTransport/E
 Mirror.NetworkServer:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkServer.cs:2047)
 Mirror.NetworkLoop:NetworkEarlyUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:192)
 
-[Log] [EOSSDKComponent] EOS fully initialized. ProductId: 00022811ffce438fa95cf4633ea0830e
+[Log] [EOSSDKComponent] EOS fully initialized. ProductId: 0002350fac0c481d907c0b785ecb7455
 UnityEngine.Debug:Log (object)
 EpicTransport.EOSSDKComponent:OnConnectInterfaceLogin (Epic.OnlineServices.Connect.LoginCallbackInfo) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:417)
 EpicTransport.EOSSDKComponent:<ConnectInterfaceLogin>b__78_0 (Epic.OnlineServices.Connect.LoginCallbackInfo&) (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:399)
@@ -100,9 +121,6 @@ Mirror.NetworkManager:StartHost () (at Assets/Mirror/Core/NetworkManager.cs:471)
 GameNetworkManager/<WaitForEOSThenStartHost>d__15:MoveNext () (at Assets/Scripts/GameNetworkManager.cs:107)
 UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
 
-[Error] Problem detected while opening the Scene file: 'Assets/Scenes/Game.unity'.
-Check the following logs for more details.
-[Error] Prefab instance problem. Missing Prefab Asset: 'ValorantMap (Missing Prefab with guid: 1f958f17547d0024ab0d9805720b12cb)'
 [Log] [GNM] OnStartServer
 UnityEngine.Debug:Log (object)
 GameNetworkManager:OnStartServer () (at Assets/Scripts/GameNetworkManager.cs:243)
@@ -193,7 +211,7 @@ Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:20
 UnityEngine.Debug:Log (object)
 PlayerController:OnEnable () (at Assets/Scripts/PlayerController.cs:142)
 UnityEngine.Behaviour:set_enabled (bool)
-NetworkPlayer:OnStartLocalPlayer () (at Assets/Scripts/NetworkPlayer.cs:60)
+NetworkPlayer:OnStartLocalPlayer () (at Assets/Scripts/NetworkPlayer.cs:150)
 Mirror.NetworkIdentity:OnStartLocalPlayer () (at Assets/Mirror/Core/NetworkIdentity.cs:826)
 Mirror.NetworkClient:InvokeIdentityCallbacks (Mirror.NetworkIdentity) (at Assets/Mirror/Core/NetworkClient.cs:1414)
 Mirror.NetworkClient:BootstrapIdentity (Mirror.NetworkIdentity) (at Assets/Mirror/Core/NetworkClient.cs:1380)
@@ -209,18 +227,11 @@ Mirror.NetworkLoop:NetworkLateUpdate () (at Assets/Mirror/Core/NetworkLoop.cs:20
 
 [Log] [NetworkPlayer] Start — animator=Commando, isLocalPlayer=True
 UnityEngine.Debug:Log (object)
-NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:48)
+NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:136)
 
 [Log] [NetworkPlayer] Animator found: controller=CommandoAnimator, avatar=CommandoAvatar, enabled=True, isHuman=True
 UnityEngine.Debug:Log (object)
-NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:52)
-
-[Warning] Account API did not become accessible within 30 seconds. This may be due to network issues or editor focus.
-UnityEngine.Debug:LogWarning (object)
-Unity.AI.Toolkit.Accounts.Services.States.ApiAccessibleState/<WaitForCloudProjectSettings>d__4:MoveNext () (at ./Library/PackageCache/com.unity.ai.assistant@8d1e3e89e3a7/Modules/Unity.AI.Toolkit.Accounts/Services/States/ApiAccessibleState.cs:46)
-System.Threading.Tasks.TaskCompletionSource`1<bool>:TrySetResult (bool)
-Unity.AI.Toolkit.EditorTask/<>c__DisplayClass22_0:<WaitForCondition>b__0 () (at ./Library/PackageCache/com.unity.ai.assistant@8d1e3e89e3a7/Modules/Unity.AI.Toolkit.Async/EditorTask.cs:420)
-UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+NetworkPlayer:Start () (at Assets/Scripts/NetworkPlayer.cs:140)
 
 [Exception] NullReferenceException: Object reference not set to an instance of an object
 EpicTransport.EOSSDKComponent.get_LocalUserProductId () (at Assets/EpicOnlineTransport/EOSSDKComponent.cs:110)
