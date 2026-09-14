@@ -26,6 +26,13 @@ public class MenuUI : MonoBehaviour
     }
     private GameNetworkManager _netManager;
 
+    void Update()
+    {
+        // Only tick EOS when transport isn't active — transport ticks it via ServerEarlyUpdate/ClientEarlyUpdate
+        if (!Mirror.NetworkServer.active && !Mirror.NetworkClient.isConnected)
+            EpicTransport.EOSSDKComponent.Tick();
+    }
+
     void Start()
     {
         // Warm up the reference early but don't fail if not found yet
@@ -199,7 +206,7 @@ public class MenuUI : MonoBehaviour
 
     System.Collections.IEnumerator WaitForEOSThenJoin(string code)
     {
-        float t = 10f;
+        float t = 15f;
         while (!IsEOSReady() && t > 0f) { t -= UnityEngine.Time.deltaTime; yield return null; }
         if (!IsEOSReady())
         {

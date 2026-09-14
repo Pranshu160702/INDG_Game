@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 1.5f;
     public float crouchJumpHeight = 0.8f;
     public float gravity = -20f;
+    public float crouchFallGravityMultiplier = 2.5f;
 
     [Header("Crouch")]
     public float standHeight = 2f;
@@ -277,11 +278,34 @@ public class PlayerController : MonoBehaviour
 
         if (grounded) isAirborneFromJump = false;
 
-        // while airborne from a jump, freeze crouch state to jump-time snapshot
+        // while airborne from a jump, handle crouch state
         if (isAirborneFromJump)
         {
-            animIsCrouching     = jumpWasCrouching;
-            animIsCrouchWalking = jumpWasCrouchWalking;
+            if (jumpWasCrouching)
+            {
+                // crouch jump: releasing crouch cancels it → treat as normal jump
+                if (!isCrouching)
+                {
+                    jumpWasCrouching      = false;
+                    jumpWasCrouchWalking  = false;
+                    if (animator != null)
+                        animator.CrossFade("Idle", 0.1f, 0);
+                }
+                animIsCrouching     = jumpWasCrouching;
+                animIsCrouchWalking = jumpWasCrouchWalking;
+            }
+            else if (isCrouching)
+            {
+                // normal jump: crouch pressed mid-air → fast fall + crouch idle anim
+                animIsCrouching     = true;
+                animIsCrouchWalking = false;
+                yVelocity += gravity * (crouchFallGravityMultiplier - 1f) * Time.deltaTime;
+            }
+            else
+            {
+                animIsCrouching     = false;
+                animIsCrouchWalking = false;
+            }
         }
 
         // jumpLock: suppress movement bools for 0.15s after jumping to prevent mid-air state flicker

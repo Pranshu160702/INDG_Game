@@ -13,6 +13,12 @@ public class RoomsUI : MonoBehaviour
 
     private GameNetworkManager netManager;
 
+    void Update()
+    {
+        if (!Mirror.NetworkServer.active && !Mirror.NetworkClient.isConnected)
+            EOSSDKComponent.Tick();
+    }
+
     void Start()
     {
         netManager = FindAnyObjectByType<GameNetworkManager>();
@@ -66,13 +72,11 @@ public class RoomsUI : MonoBehaviour
 
     System.Collections.IEnumerator WaitThenRefresh()
     {
-        // Wait for EOS session changes to propagate
-        yield return new WaitForSeconds(3f);
-        float t = 10f;
+        float t = 15f;
         while (!IsEOSReady() && t > 0f) { t -= UnityEngine.Time.deltaTime; yield return null; }
         if (!IsEOSReady()) { SetStatus("EOS not ready."); yield break; }
         if (EOSLobbyCode.Instance == null) { SetStatus("EOS not ready."); yield break; }
-        StartCoroutine(RefreshWithTimeout());
+        StartCoroutine(DelayedRefresh());
     }
 
     static bool IsEOSReady()
@@ -126,7 +130,7 @@ public class RoomsUI : MonoBehaviour
 
     void JoinRoom(EOSLobbyCode.RoomInfo room)
     {
-        if (_isJoining) return; // prevent double-click
+        if (_isJoining) return;
         if (string.IsNullOrEmpty(room.HostId)) { SetStatus("Error: Invalid room."); return; }
 
         if (netManager == null) netManager = FindAnyObjectByType<GameNetworkManager>();
@@ -144,6 +148,19 @@ public class RoomsUI : MonoBehaviour
         netManager.offlineScene = "Menu";
         netManager.networkAddress = room.HostId;
         netManager.StartClient();
+        StartCoroutine(JoinTimeout());
+    }
+
+    System.Collections.IEnumerator JoinTimeout()
+    {
+        yield return new WaitForSeconds(15f);
+        if (_isJoining)
+        {
+            _isJoining = false;
+            LoadingOverlay.Hide();
+            if (Mirror.NetworkClient.active) netManager?.StopClient();
+            SetStatus("Connection timed out.");
+        }
     }
 
     void OnBack()

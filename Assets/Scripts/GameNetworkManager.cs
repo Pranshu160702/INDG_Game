@@ -1,6 +1,7 @@
 using Mirror;
 using UnityEngine;
 using EpicTransport;
+using System.Collections;
 
 public class GameNetworkManager : NetworkManager
 {
@@ -94,7 +95,15 @@ public class GameNetworkManager : NetworkManager
         onlineScene = "Game";
         offlineScene = "Menu";
         maxConnections = 1;
-        _sessionDestroyed = true; // skip EOS session destroy on stop
+        _sessionDestroyed = true;
+        StartCoroutine(WaitForEOSThenStartHost());
+    }
+
+    private IEnumerator WaitForEOSThenStartHost()
+    {
+        float t = 15f;
+        while (!EOSSDKComponent.Initialized && t > 0f) { t -= Time.deltaTime; yield return null; }
+        if (!EOSSDKComponent.Initialized) { Debug.LogError("[GNM] EOS not ready after timeout"); yield break; }
         StartHost();
     }
 
@@ -106,9 +115,9 @@ public class GameNetworkManager : NetworkManager
         if (NetworkServer.active)
             DestroySessionOnce();
 
-        if (NetworkServer.active && NetworkClient.isConnected) StopHost();
+        if (NetworkServer.active && NetworkClient.isConnected) { _stoppingAsHost = true; StopHost(); }
         else if (NetworkClient.isConnected) StopClient();
-        else if (NetworkServer.active) StopServer();
+        else if (NetworkServer.active) { _stoppingAsHost = true; StopServer(); }
     }
 
     void DestroySessionOnce()
@@ -206,7 +215,10 @@ public class GameNetworkManager : NetworkManager
         Debug.Log("[GNM] OnStopHost");
         LobbyPlayer.All.Clear();
         _sessionDestroyed = false;
+        _stoppingAsHost = false;
     }
+
+    private bool _stoppingAsHost = false;
 
     public override void OnStartClient() { base.OnStartClient(); Debug.Log("[GNM] OnStartClient"); }
 
@@ -215,8 +227,16 @@ public class GameNetworkManager : NetworkManager
         base.OnStopClient();
         Debug.Log("[GNM] OnStopClient");
         LobbyPlayer.All.Clear();
-        // Use Invoke to delay scene load by one frame to avoid mid-frame issues
-        if (!string.IsNullOrWhiteSpace(offlineScene) && !Mirror.Utils.IsSceneActive(offlineScene))
+        // Don't manually load offline scene when stopping as host — Mirror handles it via StopHost
+        if (!_stoppingAsHost && !string.IsNullOrWhiteSpace(offlineScene) && !Mirror.Utils.IsSceneActive(offlineScene))
+            StartCoroutine(LoadOfflineSceneNextFrame());
+    }
+
+    private IEnumerator LoadOfflineSceneNextFrame()
+    {
+        yield return null;
+        yield return null;
+        if (!NetworkServer.active && !NetworkClient.active)
             UnityEngine.SceneManagement.SceneManager.LoadScene(offlineScene);
     }
 

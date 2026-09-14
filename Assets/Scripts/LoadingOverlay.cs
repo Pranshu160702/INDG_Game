@@ -29,7 +29,7 @@ public class LoadingOverlay : MonoBehaviour
         overlayInstance.name = "LoadingOverlay(Runtime)";
 
         // Parent to the top-level canvas
-        var canvas = FindFirstObjectByType<Canvas>();
+        var canvas = FindAnyObjectByType<Canvas>();
         if (canvas != null)
         {
             overlayInstance.transform.SetParent(canvas.transform, false);

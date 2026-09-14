@@ -85,6 +85,7 @@ public class NetworkPlayer : NetworkBehaviour
 
     void ToggleCamera()
     {
+        if (tpsCamera == null || fpsCamera == null) return;
         isFPS = !isFPS;
         tpsCamera.enabled = !isFPS;
         fpsCamera.enabled = isFPS;

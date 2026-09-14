@@ -27,6 +27,7 @@ namespace EpicTransport
             if (Instance != null) { Destroy(gameObject); return; }
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            _recentlyDestroyedOwners.Clear();
             Debug.Log("[EOSLobbyCode] Awake — Instance set");
         }
 
@@ -301,7 +302,7 @@ namespace EpicTransport
             {
                 _recentlyDestroyedOwners.Add(myId);
                 // Remove after 60 seconds to allow re-hosting
-                StartCoroutine(RemoveDestroyedOwner(myId, 60f));
+                StartCoroutine(RemoveDestroyedOwner(myId, 10f));
             }
 
             var options = new DestroySessionOptions() { SessionName = SESSION_NAME };

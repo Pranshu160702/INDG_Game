@@ -148,9 +148,13 @@ namespace EpicTransport {
 
         public static void Tick() {
             if (instance == null || instance.EOS == null) return;
+            if (instance._lastTickFrame == Time.frameCount) return;
+            instance._lastTickFrame = Time.frameCount;
             instance.platformTickTimer -= Time.deltaTime;
             instance.EOS.Tick();
         }
+
+        private int _lastTickFrame = -1;
 
         // If we're in editor, we should dynamically load and unload the SDK between play sessions.
         // This allows us to initialize the SDK each time the game is run in editor.
@@ -209,6 +213,7 @@ namespace EpicTransport {
                 Destroy(gameObject);
                 return;
             }
+            applicationIsQuitting = false;
             instance = this;
             DontDestroyOnLoad(gameObject);
             Debug.Log("[EOSSDKComponent] Instance set");
@@ -434,10 +439,12 @@ namespace EpicTransport {
         private void LateUpdate() {
             if (EOS != null) {
                 platformTickTimer += Time.deltaTime;
-
                 if (platformTickTimer >= platformTickIntervalInSeconds) {
                     platformTickTimer = 0;
-                    EOS.Tick();
+                    if (_lastTickFrame != Time.frameCount) {
+                        _lastTickFrame = Time.frameCount;
+                        EOS.Tick();
+                    }
                 }
             }
         }
