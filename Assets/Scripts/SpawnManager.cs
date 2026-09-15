@@ -16,6 +16,11 @@ public class SpawnManager : MonoBehaviour
             spawnPoints[i] = gos[i].transform;
     }
 
+    void OnDestroy()
+    {
+        if (instance == this) instance = null;
+    }
+
     // Returns the spawn point furthest from all living players
     public Transform GetBestSpawn()
     {

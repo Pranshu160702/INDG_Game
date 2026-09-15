@@ -15,16 +15,147 @@ public class CommandoAnimatorSetup : EditorWindow
         Debug.Log("Commando Animator setup complete.");
     }
 
+    [MenuItem("INDG/Setup/Add Gun Action States to Commando Animator")]
+    static void AddGunActionStates()
+    {
+        string controllerPath = "Assets/Characters/Commando/Animator/CommandoAnimator.controller";
+        AnimatorController controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(controllerPath);
+        if (controller == null) { Debug.LogError("CommandoAnimator.controller not found."); return; }
+
+        // --- Ensure parameters exist ---
+        EnsureParameter(controller, "isFiring",    AnimatorControllerParameterType.Bool);
+        EnsureParameter(controller, "isReloading", AnimatorControllerParameterType.Bool);
+        EnsureParameter(controller, "isMelee",     AnimatorControllerParameterType.Bool);
+
+        // --- Load clips ---
+        AnimationClip firingClip   = LoadClip("Assets/Characters/Commando/Animations/UpperBodyAnimations/Aiming/firing rifle.fbx");
+        AnimationClip reloadClip   = LoadClip("Assets/Characters/Commando/Animations/UpperBodyAnimations/Aiming/reloading.fbx");
+        // No melee clip in upper body folder — reuse idle aiming as placeholder until you add one
+        AnimationClip meleeClip    = LoadClip("Assets/Characters/Commando/Animations/UpperBodyAnimations/Aiming/IdleAiming.fbx");
+        AnimationClip aimingClip   = LoadClip("Assets/Characters/Commando/Animations/UpperBodyAnimations/Aiming/IdleAiming.fbx");
+
+        if (firingClip == null)  { Debug.LogError("firing rifle.fbx clip not found."); return; }
+        if (reloadClip == null)  { Debug.LogError("reloading.fbx clip not found."); return; }
+
+        // --- Find upper body layer ---
+        int upperLayerIdx = -1;
+        for (int i = 0; i < controller.layers.Length; i++)
+        {
+            if (controller.layers[i].name.ToLower().Contains("upper"))
+            { upperLayerIdx = i; break; }
+        }
+        if (upperLayerIdx < 0) { Debug.LogError("No upper body layer found in CommandoAnimator."); return; }
+
+        var upperSM = controller.layers[upperLayerIdx].stateMachine;
+
+        // --- Find or create states ---
+        AnimatorState aimingState  = FindOrCreateState(upperSM, "Aiming Upper",   aimingClip,  true);
+        AnimatorState firingState  = FindOrCreateState(upperSM, "Firing Upper",   firingClip,  false);
+        AnimatorState reloadState  = FindOrCreateState(upperSM, "Reloading Upper", reloadClip, false);
+        AnimatorState meleeState   = FindOrCreateState(upperSM, "Melee Upper",    meleeClip,   false);
+
+        // Set aiming as default if not already
+        if (upperSM.defaultState == null)
+            upperSM.defaultState = aimingState;
+
+        // --- Clear existing transitions from these states to avoid duplicates ---
+        ClearTransitionsFrom(aimingState);
+        ClearTransitionsFrom(firingState);
+        ClearTransitionsFrom(reloadState);
+        ClearTransitionsFrom(meleeState);
+
+        // --- Wire transitions ---
+
+        // Aiming → Firing (isFiring true)
+        AddBoolTransition(aimingState, firingState, "isFiring", true, false, 0.1f);
+        // Aiming → Reloading (isReloading true)
+        AddBoolTransition(aimingState, reloadState, "isReloading", true, false, 0.1f);
+        // Aiming → Melee (isMelee true)
+        AddBoolTransition(aimingState, meleeState, "isMelee", true, false, 0.1f);
+
+        // Firing → Aiming (isFiring false)
+        AddBoolTransition(firingState, aimingState, "isFiring", false, false, 0.1f);
+        // Reloading → Aiming (isReloading false)
+        AddBoolTransition(reloadState, aimingState, "isReloading", false, false, 0.1f);
+        // Melee → Aiming (isMelee false)
+        AddBoolTransition(meleeState, aimingState, "isMelee", false, false, 0.1f);
+
+        // Firing can also go to Reloading directly
+        AddBoolTransition(firingState, reloadState, "isReloading", true, false, 0.1f);
+
+        EditorUtility.SetDirty(controller);
+        AssetDatabase.SaveAssets();
+        Debug.Log("[INDG] Gun action states added to Commando upper body layer.");
+    }
+
+    // ── Helpers ──────────────────────────────────────────────────────────────
+
+    static AnimationClip LoadClip(string path)
+    {
+        foreach (var a in AssetDatabase.LoadAllAssetsAtPath(path))
+            if (a is AnimationClip c && !c.name.StartsWith("__preview__"))
+                return c;
+        return null;
+    }
+
+    static void EnsureParameter(AnimatorController ctrl, string name, AnimatorControllerParameterType type)
+    {
+        foreach (var p in ctrl.parameters)
+            if (p.name == name) return;
+        ctrl.AddParameter(name, type);
+        Debug.Log($"[INDG] Added parameter '{name}' to CommandoAnimator.");
+    }
+
+    static AnimatorState FindOrCreateState(AnimatorStateMachine sm, string name, AnimationClip clip, bool loop)
+    {
+        foreach (var cs in sm.states)
+            if (cs.state.name == name)
+            {
+                cs.state.motion = clip;
+                return cs.state;
+            }
+        var state = sm.AddState(name);
+        state.motion = clip;
+        if (clip != null)
+        {
+            // Set loop time on the clip via SerializedObject
+            var so = new SerializedObject(clip);
+            var settings = so.FindProperty("m_AnimationClipSettings");
+            if (settings != null)
+            {
+                settings.FindPropertyRelative("m_LoopTime").boolValue = loop;
+                so.ApplyModifiedProperties();
+            }
+        }
+        return state;
+    }
+
+    static void ClearTransitionsFrom(AnimatorState state)
+    {
+        foreach (var t in state.transitions)
+            Object.DestroyImmediate(t, true);
+        // Reassign empty array
+        state.transitions = new AnimatorStateTransition[0];
+    }
+
+    static void AddBoolTransition(AnimatorState from, AnimatorState to, string param, bool value, bool hasExitTime, float duration)
+    {
+        var t = from.AddTransition(to);
+        t.hasExitTime = hasExitTime;
+        t.duration = duration;
+        t.AddCondition(value ? AnimatorConditionMode.If : AnimatorConditionMode.IfNot, 0, param);
+    }
+
+    // ── Original setup below (unchanged) ─────────────────────────────────────
+
     static void SetupAnimator()
     {
         string controllerPath = "Assets/Characters/Commando/Animator/CommandoAnimator.controller";
         AnimatorController controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(controllerPath);
         if (controller == null) { Debug.LogError("CommandoAnimator.controller not found."); return; }
 
-        // Map by STATE NAME (lowercase) -> Commando fbx path
         var clipMap = new Dictionary<string, string>
         {
-            // Base Layer states
             { "idle",           "Assets/Characters/Commando/Animations/LowerBodyAnimations/idle/idle.fbx" },
             { "idle crouch",    "Assets/Characters/Commando/Animations/LowerBodyAnimations/idle/idle crouching.fbx" },
             { "jump",           "Assets/Characters/Commando/Animations/LowerBodyAnimations/Jumping/jump.fbx" },
@@ -32,50 +163,41 @@ public class CommandoAnimatorSetup : EditorWindow
             { "death",          "Assets/Characters/Commando/Animations/Dying/death from bodyshot.fbx" },
             { "death headshot", "Assets/Characters/Commando/Animations/Dying/death from headshot.fbx" },
             { "death crouch",   "Assets/Characters/Commando/Animations/Dying/death crouching.fbx" },
-            // Upper Body layer states
             { "idle upper",     "Assets/Characters/Commando/Animations/UpperBodyAnimations/Idle/idle.fbx" },
             { "aiming upper",   "Assets/Characters/Commando/Animations/UpperBodyAnimations/Aiming/IdleAiming.fbx" },
-            // Walk blend tree children (matched by blend tree child state name = parent state name)
-            { "walk",                        "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk forward.fbx" },
-            // Crouch Walk blend tree children
-            { "crouch walk",                 "Assets/Characters/Commando/Animations/LowerBodyAnimations/idle/idle crouching.fbx" },
-            // Sprint blend tree children
-            { "sprint",                      "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run forward.fbx" },
+            { "walk",           "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk forward.fbx" },
+            { "crouch walk",    "Assets/Characters/Commando/Animations/LowerBodyAnimations/idle/idle crouching.fbx" },
+            { "sprint",         "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run forward.fbx" },
         };
 
-        // Blend tree child clips mapped by fbx filename (since children have no state name)
         var blendChildMap = new Dictionary<string, string>
         {
-            // Walk
-            { "walk forward",               "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk forward.fbx" },
-            { "walk backward",              "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk backward.fbx" },
-            { "walk left",                  "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk left.fbx" },
-            { "walk right",                 "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk right.fbx" },
-            { "walk forward left",          "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk forward left.fbx" },
-            { "walk forward right",         "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk forward right.fbx" },
-            { "walk backward left",         "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk backward left.fbx" },
-            { "walk backward right",        "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk backward right.fbx" },
-            // Sprint
-            { "run forward",                "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run forward.fbx" },
-            { "run backward",               "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run backward.fbx" },
-            { "run left",                   "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run left.fbx" },
-            { "run right",                  "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run right.fbx" },
-            { "run forward left",           "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run forward left.fbx" },
-            { "run forward right",          "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run forward right.fbx" },
-            { "run backward left",          "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run backward left.fbx" },
-            { "run backward right",         "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run backward right.fbx" },
-            // Crouch Walk
-            { "walk crouching forward",     "Assets/Characters/Commando/Animations/LowerBodyAnimations/crouching/walk crouching forward.fbx" },
-            { "walk crouching backward",    "Assets/Characters/Commando/Animations/LowerBodyAnimations/crouching/walk crouching backward.fbx" },
-            { "walk crouching left",        "Assets/Characters/Commando/Animations/LowerBodyAnimations/crouching/walk crouching left.fbx" },
-            { "walk crouching right",       "Assets/Characters/Commando/Animations/LowerBodyAnimations/crouching/walk crouching right.fbx" },
+            { "walk forward",                "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk forward.fbx" },
+            { "walk backward",               "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk backward.fbx" },
+            { "walk left",                   "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk left.fbx" },
+            { "walk right",                  "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk right.fbx" },
+            { "walk forward left",           "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk forward left.fbx" },
+            { "walk forward right",          "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk forward right.fbx" },
+            { "walk backward left",          "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk backward left.fbx" },
+            { "walk backward right",         "Assets/Characters/Commando/Animations/LowerBodyAnimations/Walking/walk backward right.fbx" },
+            { "run forward",                 "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run forward.fbx" },
+            { "run backward",                "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run backward.fbx" },
+            { "run left",                    "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run left.fbx" },
+            { "run right",                   "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run right.fbx" },
+            { "run forward left",            "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run forward left.fbx" },
+            { "run forward right",           "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run forward right.fbx" },
+            { "run backward left",           "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run backward left.fbx" },
+            { "run backward right",          "Assets/Characters/Commando/Animations/LowerBodyAnimations/Sprinting/run backward right.fbx" },
+            { "walk crouching forward",      "Assets/Characters/Commando/Animations/LowerBodyAnimations/crouching/walk crouching forward.fbx" },
+            { "walk crouching backward",     "Assets/Characters/Commando/Animations/LowerBodyAnimations/crouching/walk crouching backward.fbx" },
+            { "walk crouching left",         "Assets/Characters/Commando/Animations/LowerBodyAnimations/crouching/walk crouching left.fbx" },
+            { "walk crouching right",        "Assets/Characters/Commando/Animations/LowerBodyAnimations/crouching/walk crouching right.fbx" },
             { "walk crouching forward left", "Assets/Characters/Commando/Animations/LowerBodyAnimations/crouching/walk crouching forward left.fbx" },
             { "walk crouching forward right","Assets/Characters/Commando/Animations/LowerBodyAnimations/crouching/walk crouching forward right.fbx" },
             { "walk crouching backward left","Assets/Characters/Commando/Animations/LowerBodyAnimations/crouching/walk crouching backward left.fbx" },
             { "walk crouching backward right","Assets/Characters/Commando/Animations/LowerBodyAnimations/crouching/walk crouching backward right.fbx" },
         };
 
-        // Build lookup: key -> AnimationClip
         var resolved = new Dictionary<string, AnimationClip>();
         void Resolve(Dictionary<string, string> map)
         {
@@ -83,10 +205,8 @@ public class CommandoAnimatorSetup : EditorWindow
             {
                 if (resolved.ContainsKey(kv.Key)) continue;
                 foreach (var a in AssetDatabase.LoadAllAssetsAtPath(kv.Value))
-                {
                     if (a is AnimationClip c && !c.name.StartsWith("__preview__"))
                     { resolved[kv.Key] = c; break; }
-                }
                 if (!resolved.ContainsKey(kv.Key))
                     Debug.LogWarning($"Clip not found for '{kv.Key}' at: {kv.Value}");
             }
@@ -128,17 +248,13 @@ public class CommandoAnimatorSetup : EditorWindow
 
         if (motion is AnimationClip)
         {
-            // Try state name first (for direct states)
             if (clips.TryGetValue(stateName.ToLower(), out var c)) return c;
-
-            // For blend tree children, match by asset filename (without extension, lowercase)
             string assetPath = AssetDatabase.GetAssetPath(motion);
             if (!string.IsNullOrEmpty(assetPath))
             {
                 string fileName = System.IO.Path.GetFileNameWithoutExtension(assetPath).ToLower();
                 if (clips.TryGetValue(fileName, out c)) return c;
             }
-
             Debug.LogWarning($"No Commando clip mapped for state '{stateName}' / asset '{AssetDatabase.GetAssetPath(motion)}'");
         }
 
@@ -155,7 +271,6 @@ public class CommandoAnimatorSetup : EditorWindow
 
         if (lower != null)
         {
-            // Lower body: hips + legs only (no arms/spine upper)
             lower.SetHumanoidBodyPartActive(AvatarMaskBodyPart.Root, true);
             lower.SetHumanoidBodyPartActive(AvatarMaskBodyPart.Body, false);
             lower.SetHumanoidBodyPartActive(AvatarMaskBodyPart.Head, false);
@@ -174,7 +289,6 @@ public class CommandoAnimatorSetup : EditorWindow
 
         if (upper != null)
         {
-            // Upper body: spine, arms, head (no legs)
             upper.SetHumanoidBodyPartActive(AvatarMaskBodyPart.Root, false);
             upper.SetHumanoidBodyPartActive(AvatarMaskBodyPart.Body, true);
             upper.SetHumanoidBodyPartActive(AvatarMaskBodyPart.Head, true);

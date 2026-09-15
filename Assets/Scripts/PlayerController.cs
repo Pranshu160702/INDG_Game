@@ -114,6 +114,10 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool animIsAirborne;
     [HideInInspector] public bool animIsCrouchWalking;
     [HideInInspector] public bool animIsAiming;
+    // Gun action states — set by GunScript, applied to body animator
+    [HideInInspector] public bool animIsFiring;
+    [HideInInspector] public bool animIsReloading;
+    [HideInInspector] public bool animIsMelee;
 
     // Animator parameter hashes
     private static readonly int H          = Animator.StringToHash("Horizontal");
@@ -126,6 +130,9 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsCrouch          = Animator.StringToHash("isCrouching");
     private static readonly int IsCrouchWalking   = Animator.StringToHash("isCrouchWalking");
     private static readonly int IsAiming          = Animator.StringToHash("isAiming");
+    private static readonly int IsFiring          = Animator.StringToHash("isFiring");
+    private static readonly int IsReloading       = Animator.StringToHash("isReloading");
+    private static readonly int IsMelee           = Animator.StringToHash("isMelee");
 
     void Awake()
     {
@@ -135,14 +142,27 @@ public class PlayerController : MonoBehaviour
     void OnEnable()
     {
         if (animator == null)
-            animator = GetComponentInChildren<Animator>(true);
+        {
+            var commando = transform.Find("Commando");
+            if (commando != null)
+                animator = commando.GetComponentInChildren<Animator>(true);
+        }
         if (animator == null)
-            Debug.LogError("[PlayerController] No Animator found in children!");
-        else
-            Debug.Log($"[PlayerController] OnEnable — animator found on {animator.gameObject.name}, controller={(animator.runtimeAnimatorController != null ? animator.runtimeAnimatorController.name : "NULL")}");
+            Debug.LogError("[PlayerController] No Animator found on Commando child!");
 
         animIsIdle = true;
+        animIsAiming = false;
+        animIsFiring = false;
+        animIsReloading = false;
+        animIsMelee = false;
+        animIsJumping = false;
+        animIsAirborne = false;
+        animIsCrouching = false;
+        animIsCrouchWalking = false;
+        animIsRunning = false;
+        animIsWalking = false;
         yVelocity = -2f;
+        colliderSmoothTime = Mathf.Max(colliderSmoothTime, 0.01f);
         if (bodyCollider != null)
         {
             colliderHeight  = bodyCollider.height;
@@ -276,7 +296,11 @@ public class PlayerController : MonoBehaviour
         bool grounded = cc.isGrounded;
         animIsAirborne = !grounded;
 
-        if (grounded) isAirborneFromJump = false;
+        if (grounded)
+        {
+            isAirborneFromJump = false;
+            animIsJumping = false;
+        }
 
         // while airborne from a jump, handle crouch state
         if (isAirborneFromJump)
@@ -401,28 +425,20 @@ public class PlayerController : MonoBehaviour
     {
         if (animator == null) return;
 
-        animator.SetFloat(H,         animHorizontal);
-        animator.SetFloat(V,         animVertical);
-        animator.SetBool(IsRunning,  animIsRunning);
-        animator.SetBool(IsWalking,  animIsWalking);
-        animator.SetBool(IsIdle,     animIsIdle);
+        animator.SetFloat(H,              animHorizontal);
+        animator.SetFloat(V,              animVertical);
+        animator.SetBool(IsRunning,       animIsRunning);
+        animator.SetBool(IsWalking,       animIsWalking);
+        animator.SetBool(IsIdle,          animIsIdle);
         animator.SetBool(IsAirborne,      animIsAirborne);
         animator.SetBool(IsCrouch,        animIsCrouching);
         animator.SetBool(IsCrouchWalking, animIsCrouchWalking);
         animator.SetBool(IsAiming,        animIsAiming);
-        animator.speed = speedMultiplier;
+        animator.SetBool(IsFiring,        animIsFiring);
+        animator.SetBool(IsReloading,     animIsReloading);
+        animator.SetBool(IsMelee,         animIsMelee);
+        // Only apply speed multiplier when not doing action animations
+        animator.speed = (animIsFiring || animIsReloading || animIsMelee) ? 1f : speedMultiplier;
     }
 
-    public void ApplyRemoteAnimState(float h, float v, bool running, bool walking, bool idle, bool jumping, bool crouching, bool crouchWalking = false)
-    {
-        if (animator == null) return;
-        animator.SetFloat(H,         h);
-        animator.SetFloat(V,         v);
-        animator.SetBool(IsRunning,  running);
-        animator.SetBool(IsWalking,  walking);
-        animator.SetBool(IsIdle,     idle);
-        animator.SetBool(IsJumping,  jumping);
-        animator.SetBool(IsCrouch,        crouching);
-        animator.SetBool(IsCrouchWalking,  crouchWalking);
-    }
 }

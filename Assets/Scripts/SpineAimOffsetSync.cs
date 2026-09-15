@@ -19,10 +19,16 @@ public class SpineAimOffsetSync : MonoBehaviour
         ownerPlayer = GetComponentInParent<NetworkPlayer>();
     }
 
+    public void SetAimCamera(Camera cam)
+    {
+        aimCamera = cam;
+    }
+
     void LateUpdate()
     {
+        if (ownerPlayer == null) return;
         // Only run for the local player — remote players use synced head rotation
-        if (ownerPlayer != null && !ownerPlayer.isLocalPlayer) return;
+        if (!ownerPlayer.isLocalPlayer) return;
         if (playerController == null || spineAimConstraint == null) return;
 
         // Drive aimTarget to screen-center raycast hit (infinite distance)

@@ -45,6 +45,11 @@ public class GameHUD : MonoBehaviour
         if (bloodOverlay != null) bloodOverlay.SetActive(false);
     }
 
+    void OnDestroy()
+    {
+        if (instance == this) instance = null;
+    }
+
     void Update()
     {
         UpdateHealth();
@@ -82,10 +87,13 @@ public class GameHUD : MonoBehaviour
         pingText.text = $"<color={color}>{ms}ms</color>";
     }
 
+    private Coroutine respawnCountdownCoroutine;
+
     public void ShowRespawnScreen(float seconds)
     {
         if (respawnPanel != null) respawnPanel.SetActive(true);
-        StartCoroutine(RespawnCountdown(seconds));
+        if (respawnCountdownCoroutine != null) StopCoroutine(respawnCountdownCoroutine);
+        respawnCountdownCoroutine = StartCoroutine(RespawnCountdown(seconds));
     }
 
     IEnumerator RespawnCountdown(float seconds)
@@ -105,10 +113,12 @@ public class GameHUD : MonoBehaviour
     }
 
     // Called from NetworkPlayer when local player takes damage
+    private Coroutine bloodOverlayCoroutine;
+
     public void ShowBloodHit()
     {
-        StopCoroutine(nameof(BloodOverlayRoutine));
-        StartCoroutine(nameof(BloodOverlayRoutine));
+        if (bloodOverlayCoroutine != null) StopCoroutine(bloodOverlayCoroutine);
+        bloodOverlayCoroutine = StartCoroutine(BloodOverlayRoutine());
     }
 
     IEnumerator BloodOverlayRoutine()

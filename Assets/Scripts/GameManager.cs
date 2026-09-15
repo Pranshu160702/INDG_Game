@@ -29,6 +29,11 @@ public class GameManager : NetworkBehaviour
         if (winnerPanel != null) winnerPanel.SetActive(false);
     }
 
+    void OnDestroy()
+    {
+        if (instance == this) instance = null;
+    }
+
     // Called by NetworkPlayer on server when it gets a kill
     [Server]
     public void RegisterKill(string killerName, int killerTotalKills)
