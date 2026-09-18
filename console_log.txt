@@ -1,24 +1,278 @@
---- Log started 9/18/2026 3:33:24 PM ---
+--- Log started 9/18/2026 11:28:58 PM ---
 [Log] Mirror | mirror-networking.com | discord.gg/N9QVxbM
-[Warning] Account API did not become accessible within 30 seconds. This may be due to network issues or editor focus.
-UnityEngine.Debug:LogWarning (object)
-Unity.AI.Toolkit.Accounts.Services.States.ApiAccessibleState/<WaitForCloudProjectSettings>d__4:MoveNext () (at ./Library/PackageCache/com.unity.ai.assistant@8d1e3e89e3a7/Modules/Unity.AI.Toolkit.Accounts/Services/States/ApiAccessibleState.cs:46)
-System.Threading.Tasks.TaskCompletionSource`1<bool>:TrySetResult (bool)
-Unity.AI.Toolkit.EditorTask/<>c__DisplayClass22_0:<WaitForCondition>b__0 () (at ./Library/PackageCache/com.unity.ai.assistant@8d1e3e89e3a7/Modules/Unity.AI.Toolkit.Async/EditorTask.cs:420)
-UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+[Log] Mirror | mirror-networking.com | discord.gg/N9QVxbM
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
 
-[Error] Failed importing package C:/Users/PC/Downloads/FPS Engine v1.4.16 (16 Dec 2025)/FPS Engine v1.4.16 (16 Dec 2025)/FPS Engine v1.4.16 (16 Dec 2025).unitypackage
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEditorInternal.InternalEditorUtility:ProjectWindowDragV2 (UnityEditor.HierarchyIterator,bool)
-UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+[Warning] [Worker0] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
 
-[Error] Failed importing package C:/Users/PC/Downloads/FPS Engine v1.4.16 (16 Dec 2025)/FPS Engine v1.4.16 (16 Dec 2025)/FPS Engine v1.4.16 (16 Dec 2025).unitypackage
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEditorInternal.InternalEditorUtility:ProjectWindowDragV2 (UnityEditor.HierarchyIterator,bool)
-UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
 
-[Error] Failed importing package C:/Users/PC/Downloads/FPS Engine v1.4.16 (16 Dec 2025)/FPS Engine v1.4.16 (16 Dec 2025)/FPS Engine v1.4.16 (16 Dec 2025).unitypackage
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEditorInternal.InternalEditorUtility:ProjectWindowDragV2 (UnityEditor.HierarchyIterator,bool)
-UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+[Warning] [Worker2] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker4] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker5] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker2] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker4] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker4] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker0] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker4] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker5] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker5] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker5] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker5] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker5] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker0] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker0] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Problem detected while opening the Scene file: 'Assets/Weapons/Effects/BloodGushFX/BloodPartcleFX_Scene.unity'.
+Check the following logs for more details.
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Component at index 3 could not be loaded when loading game object 'Camera'. Removing it.
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker5] Serialized file "Assets/Weapons/Effects/BloodGushFX/BloodPartcleFX_Scene.unity" contains a RenderSettings object at version 8, below the supported minimum (9). Open and re-save the file to upgrade.
+[Warning] [Worker5] Problem detected while opening the Scene file: 'Assets/Weapons/Effects/BloodGushFX/BloodPartcleFX_Scene.unity'.
+Check the following logs for more details.
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker5] Component at index 3 could not be loaded when loading game object 'Camera'. Removing it.
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text (1)] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text (3)] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text (2)] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text (4)] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker2] Please remove the CanvasRenderer component from the [Text (1)] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker2] Please remove the CanvasRenderer component from the [Text (3)] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker2] Please remove the CanvasRenderer component from the [Text (2)] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker2] Please remove the CanvasRenderer component from the [Text (4)] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker2] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Version] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker0] Please remove the CanvasRenderer component from the [Version] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker0] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Instruction] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker0] Please remove the CanvasRenderer component from the [Instruction] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker4] Please remove the CanvasRenderer component from the [Text] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] Please remove the CanvasRenderer component from the [Text (1)] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
+
+[Warning] [Worker4] Please remove the CanvasRenderer component from the [Text (1)] GameObject as this component is no longer necessary.
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshPro:Awake () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/TMP/TextMeshPro.cs:586)
+UnityEditor.AssetImporters.ScriptedImporter:GenerateAssetData (UnityEditor.AssetImporters.AssetImportContext)
 

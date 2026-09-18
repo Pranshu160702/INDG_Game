@@ -8,6 +8,12 @@ TagManager:
   - Head
   - MapEnd
   - SpawnPoint
+  - Enemy
+  - Critical
+  - FirePoint
+  - Weapons
+  - Ramp
+  - BodyShot
   layers:
   - Default
   - TransparentFX
@@ -19,20 +25,20 @@ TagManager:
   - 
   - FPSArms
   - PlayerBody
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Weapons
+  - Enemy
+  - Object
+  - Interactable
+  - Grass
+  - Metal
+  - Mud
+  - Wood
+  - UITop
+  - PostProcessing
+  - Effects
+  - Player
+  - Ladder
   - 
   - 
   - 
