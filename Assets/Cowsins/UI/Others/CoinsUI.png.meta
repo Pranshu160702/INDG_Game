@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 865c2ef78e167f948816baa564328237
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/Others/CoinsUI.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

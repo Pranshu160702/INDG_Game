@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 15745d5342e0447468f077b4299353cd
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/PickUps/NewShotgunIcon.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

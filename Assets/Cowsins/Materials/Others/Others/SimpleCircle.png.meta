@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: c52c0b384fb4c234e815d0db4ad0ccbc
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/Materials/Others/Others/SimpleCircle.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

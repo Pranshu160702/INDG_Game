@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: e839c62c242ac364ba5efee7f68f5f25
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/Resources/CustomEditor/Unity6Logo.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

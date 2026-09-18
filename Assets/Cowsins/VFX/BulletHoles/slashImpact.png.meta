@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 8aa2abe3ccb005745992b33871eb10e3
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/VFX/BulletHoles/slashImpact.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

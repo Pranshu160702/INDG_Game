@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 71982c1472e7e324db64e537fb4eaa03
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/Resources/CustomEditor/proceduralShot_CustomEditor.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

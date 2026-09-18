@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: a6c917ffb9582984e965a311efd0b99c
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/HUD/AttachmentIcons/FNX_Magazine_Icon.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

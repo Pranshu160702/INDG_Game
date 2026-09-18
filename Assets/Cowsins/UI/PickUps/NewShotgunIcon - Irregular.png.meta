@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 014f51e3be50c73478b0effdee4a01e8
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/PickUps/NewShotgunIcon - Irregular.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

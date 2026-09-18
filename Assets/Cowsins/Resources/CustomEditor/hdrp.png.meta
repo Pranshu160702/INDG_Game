@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 8a218f66028af4648b2f810709a4046c
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/Resources/CustomEditor/hdrp.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

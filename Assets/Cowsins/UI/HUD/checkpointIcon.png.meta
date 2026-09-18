@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: d99aa236a6072e14d95adb01dd371055
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/HUD/checkpointIcon.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

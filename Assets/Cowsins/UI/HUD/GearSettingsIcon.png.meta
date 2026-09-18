@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 2fb098fefddb3f644ad76632dd0b880a
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/HUD/GearSettingsIcon.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

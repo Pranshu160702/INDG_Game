@@ -20,10 +20,3 @@ AudioImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/SFX/Weapons/Pistol/Pistol_Unholster_SFX.wav
-  uploadId: 835328

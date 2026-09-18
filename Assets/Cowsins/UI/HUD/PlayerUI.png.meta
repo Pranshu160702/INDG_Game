@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 350c9429cfac47c4990d6ae7a6e88fde
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/HUD/PlayerUI.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

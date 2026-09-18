@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 35ba8d6c57c4cdb49b95b5be6697798d
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/VFX/BulletHoles/woodBulletImpact.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

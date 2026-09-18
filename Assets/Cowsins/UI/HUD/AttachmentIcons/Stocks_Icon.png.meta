@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 81888f255c7dbd24abfb1d8ccc28bd95
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/HUD/AttachmentIcons/Stocks_Icon.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

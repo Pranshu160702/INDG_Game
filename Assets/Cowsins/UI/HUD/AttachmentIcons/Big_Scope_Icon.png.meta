@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: eb976ada0f9370c48bf4e0eddec82511
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/HUD/AttachmentIcons/Big_Scope_Icon.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

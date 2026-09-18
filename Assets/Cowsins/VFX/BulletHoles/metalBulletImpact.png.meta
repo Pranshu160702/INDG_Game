@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: ec826d3fb29a3d84aa3fb35509947ce7
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/VFX/BulletHoles/metalBulletImpact.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

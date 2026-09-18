@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 40dbbdceee7b5a44db7a7aade326417d
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/VFX/BulletHoles/grassBulletImpact.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

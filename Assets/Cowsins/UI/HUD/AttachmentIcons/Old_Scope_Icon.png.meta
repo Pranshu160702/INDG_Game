@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 686c488a7f6e51d4691c2ba9c49d69f0
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/HUD/AttachmentIcons/Old_Scope_Icon.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

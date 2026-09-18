@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: b6e8bda31dfdc0d49a6ae2ffc2a65a05
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/Resources/CustomEditor/FPS_Engine_Logo_Startup.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

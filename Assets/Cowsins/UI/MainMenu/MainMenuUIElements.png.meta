@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 3708d7d38ad54fe4c9d36dcdfdd5d950
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/MainMenu/MainMenuUIElements.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

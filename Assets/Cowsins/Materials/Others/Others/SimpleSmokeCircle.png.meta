@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: cc5e1fb0605ef3741b2253836f50f434
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/Materials/Others/Others/SimpleSmokeCircle.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

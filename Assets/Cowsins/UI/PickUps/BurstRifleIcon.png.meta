@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: f5e1e378b9229bd4c987fac540e79680
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/PickUps/BurstRifleIcon.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 7c4c83e72ed581043b70cd32c4760f73
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/Materials/Others/Others/SimpleCube.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

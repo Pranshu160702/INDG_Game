@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 69d37f946495f09498e0d59cc8d73c28
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/Resources/CustomEditor/weapon-tutorial.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

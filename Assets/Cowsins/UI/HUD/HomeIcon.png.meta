@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 2660dce8f3acacc478ec0885ea376467
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/HUD/HomeIcon.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

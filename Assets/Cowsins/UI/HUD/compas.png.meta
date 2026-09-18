@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: aab470a648f095d4b9d7c8049bc8c73c
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/HUD/compas.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

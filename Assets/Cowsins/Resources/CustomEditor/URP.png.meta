@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 7be1bfc9a7b2e3542b46cd6ef1388933
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/Resources/CustomEditor/URP.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

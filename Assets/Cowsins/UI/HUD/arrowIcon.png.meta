@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 80e4ace7c17d81047ba3b64370c1f419
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/HUD/arrowIcon.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

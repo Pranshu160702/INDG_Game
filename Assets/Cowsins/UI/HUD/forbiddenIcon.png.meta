@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 3cb2c6c2f378055488c50813a9cf163a
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/HUD/forbiddenIcon.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

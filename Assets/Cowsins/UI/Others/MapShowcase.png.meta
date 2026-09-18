@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 6714a85935bb56a42a66c71094217702
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/Others/MapShowcase.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

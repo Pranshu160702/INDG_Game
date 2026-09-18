@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 38cae5291c16e6d4193d7567258c5f04
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/VFX/BulletHoles/mudBulletImpact.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

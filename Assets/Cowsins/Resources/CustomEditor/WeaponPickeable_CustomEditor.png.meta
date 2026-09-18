@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 0e00f5f6396b262448604022392450fd
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/Resources/CustomEditor/WeaponPickeable_CustomEditor.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

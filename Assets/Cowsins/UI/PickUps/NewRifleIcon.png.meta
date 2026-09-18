@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: ef9ea11cceed199429b726e78188145b
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/PickUps/NewRifleIcon.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

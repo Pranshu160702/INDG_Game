@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 0255ebcf55934924aa7a3a0c4803d5f7
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/VFX/BulletHoles/enemyBulletImpact.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:

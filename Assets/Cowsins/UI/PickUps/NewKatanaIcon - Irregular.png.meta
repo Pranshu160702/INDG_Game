@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 56beb5210760fb645a2bbd2b497dcc4d
-AssetOrigin:
-  serializedVersion: 1
-  productId: 218594
-  packageName: FPS Engine
-  packageVersion: 1.4.16
-  assetPath: Assets/Cowsins/UI/PickUps/NewKatanaIcon - Irregular.png
-  uploadId: 835328
 TextureImporter:
   internalIDToNameTable:
   - first:
