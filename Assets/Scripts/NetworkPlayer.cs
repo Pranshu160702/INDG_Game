@@ -86,7 +86,7 @@ public class NetworkPlayer : NetworkBehaviour
         if (fpsArmsRoot != null)
         {
             fpsArmsRoot.SetActive(isFPS);
-            if (isFPS) fpsArmsAnimator?.PlayReady();
+            if (isFPS) fpsArmsAnimator?.PlayEquip();
         }
         if (GameHUD.instance != null) GameHUD.instance.HideRespawnScreen();
     }
@@ -121,7 +121,12 @@ public class NetworkPlayer : NetworkBehaviour
     [SyncVar] private bool syncCrouchWalking;
     [SyncVar] private bool syncFiring;
     [SyncVar] private bool syncReloading;
-    [SyncVar] private bool syncMelee;
+    [SyncVar] private bool syncReloadingEmpty;
+    [SyncVar] private bool syncEquipping;
+    [SyncVar] private bool syncMelee1;
+    [SyncVar] private bool syncMelee2;
+    [SyncVar] private bool syncMelee3;
+    [SyncVar] private bool syncMelee4;
 
     private Transform cameraTarget;
     private PlayerController controller;
@@ -176,7 +181,30 @@ public class NetworkPlayer : NetworkBehaviour
     [Header("Debug")]
     public bool hideLocalBody = false;
 
-    private GunScript gunScript;
+    private GunScript      gunScript;
+    private TPSArmsAnimator tpsArmsAnimator;
+
+    public void SwitchGun(int index)
+    {
+        if (fpsArmsAnimator == null) return;
+        fpsArmsAnimator.SwitchGun(index);
+        tpsArmsAnimator?.SwitchGun(index);
+        if (gunScript != null && fpsArmsAnimator.ActiveEntry != null)
+        {
+            gunScript.data = fpsArmsAnimator.ActiveEntry.data;
+            gunScript.InitAmmo();
+        }
+        fpsArmsAnimator.PlayEquip();
+        if (controller != null) StartCoroutine(EquipAnimRoutine());
+    }
+
+    IEnumerator EquipAnimRoutine()
+    {
+        controller.animIsEquipping = true;
+        // Hold equipping true for a fixed window — equip anims are typically ~0.6s
+        yield return new WaitForSeconds(0.6f);
+        controller.animIsEquipping = false;
+    }
 
     public override void OnStartLocalPlayer()
     {
@@ -214,7 +242,6 @@ public class NetworkPlayer : NetworkBehaviour
         if (fpsCamTransform != null)
         {
             fpsArmsAnimator = fpsCamTransform.GetComponentInChildren<FPSArmsAnimator>(true);
-            Debug.Log("[NetworkPlayer] FPSCamera found. FPSArmsAnimator found: " + (fpsArmsAnimator != null));
             if (fpsArmsAnimator != null)
             {
                 Transform t = fpsArmsAnimator.transform;
@@ -224,12 +251,7 @@ public class NetworkPlayer : NetworkBehaviour
 
                 fpsArmsRoot.SetActive(true);
                 SetLayerRecursive(fpsArmsRoot, fpsArmsLayer >= 0 ? fpsArmsLayer : 0);
-                Debug.Log("[NetworkPlayer] FPSArms root: " + fpsArmsRoot.name + " | calling PlayReady");
                 StartCoroutine(PlayReadyNextFrame());
-            }
-            else
-            {
-                Debug.LogWarning("[NetworkPlayer] FPSArmsAnimator not found under FPSCamera.");
             }
         }
         else
@@ -238,14 +260,20 @@ public class NetworkPlayer : NetworkBehaviour
         }
 
         gunScript = GetComponentInChildren<GunScript>(true);
-        Debug.Log("[NetworkPlayer] GunScript found: " + (gunScript != null) + " | fpsArmsAnimator: " + (fpsArmsAnimator != null) + " | playerController: " + (controller != null));
         if (gunScript != null)
         {
-            gunScript.shootCamera    = fpsCamera;
-            gunScript.isOwnedLocally = true;
+            gunScript.shootCamera      = fpsCamera;
+            gunScript.isOwnedLocally   = true;
             gunScript.fpsArmsAnimator  = fpsArmsAnimator;
             gunScript.playerController = controller;
+            if (fpsArmsAnimator != null && fpsArmsAnimator.ActiveEntry != null)
+                gunScript.data = fpsArmsAnimator.ActiveEntry.data;
         }
+
+        // Find TPSArmsAnimator on the Commando child
+        var commando = transform.Find("Commando");
+        if (commando != null)
+            tpsArmsAnimator = commando.GetComponent<TPSArmsAnimator>();
 
         // Wire spine aim sync to FPS camera
         spineAimSync = GetComponentInChildren<SpineAimOffsetSync>(true);
@@ -261,8 +289,9 @@ public class NetworkPlayer : NetworkBehaviour
 
     IEnumerator PlayReadyNextFrame()
     {
-        yield return null; // wait one frame for animator to initialize
-        fpsArmsAnimator?.PlayReady();
+        yield return null;
+        fpsArmsAnimator?.PlayEquip();
+        if (controller != null) StartCoroutine(EquipAnimRoutine());
     }
 
     void SetBodyLayerForLocalPlayer()
@@ -292,11 +321,25 @@ public class NetworkPlayer : NetworkBehaviour
         if (isLocalPlayer)
         {
             SyncLocalPlayer();
+            HandleWeaponScroll();
             if (Keyboard.current != null && Keyboard.current.leftAltKey.wasPressedThisFrame)
                 ToggleCamera();
         }
         else
             ApplyRemoteState();
+    }
+
+    void HandleWeaponScroll()
+    {
+        if (fpsArmsAnimator == null || Mouse.current == null) return;
+        if (gunScript != null && gunScript.IsBlocked) return;
+
+        float scroll = Mouse.current.scroll.ReadValue().y;
+        if (scroll == 0f) return;
+
+        int count = fpsArmsAnimator.guns.Length;
+        int next  = (fpsArmsAnimator.ActiveIndex + (scroll > 0f ? -1 : 1) + count) % count;
+        SwitchGun(next);
     }
 
     void ToggleCamera()
@@ -333,9 +376,14 @@ public class NetworkPlayer : NetworkBehaviour
             controller.animIsJumping       != syncJumping    ||
             controller.animIsCrouching     != syncCrouching  ||
             controller.animIsCrouchWalking != syncCrouchWalking ||
-            controller.animIsFiring        != syncFiring     ||
-            controller.animIsReloading     != syncReloading  ||
-            controller.animIsMelee         != syncMelee;
+            controller.animIsFiring        != syncFiring        ||
+            controller.animIsReloading     != syncReloading     ||
+            controller.animIsReloadingEmpty!= syncReloadingEmpty||
+            controller.animIsEquipping     != syncEquipping     ||
+            controller.animIsMelee1        != syncMelee1        ||
+            controller.animIsMelee2        != syncMelee2        ||
+            controller.animIsMelee3        != syncMelee3        ||
+            controller.animIsMelee4        != syncMelee4;
 
         if ((transformChanged || animChanged) && NetworkClient.active)
         {
@@ -355,10 +403,33 @@ public class NetworkPlayer : NetworkBehaviour
                 controller.animIsCrouchWalking,
                 controller.animIsFiring,
                 controller.animIsReloading,
-                controller.animIsMelee
+                controller.animIsReloadingEmpty,
+                controller.animIsEquipping,
+                controller.animIsMelee1,
+                controller.animIsMelee2,
+                controller.animIsMelee3,
+                controller.animIsMelee4
             );
         }
     }
+
+    // Pre-hashed animator parameter IDs — no string lookups per frame
+    private static readonly int AnimH             = Animator.StringToHash("Horizontal");
+    private static readonly int AnimV             = Animator.StringToHash("Vertical");
+    private static readonly int AnimRunning       = Animator.StringToHash("isRunning");
+    private static readonly int AnimWalking       = Animator.StringToHash("isWalking");
+    private static readonly int AnimIdle          = Animator.StringToHash("isIdle");
+    private static readonly int AnimJumping       = Animator.StringToHash("isJumping");
+    private static readonly int AnimCrouching     = Animator.StringToHash("isCrouching");
+    private static readonly int AnimCrouchWalking = Animator.StringToHash("isCrouchWalking");
+    private static readonly int AnimFiring        = Animator.StringToHash("isFiring");
+    private static readonly int AnimReloading     = Animator.StringToHash("isReloading");
+    private static readonly int AnimReloadEmpty   = Animator.StringToHash("isReloadingEmpty");
+    private static readonly int AnimEquipping     = Animator.StringToHash("isEquipping");
+    private static readonly int AnimMelee1        = Animator.StringToHash("isMelee1");
+    private static readonly int AnimMelee2        = Animator.StringToHash("isMelee2");
+    private static readonly int AnimMelee3        = Animator.StringToHash("isMelee3");
+    private static readonly int AnimMelee4        = Animator.StringToHash("isMelee4");
 
     private bool hasReceivedFirstSync = false;
 
@@ -366,36 +437,37 @@ public class NetworkPlayer : NetworkBehaviour
     {
         if (!hasReceivedFirstSync) return;
 
-        transform.position = Vector3.Lerp(transform.position, syncPos, Time.deltaTime * 15f);
-        transform.rotation = Quaternion.Lerp(
-            transform.rotation,
-            Quaternion.Euler(0f, syncYRot, 0f),
-            Time.deltaTime * 15f
-        );
+        float dt = Time.deltaTime;
+        transform.position = Vector3.Lerp(transform.position, syncPos, dt * 15f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, syncYRot, 0f), dt * 15f);
 
         if (cameraTarget == null) cameraTarget = transform.Find("TPSCamera");
         if (cameraTarget != null)
             cameraTarget.localRotation = Quaternion.Lerp(
                 cameraTarget.localRotation,
                 Quaternion.Euler(syncHeadXRot, 0f, 0f),
-                Time.deltaTime * 15f
+                dt * 15f
             );
 
         if (animator != null)
         {
-            animator.SetFloat("Horizontal",     syncAnimH);
-            animator.SetFloat("Vertical",       syncAnimV);
-            animator.SetBool("isRunning",       syncRunning);
-            animator.SetBool("isWalking",       syncWalking);
-            animator.SetBool("isIdle",          syncIdle);
-            animator.SetBool("isCrouching",     syncCrouching);
-            animator.SetBool("isCrouchWalking", syncCrouchWalking);
-            animator.SetBool("isFiring",        syncFiring);
-            animator.SetBool("isReloading",     syncReloading);
-            animator.SetBool("isMelee",         syncMelee);
-            // isJumping is a Trigger in the controller — only fire on rising edge
+            animator.SetFloat(AnimH,             syncAnimH);
+            animator.SetFloat(AnimV,             syncAnimV);
+            animator.SetBool(AnimRunning,        syncRunning);
+            animator.SetBool(AnimWalking,        syncWalking);
+            animator.SetBool(AnimIdle,           syncIdle);
+            animator.SetBool(AnimCrouching,      syncCrouching);
+            animator.SetBool(AnimCrouchWalking,  syncCrouchWalking);
+            animator.SetBool(AnimFiring,       syncFiring);
+            animator.SetBool(AnimReloading,    syncReloading);
+            animator.SetBool(AnimReloadEmpty,  syncReloadingEmpty);
+            animator.SetBool(AnimEquipping,    syncEquipping);
+            animator.SetBool(AnimMelee1,       syncMelee1);
+            animator.SetBool(AnimMelee2,       syncMelee2);
+            animator.SetBool(AnimMelee3,       syncMelee3);
+            animator.SetBool(AnimMelee4,       syncMelee4);
             if (syncJumping && !lastSyncJumping)
-                animator.SetTrigger("isJumping");
+                animator.SetTrigger(AnimJumping);
             lastSyncJumping = syncJumping;
         }
     }
@@ -406,7 +478,8 @@ public class NetworkPlayer : NetworkBehaviour
         float animH, float animV,
         bool running, bool walking, bool idle,
         bool jumping, bool crouching, bool crouchWalking,
-        bool firing, bool reloading, bool melee)
+        bool firing, bool reloading, bool reloadingEmpty,
+        bool equipping, bool melee1, bool melee2, bool melee3, bool melee4)
     {
         syncPos           = pos;
         syncYRot          = yRot;
@@ -421,6 +494,11 @@ public class NetworkPlayer : NetworkBehaviour
         syncCrouchWalking = crouchWalking;
         syncFiring        = firing;
         syncReloading     = reloading;
-        syncMelee         = melee;
+        syncReloadingEmpty= reloadingEmpty;
+        syncEquipping     = equipping;
+        syncMelee1        = melee1;
+        syncMelee2        = melee2;
+        syncMelee3        = melee3;
+        syncMelee4        = melee4;
     }
 }

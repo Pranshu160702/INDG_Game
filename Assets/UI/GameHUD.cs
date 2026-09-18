@@ -50,6 +50,12 @@ public class GameHUD : MonoBehaviour
         if (instance == this) instance = null;
     }
 
+    // Cached values to avoid rebuilding strings every frame
+    private int   cachedBulletsLeft = -1;
+    private int   cachedReserveAmmo = -1;
+    private float cachedHealthPct   = -1f;
+    private int   cachedPingMs      = -1;
+
     void Update()
     {
         UpdateHealth();
@@ -61,6 +67,8 @@ public class GameHUD : MonoBehaviour
     {
         if (networkPlayer == null) return;
         float pct = networkPlayer.HealthPct;
+        if (Mathf.Approximately(pct, cachedHealthPct)) return;
+        cachedHealthPct = pct;
         if (healthBarFill != null)
         {
             healthBarFill.fillAmount = pct;
@@ -73,8 +81,13 @@ public class GameHUD : MonoBehaviour
     void UpdateAmmo()
     {
         if (gunScript == null || gunScript.data == null) return;
+        int bl = gunScript.BulletsLeft;
+        int ra = gunScript.ReserveAmmo;
+        if (bl == cachedBulletsLeft && ra == cachedReserveAmmo) return;
+        cachedBulletsLeft = bl;
+        cachedReserveAmmo = ra;
         if (ammoText != null)
-            ammoText.text = $"{gunScript.BulletsLeft} / {gunScript.data.magazineSize}";
+            ammoText.text = $"{bl} / {ra}";
         if (gunIcon != null && gunScript.data.gunIcon != null)
             gunIcon.sprite = gunScript.data.gunIcon;
     }
@@ -83,6 +96,8 @@ public class GameHUD : MonoBehaviour
     {
         if (pingText == null) return;
         int ms = (int)(NetworkTime.rtt * 1000f);
+        if (ms == cachedPingMs) return;
+        cachedPingMs = ms;
         string color = ms <= 80 ? "#08FF00" : ms <= 150 ? "#FDFF00" : "#FF0000";
         pingText.text = $"<color={color}>{ms}ms</color>";
     }

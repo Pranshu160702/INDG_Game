@@ -117,7 +117,12 @@ public class PlayerController : MonoBehaviour
     // Gun action states — set by GunScript, applied to body animator
     [HideInInspector] public bool animIsFiring;
     [HideInInspector] public bool animIsReloading;
-    [HideInInspector] public bool animIsMelee;
+    [HideInInspector] public bool animIsReloadingEmpty;
+    [HideInInspector] public bool animIsEquipping;
+    [HideInInspector] public bool animIsMelee1;
+    [HideInInspector] public bool animIsMelee2;
+    [HideInInspector] public bool animIsMelee3;
+    [HideInInspector] public bool animIsMelee4;
 
     // Animator parameter hashes
     private static readonly int H          = Animator.StringToHash("Horizontal");
@@ -132,7 +137,12 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsAiming          = Animator.StringToHash("isAiming");
     private static readonly int IsFiring          = Animator.StringToHash("isFiring");
     private static readonly int IsReloading       = Animator.StringToHash("isReloading");
-    private static readonly int IsMelee           = Animator.StringToHash("isMelee");
+    private static readonly int IsReloadingEmpty  = Animator.StringToHash("isReloadingEmpty");
+    private static readonly int IsEquipping       = Animator.StringToHash("isEquipping");
+    private static readonly int IsMelee1          = Animator.StringToHash("isMelee1");
+    private static readonly int IsMelee2          = Animator.StringToHash("isMelee2");
+    private static readonly int IsMelee3          = Animator.StringToHash("isMelee3");
+    private static readonly int IsMelee4          = Animator.StringToHash("isMelee4");
 
     void Awake()
     {
@@ -154,7 +164,12 @@ public class PlayerController : MonoBehaviour
         animIsAiming = false;
         animIsFiring = false;
         animIsReloading = false;
-        animIsMelee = false;
+        animIsReloadingEmpty = false;
+        animIsEquipping = false;
+        animIsMelee1 = false;
+        animIsMelee2 = false;
+        animIsMelee3 = false;
+        animIsMelee4 = false;
         animIsJumping = false;
         animIsAirborne = false;
         animIsCrouching = false;
@@ -434,11 +449,17 @@ public class PlayerController : MonoBehaviour
         animator.SetBool(IsCrouch,        animIsCrouching);
         animator.SetBool(IsCrouchWalking, animIsCrouchWalking);
         animator.SetBool(IsAiming,        animIsAiming);
-        animator.SetBool(IsFiring,        animIsFiring);
-        animator.SetBool(IsReloading,     animIsReloading);
-        animator.SetBool(IsMelee,         animIsMelee);
+        animator.SetBool(IsFiring,         animIsFiring);
+        animator.SetBool(IsReloading,      animIsReloading);
+        animator.SetBool(IsReloadingEmpty, animIsReloadingEmpty);
+        animator.SetBool(IsEquipping,      animIsEquipping);
+        animator.SetBool(IsMelee1,         animIsMelee1);
+        animator.SetBool(IsMelee2,         animIsMelee2);
+        animator.SetBool(IsMelee3,         animIsMelee3);
+        animator.SetBool(IsMelee4,         animIsMelee4);
         // Only apply speed multiplier when not doing action animations
-        animator.speed = (animIsFiring || animIsReloading || animIsMelee) ? 1f : speedMultiplier;
+        bool anyAction = animIsFiring || animIsReloading || animIsReloadingEmpty || animIsEquipping || animIsMelee1 || animIsMelee2 || animIsMelee3 || animIsMelee4;
+        animator.speed = anyAction ? 1f : speedMultiplier;
     }
 
 }
