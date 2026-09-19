@@ -1,4 +1,28 @@
---- Log started 9/19/2026 2:20:22 AM ---
+--- Log started 9/19/2026 9:19:13 AM ---
+[Warning] Account API did not become accessible within 30 seconds. This may be due to network issues or editor focus.
+UnityEngine.Debug:LogWarning (object)
+Unity.AI.Toolkit.Accounts.Services.States.ApiAccessibleState/<WaitForCloudProjectSettings>d__4:MoveNext () (at ./Library/PackageCache/com.unity.ai.assistant@8d1e3e89e3a7/Modules/Unity.AI.Toolkit.Accounts/Services/States/ApiAccessibleState.cs:46)
+System.Threading.Tasks.TaskCompletionSource`1<bool>:TrySetResult (bool)
+Unity.AI.Toolkit.EditorTask/<>c__DisplayClass22_0:<WaitForCondition>b__0 () (at ./Library/PackageCache/com.unity.ai.assistant@8d1e3e89e3a7/Modules/Unity.AI.Toolkit.Async/EditorTask.cs:420)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+[Log] 1 URP assets included in build
+- PC_RPAsset - Assets/Settings/PC_RPAsset.asset
+	 - PC_Renderer - Assets/Settings/PC_Renderer.asset - UnityEngine.Rendering.Universal.UniversalRendererData
+
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
+
+[Log] CurrentPlatform has been assigned as Windows.
+UnityEngine.Debug:Log (object)
+PlayEveryWare.EpicOnlineServices.PlatformManager:set_CurrentPlatform (PlayEveryWare.EpicOnlineServices.PlatformManager/Platform) (at ./Packages/com.playeveryware.eos/Runtime/Core/PlatformManager.cs:159)
+PlayEveryWare.EpicOnlineServices.PlatformManager:.cctor () (at ./Packages/com.playeveryware.eos/Runtime/Core/PlatformManager.cs:243)
+EOSConfigBuildValidator:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Packages/com.playeveryware.eos/Editor/Build/EOSConfigBuildValidator.cs:118)
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
+
 [Warning] Value 0 is out of range for TEnum, setting to 0.
 UnityEngine.Debug:LogWarning (object)
 PlayEveryWare.EpicOnlineServices.ListOfStringsToEnumConverter`1<Epic.OnlineServices.IntegratedPlatform.IntegratedPlatformManagementFlags>:FromNumberValue (Newtonsoft.Json.Linq.JToken) (at ./Packages/com.playeveryware.eos/Runtime/Core/Config/JsonConverter/ListOfStringsToEnumConverters.cs:200)
@@ -11,21 +35,220 @@ Newtonsoft.Json.JsonSerializer:PopulateInternal (Newtonsoft.Json.JsonReader,obje
 Newtonsoft.Json.JsonSerializer:Populate (Newtonsoft.Json.JsonReader,object)
 Newtonsoft.Json.JsonConvert:PopulateObject (string,object,Newtonsoft.Json.JsonSerializerSettings)
 PlayEveryWare.EpicOnlineServices.Utility.JsonUtility:FromJsonOverwrite<PlayEveryWare.EpicOnlineServices.Config> (string,PlayEveryWare.EpicOnlineServices.Config) (at ./Packages/com.playeveryware.eos/Runtime/Core/Utility/JsonUtility.cs:160)
-PlayEveryWare.EpicOnlineServices.Config/<ReadAsync>d__20:MoveNext () (at ./Packages/com.playeveryware.eos/Runtime/Core/Config/Config.cs:426)
-System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string>:SetResult (string)
-PlayEveryWare.EpicOnlineServices.Utility.FileSystemUtility/<ReadAllTextAsync>d__11:MoveNext () (at ./Packages/com.playeveryware.eos/Runtime/Core/Utility/FileSystemUtility.cs:506)
-UnityEngine.UnitySynchronizationContext:ExecuteTasks ()
+PlayEveryWare.EpicOnlineServices.Config:Read () (at ./Packages/com.playeveryware.eos/Runtime/Core/Config/Config.cs:444)
+PlayEveryWare.EpicOnlineServices.Config:Get<PlayEveryWare.EpicOnlineServices.WindowsConfig> () (at ./Packages/com.playeveryware.eos/Runtime/Core/Config/Config.cs:383)
+PlayEveryWare.EpicOnlineServices.PlatformManager:TryGetConfig (PlayEveryWare.EpicOnlineServices.PlatformManager/Platform,PlayEveryWare.EpicOnlineServices.PlatformConfig&) (at ./Packages/com.playeveryware.eos/Runtime/Core/PlatformManager.cs:130)
+EOSConfigBuildValidator:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Packages/com.playeveryware.eos/Editor/Build/EOSConfigBuildValidator.cs:133)
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
 
-[Warning] Account API did not become accessible within 30 seconds. This may be due to network issues or editor focus.
+[Log] [TestRunBuilder] Creating new file 'Assets/Resources/PerformanceTestRunInfo.json' (3377 bytes)
+UnityEngine.Debug:Log (object)
+Unity.PerformanceTesting.Editor.TestRunBuilder:SaveToStorage (object,string) (at ./Library/PackageCache/com.unity.test-framework.performance@0a60b857a52e/Editor/TestRunBuilder.cs:242)
+Unity.PerformanceTesting.Editor.TestRunBuilder:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Library/PackageCache/com.unity.test-framework.performance@0a60b857a52e/Editor/TestRunBuilder.cs:35)
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
+
+[Log] [TestRunBuilder] Creating new file 'Assets/Resources/PerformanceTestRunSettings.json' (23 bytes)
+UnityEngine.Debug:Log (object)
+Unity.PerformanceTesting.Editor.TestRunBuilder:SaveToStorage (object,string) (at ./Library/PackageCache/com.unity.test-framework.performance@0a60b857a52e/Editor/TestRunBuilder.cs:242)
+Unity.PerformanceTesting.Editor.TestRunBuilder:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Library/PackageCache/com.unity.test-framework.performance@0a60b857a52e/Editor/TestRunBuilder.cs:38)
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
+
+[Log] Targeting Windows x64 (Intel/AMD)
+UnityEngine.Debug:Log (object)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsBuilder64:PreBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:257)
+PlayEveryWare.EpicOnlineServices.Editor.Build.BuildRunner:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Packages/com.playeveryware.eos/Editor/Build/BuildRunner.cs:75)
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
+
+[Log] Checking for platform-specific prerequisites.
+UnityEngine.Debug:Log (object)
+PlayEveryWare.EpicOnlineServices.Editor.Build.PlatformSpecificBuilder:CheckPlatformBinaries () (at ./Packages/com.playeveryware.eos/Editor/Build/PlatformSpecificBuilder.cs:201)
+PlayEveryWare.EpicOnlineServices.Editor.Build.PlatformSpecificBuilder:PreBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Packages/com.playeveryware.eos/Editor/Build/PlatformSpecificBuilder.cs:155)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsBuilder64:PreBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:270)
+PlayEveryWare.EpicOnlineServices.Editor.Build.BuildRunner:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Packages/com.playeveryware.eos/Editor/Build/BuildRunner.cs:75)
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
+
+[Log] Confirmed configuration exists for target "StandaloneWindows64" at "D:/Unity/Unity Projects/INDG/Assets/StreamingAssets\EOS\eos_windows_config.json"
+UnityEngine.Debug:Log (object)
+PlayEveryWare.EpicOnlineServices.Editor.Build.BuildUtility:ValidatePlatformConfiguration () (at ./Packages/com.playeveryware.eos/Editor/Utility/BuildUtility.cs:158)
+PlayEveryWare.EpicOnlineServices.Editor.Build.PlatformSpecificBuilder:CheckPlatformBinaries () (at ./Packages/com.playeveryware.eos/Editor/Build/PlatformSpecificBuilder.cs:204)
+PlayEveryWare.EpicOnlineServices.Editor.Build.PlatformSpecificBuilder:PreBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Packages/com.playeveryware.eos/Editor/Build/PlatformSpecificBuilder.cs:155)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsBuilder64:PreBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:270)
+PlayEveryWare.EpicOnlineServices.Editor.Build.BuildRunner:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Packages/com.playeveryware.eos/Editor/Build/BuildRunner.cs:75)
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
+
+[Log] Deployed via UPM
+UnityEngine.Debug:Log (object)
+PlayEveryWare.EpicOnlineServices.Editor.Build.BuildUtility:IsDeployedAsUPM () (at ./Packages/com.playeveryware.eos/Editor/Utility/BuildUtility.cs:80)
+PlayEveryWare.EpicOnlineServices.Editor.Build.BuildUtility:get_DeployedAsUPM () (at ./Packages/com.playeveryware.eos/Editor/Utility/BuildUtility.cs:64)
+PlayEveryWare.EpicOnlineServices.Editor.Build.PlatformSpecificBuilder:CheckPlatformBinaries () (at ./Packages/com.playeveryware.eos/Editor/Build/PlatformSpecificBuilder.cs:207)
+PlayEveryWare.EpicOnlineServices.Editor.Build.PlatformSpecificBuilder:PreBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Packages/com.playeveryware.eos/Editor/Build/PlatformSpecificBuilder.cs:155)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsBuilder64:PreBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:270)
+PlayEveryWare.EpicOnlineServices.Editor.Build.BuildRunner:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Packages/com.playeveryware.eos/Editor/Build/BuildRunner.cs:75)
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
+
+[Warning] Value 0 is out of range for TEnum, setting to 0.
 UnityEngine.Debug:LogWarning (object)
-Unity.AI.Toolkit.Accounts.Services.States.ApiAccessibleState/<WaitForCloudProjectSettings>d__4:MoveNext () (at ./Library/PackageCache/com.unity.ai.assistant@8d1e3e89e3a7/Modules/Unity.AI.Toolkit.Accounts/Services/States/ApiAccessibleState.cs:46)
-System.Threading.Tasks.TaskCompletionSource`1<bool>:TrySetResult (bool)
-Unity.AI.Toolkit.EditorTask/<>c__DisplayClass22_0:<WaitForCondition>b__0 () (at ./Library/PackageCache/com.unity.ai.assistant@8d1e3e89e3a7/Modules/Unity.AI.Toolkit.Async/EditorTask.cs:420)
-UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+PlayEveryWare.EpicOnlineServices.ListOfStringsToEnumConverter`1<Epic.OnlineServices.IntegratedPlatform.IntegratedPlatformManagementFlags>:FromNumberValue (Newtonsoft.Json.Linq.JToken) (at ./Packages/com.playeveryware.eos/Runtime/Core/Config/JsonConverter/ListOfStringsToEnumConverters.cs:200)
+PlayEveryWare.EpicOnlineServices.ListOfStringsToEnumConverter`1<Epic.OnlineServices.IntegratedPlatform.IntegratedPlatformManagementFlags>:ReadJson (Newtonsoft.Json.JsonReader,System.Type,object,Newtonsoft.Json.JsonSerializer) (at ./Packages/com.playeveryware.eos/Runtime/Core/Config/JsonConverter/ListOfStringsToEnumConverters.cs:150)
+Newtonsoft.Json.Serialization.JsonSerializerInternalReader:DeserializeConvertable (Newtonsoft.Json.JsonConverter,Newtonsoft.Json.JsonReader,System.Type,object)
+Newtonsoft.Json.Serialization.JsonSerializerInternalReader:SetPropertyValue (Newtonsoft.Json.Serialization.JsonProperty,Newtonsoft.Json.JsonConverter,Newtonsoft.Json.Serialization.JsonContainerContract,Newtonsoft.Json.Serialization.JsonProperty,Newtonsoft.Json.JsonReader,object)
+Newtonsoft.Json.Serialization.JsonSerializerInternalReader:PopulateObject (object,Newtonsoft.Json.JsonReader,Newtonsoft.Json.Serialization.JsonObjectContract,Newtonsoft.Json.Serialization.JsonProperty,string)
+Newtonsoft.Json.Serialization.JsonSerializerInternalReader:Populate (Newtonsoft.Json.JsonReader,object)
+Newtonsoft.Json.JsonSerializer:PopulateInternal (Newtonsoft.Json.JsonReader,object)
+Newtonsoft.Json.JsonSerializer:Populate (Newtonsoft.Json.JsonReader,object)
+Newtonsoft.Json.JsonConvert:PopulateObject (string,object,Newtonsoft.Json.JsonSerializerSettings)
+PlayEveryWare.EpicOnlineServices.Utility.JsonUtility:FromJsonOverwrite<PlayEveryWare.EpicOnlineServices.Config> (string,PlayEveryWare.EpicOnlineServices.Config) (at ./Packages/com.playeveryware.eos/Runtime/Core/Utility/JsonUtility.cs:160)
+PlayEveryWare.EpicOnlineServices.Config:Read () (at ./Packages/com.playeveryware.eos/Runtime/Core/Config/Config.cs:444)
+PlayEveryWare.EpicOnlineServices.Config:Get<PlayEveryWare.EpicOnlineServices.SteamConfig> () (at ./Packages/com.playeveryware.eos/Runtime/Core/Config/Config.cs:383)
+PlayEveryWare.EpicOnlineServices.Editor.Build.BuildRunner:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Packages/com.playeveryware.eos/Editor/Build/BuildRunner.cs:81)
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
 
-[Warning] Cannot save invalid window PlayEveryWare.EpicOnlineServices.Editor.Windows.EOSPluginSettingsWindow  (PlayEveryWare.EpicOnlineServices.Editor.Windows.EOSPluginSettingsWindow) to layout.
-UnityEditor.WindowLayout:SaveDefaultWindowPreferences ()
+[Log] BuildRunner: This project is using Steamworks, but has not yet configured the steamApiInterfaceVersionsArray. The builder attempted to automatically configure this field, but it was unable to determine the api version information. This field is required for Steamworks versions v1.58 and later if the LibraryManagedBySDK platform flag is defined for Steam.
+UnityEngine.Debug:Log (object)
+PlayEveryWare.EpicOnlineServices.Editor.Build.BuildRunner:OnPreprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Packages/com.playeveryware.eos/Editor/Build/BuildRunner.cs:88)
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
 
-[Warning] Cannot save invalid window PlayEveryWare.EpicOnlineServices.Editor.Windows.EOSPluginSettingsWindow  (PlayEveryWare.EpicOnlineServices.Editor.Windows.EOSPluginSettingsWindow) to layout.
-UnityEditor.WindowLayout:SaveDefaultWindowPreferences ()
+[Warning] Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds.
+UnityEngine.Debug:LogWarning (object)
+Unity.Pipeline.Editor.BuildProcessors.PipelineRuntimeBuildProcessor:OnPreprocessBuild (UnityEditor.Build.BuildCallbackContext) (at ./Library/PackageCache/com.unity.pipeline@9bb4172c603c/Editor/BuildProcessors/PipelineRuntimeBuildProcessor.cs:73)
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
+
+[Compile Warning] Assets\EpicOnlineTransport\Server.cs(97,17): warning CS0162: Unreachable code detected
+[Compile Warning] Assets\SlimUI\Modern Menu 1\Scripts\Managers\UIMenuManager.cs(27,21): warning CS0414: The field 'UIMenuManager.themeIndex' is assigned but its value is never used
+[Compile Warning] Assets\SlimUI\Modern Menu 1\Scripts\Managers\UISettingsManager.cs(53,17): warning CS0414: The field 'UISettingsManager.sliderValue' is assigned but its value is never used
+[Compile Warning] Assets\EpicOnlineTransport\EosTransport.cs(40,30): warning UAC1001: Field 'productUserId' type 'Epic.OnlineServices.ProductUserId' is skipped by serialization (missing the [Serializable] attribute). Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1001)
+[Compile Warning] Assets\Cowsins\Scripts\PickUpSystem\WeaponPickeable.cs(19,68): warning UAC1015: Field 'currentAttachments' is a dictionary type 'System.Collections.Generic.Dictionary<cowsins.AttachmentType, cowsins.AttachmentIdentifier_SO>' but is missing [SerializeField]. Unity's dictionary serialization backend skips dictionary fields without [SerializeField], even when the field is public. Add [SerializeField] to serialize this field, or [NonSerialized] to make the intent explicit. Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/Manual/script-serialization-analyzer.html#uac1015)
+[Compile Warning] Assets\Cowsins\Scripts\Player\PlayerDebugger.cs(64,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.
+[Compile Warning] Assets\Mirror\Components\NetworkRoomManager.cs(59,39): warning UAC1009: Field 'pendingPlayers' uses an unsupported type 'System.Collections.Generic.HashSet<Mirror.NetworkRoomManager.PendingPlayer>'. Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1009)
+[Compile Warning] Assets\Mirror\Components\NetworkRoomManager.cs(74,43): warning UAC1009: Field 'roomSlots' uses an unsupported type 'System.Collections.Generic.HashSet<Mirror.NetworkRoomPlayer>'. Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1009)
+[Compile Warning] Assets\Mirror\Components\InterestManagement\SpatialHashing\SpatialHashing3DInterestManagement.cs(124,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.
+[Compile Warning] Assets\Mirror\Components\InterestManagement\SpatialHashing\SpatialHashingInterestManagement.cs(134,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.
+[Compile Warning] Assets\Mirror\Components\NetworkTransform\NetworkTransformBase.cs(477,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.
+[Compile Warning] Assets\Mirror\Examples\MultipleMatches\Scripts\MatchMessages.cs(44,21): warning UAC1001: Field 'matchId' type 'System.Guid' is skipped by serialization (missing the [Serializable] attribute). Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1001)
+[Compile Warning] Assets\Mirror\Examples\MultipleMatches\Scripts\MatchMessages.cs(31,21): warning UAC1001: Field 'matchId' type 'System.Guid' is skipped by serialization (missing the [Serializable] attribute). Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1001)
+[Compile Warning] Assets\Mirror\Examples\Snapshot Interpolation\ClientCube.cs(25,47): warning UAC1009: Field 'snapshots' uses an unsupported type 'System.Collections.Generic.SortedList<double, Mirror.Examples.SnapshotInterpolationDemo.Snapshot3D>'. Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1009)
+[Compile Warning] Assets\Mirror\Examples\LagCompensation\ClientCube.cs(26,47): warning UAC1009: Field 'snapshots' uses an unsupported type 'System.Collections.Generic.SortedList<double, Mirror.Examples.LagCompensationDemo.Snapshot3D>'. Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1009)
+[Compile Warning] Assets\Mirror\Examples\_Common\Controllers\TankController\TankControllerUI.cs(35,37): warning UAC1010: Field 'otherKeys' type 'Mirror.Examples.Common.Controllers.Tank.TankControllerUI.OtherTexts' is not [Serializable]; [SerializeField] is ignored. Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1010)
+[Compile Warning] Assets\Mirror\Transports\Edgegap\EdgegapLobby\EdgegapLobbyKcpTransport.cs(18,25): warning UAC1001: Field 'Api' type 'Edgegap.LobbyApi' is skipped by serialization (missing the [Serializable] attribute). Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1001)
+[Compile Warning] Assets\Mirror\Transports\KCP\ThreadedKcpTransport.cs(286,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.
+[Compile Warning] Assets\Mirror\Transports\Edgegap\EdgegapRelay\EdgegapKcpTransport.cs(152,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.
+[Compile Warning] Assets\Mirror\Transports\KCP\KcpTransport.cs(327,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\EOS_SDK\Core\Common.cs(19,25): warning UAC0008: UNITY_64 preprocessor directive has been deprecated. Please use either a runtime check (for example, condition based on IntPtr.Size) or replace it with bitness independent code instead.
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\EOS_SDK\Generated\Bindings.cs(4,30): warning UAC0008: UNITY_64 preprocessor directive has been deprecated. Please use either a runtime check (for example, condition based on IntPtr.Size) or replace it with bitness independent code instead.
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\EOS_SDK\Generated\Windows\Common.cs(9,6): warning UAC0008: UNITY_64 preprocessor directive has been deprecated. Please use either a runtime check (for example, condition based on IntPtr.Size) or replace it with bitness independent code instead.
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\EOS_SDK\Generated\Windows\IntegratedPlatform\IntegratedPlatformInterface.cs(7,6): warning UAC0008: UNITY_64 preprocessor directive has been deprecated. Please use either a runtime check (for example, condition based on IntPtr.Size) or replace it with bitness independent code instead.
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\EOS_SDK\Generated\Windows\IntegratedPlatform\IntegratedPlatformOptionsContainer.cs(7,6): warning UAC0008: UNITY_64 preprocessor directive has been deprecated. Please use either a runtime check (for example, condition based on IntPtr.Size) or replace it with bitness independent code instead.
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\EOS_SDK\Generated\Windows\IntegratedPlatform\WindowsSteamIntegratedPlatformOptionsContainerAddOptions.cs(7,6): warning UAC0008: UNITY_64 preprocessor directive has been deprecated. Please use either a runtime check (for example, condition based on IntPtr.Size) or replace it with bitness independent code instead.
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\EOS_SDK\Generated\Windows\IntegratedPlatform\WindowsSteamOptions.cs(7,6): warning UAC0008: UNITY_64 preprocessor directive has been deprecated. Please use either a runtime check (for example, condition based on IntPtr.Size) or replace it with bitness independent code instead.
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\EOS_SDK\Generated\Windows\IntegratedPlatform\WindowsSteamOptionsInitOptions.cs(7,6): warning UAC0008: UNITY_64 preprocessor directive has been deprecated. Please use either a runtime check (for example, condition based on IntPtr.Size) or replace it with bitness independent code instead.
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\EOS_SDK\Generated\Windows\Platform\PlatformInterface.cs(7,6): warning UAC0008: UNITY_64 preprocessor directive has been deprecated. Please use either a runtime check (for example, condition based on IntPtr.Size) or replace it with bitness independent code instead.
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\EOS_SDK\Generated\Windows\Platform\WindowsOptions.cs(7,6): warning UAC0008: UNITY_64 preprocessor directive has been deprecated. Please use either a runtime check (for example, condition based on IntPtr.Size) or replace it with bitness independent code instead.
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\EOS_SDK\Generated\Windows\Platform\WindowsRTCOptions.cs(7,6): warning UAC0008: UNITY_64 preprocessor directive has been deprecated. Please use either a runtime check (for example, condition based on IntPtr.Size) or replace it with bitness independent code instead.
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\EOS_SDK\Generated\Windows\Platform\WindowsRTCOptionsPlatformSpecificOptions.cs(7,6): warning UAC0008: UNITY_64 preprocessor directive has been deprecated. Please use either a runtime check (for example, condition based on IntPtr.Size) or replace it with bitness independent code instead.
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\EOS_SDK\Generated\Windows\WindowsBindings.cs(4,30): warning UAC0008: UNITY_64 preprocessor directive has been deprecated. Please use either a runtime check (for example, condition based on IntPtr.Size) or replace it with bitness independent code instead.
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\EOS_SDK\Generated\Windows\WindowsBindings.cs(29,6): warning UAC0008: UNITY_64 preprocessor directive has been deprecated. Please use either a runtime check (for example, condition based on IntPtr.Size) or replace it with bitness independent code instead.
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\Core\PlatformManager.cs(292,19): warning CS0618: 'RuntimePlatform.EmbeddedLinuxX86' is obsolete: '32-bit embedded platforms are no longer supported'
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\Core\Config\PlatformConfig.cs(281,18): warning CS0219: The variable 'valuesImported' is assigned but its value is never used
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\Core\Config\ProductConfig.cs(145,75): warning CS0067: The event 'ProductConfig.DeploymentsUpdatedEvent' is never used
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\Core\Config\ProductConfig.cs(148,13): warning CS0067: The event 'ProductConfig.ClientCredentialsUpdatedEvent' is never used
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\Windows\Core\WindowsPlatformSpecifics.cs(79,5): warning UAC0008: UNITY_64 preprocessor directive has been deprecated. Please use either a runtime check (for example, condition based on IntPtr.Size) or replace it with bitness independent code instead.
+[Compile Warning] Packages\com.playeveryware.eos\Runtime\Core\EOSManager_DynamicLoading.cs(122,37): warning UAC0005: AppDomain.GetAssemblies() in Unity may return already unloaded assemblies and result in errors or leaks. Use Unity APIs instead, such as 'CurrentAssemblies.GetLoadedAssemblies()' or 'TypeCache.GetTypesDerivedFrom()'.
+[Warning] Packages\com.playeveryware.eos\Runtime\Core\PlatformManager.cs(292,19): warning CS0618: 'RuntimePlatform.EmbeddedLinuxX86' is obsolete: '32-bit embedded platforms are no longer supported'
+[Warning] Packages\com.playeveryware.eos\Runtime\Core\Config\PlatformConfig.cs(281,18): warning CS0219: The variable 'valuesImported' is assigned but its value is never used
+[Warning] Packages\com.playeveryware.eos\Runtime\Core\Config\ProductConfig.cs(145,75): warning CS0067: The event 'ProductConfig.DeploymentsUpdatedEvent' is never used
+[Warning] Packages\com.playeveryware.eos\Runtime\Core\Config\ProductConfig.cs(148,13): warning CS0067: The event 'ProductConfig.ClientCredentialsUpdatedEvent' is never used
+[Warning] Assets\EpicOnlineTransport\Server.cs(97,17): warning CS0162: Unreachable code detected
+[Warning] Assets\SlimUI\Modern Menu 1\Scripts\Managers\UIMenuManager.cs(27,21): warning CS0414: The field 'UIMenuManager.themeIndex' is assigned but its value is never used
+[Warning] Assets\SlimUI\Modern Menu 1\Scripts\Managers\UISettingsManager.cs(53,17): warning CS0414: The field 'UISettingsManager.sliderValue' is assigned but its value is never used
+[Warning] Shader 'Hidden/Core/DebugOccluder': All SubShaders were stripped because their RenderPipeline tags do not match any active render pipeline asset configured for this build target. This shader will not render. Configure the matching RenderPipelineAsset in QualitySettings/GraphicsSettings, or remove this shader from the build.
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
+
+[Warning] Shader 'Hidden/Core/DebugOcclusionTest': All SubShaders were stripped because their RenderPipeline tags do not match any active render pipeline asset configured for this build target. This shader will not render. Configure the matching RenderPipelineAsset in QualitySettings/GraphicsSettings, or remove this shader from the build.
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
+
+[Warning] Asset 'BlankWeaponAnimatorTemplate': Transition 'reloading -> Idle' in state 'reloading' doesn't have an Exit Time or any condition, transition will be ignored
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
+
+[Warning] Shader warning in 'TextMeshPro/Mobile/Distance Field': #pragma enable_d3d11_debug_symbols has been deprecated, instead please use #pragma enable_debug_symbols at line 84
+[Warning] Asset 'NewKatanaAnimatorController': Transition 'reloading -> Idle' in state 'reloading' doesn't have an Exit Time or any condition, transition will be ignored
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
+
+[Warning] Read/Write is disabled on 1 mesh(es) referenced by components in this build. In future versions of Unity, the build process will no longer automatically enable Read/Write on the meshes referenced by these components. Use Project Auditor (Window > Analysis > Project Auditor > Game Objects) to find and fix similar issues across the project. Affected meshes:
+ - 'CurvedRoof' (referenced by a non-uniformly scaled Mesh Collider component)
+[Warning] Pre-baked collision is disabled on 6 mesh(es) referenced by Mesh Collider components in this build. In future versions of Unity, the build process will no longer automatically pre-bake collision for these meshes; enable pre-baked collision in the Mesh import settings. Use Project Auditor (Window > Analysis > Project Auditor > Game Objects) to find and fix similar issues across the project. Affected meshes:
+ - 'CurvedRoof' (convex collision is disabled)
+ - 'CurvedCorner' (triangle collision is disabled)
+ - 'WallRun 1/4' (triangle collision is disabled)
+ - 'Door' (triangle collision is disabled)
+ - 'Window' (triangle collision is disabled)
+ - 'WallRun 1/8' (triangle collision is disabled)
+[Log] Pipeline: generated hot-reload host-binding link.xml at D:\Unity\Unity Projects\INDG\Temp\UnityTempFile-ff344ef1b5a5ab84fbc7858fa8055515-hostbindings.link.xml — 41 host-binding type(s) and 0 reloadable target type(s) across 3 assembly(ies); target assemblies: none; 105 assembly(ies) preserved wholesale for demand-time auto-bind
+UnityEngine.Debug:Log (object)
+Unity.Pipeline.Editor.BuildProcessors.HotReloadLinkXmlGenerator:GenerateAdditionalLinkXmlFile (UnityEditor.Build.Reporting.BuildReport,UnityEditor.UnityLinker.UnityLinkerBuildPipelineData) (at ./Library/PackageCache/com.unity.pipeline@9bb4172c603c/Editor/BuildProcessors/HotReloadLinkXmlGenerator.cs:61)
+UnityEditorInternal.AssemblyStripper:ProcessBuildPipelineGenerateAdditionalLinkXmlFiles (UnityEditor.Modules.BuildPostProcessArgs)
+UnityEditorInternal.AssemblyStripper:GetLinkXmlFiles (UnityEditor.Modules.BuildPostProcessArgs,NiceIO.NPath)
+System.Linq.Enumerable/WhereEnumerableIterator`1<object>:MoveNext ()
+Bee.BeeDriver.BeeDriver:WriteDataForBuildProgram (Bee.BeeDriver.InternalState,System.Threading.Tasks.TaskCompletionSource`1<int>)
+Bee.BeeDriver.BeeDriver/<>c__DisplayClass0_0:<BuildAsync>g__WriteData|0 ()
+Bee.BeeDriver.BeeDriver:BuildAsync (Bee.BeeDriver.BuildRequest,System.Threading.CancellationToken)
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
+
+[Warning] Value 0 is out of range for TEnum, setting to 0.
+UnityEngine.Debug:LogWarning (object)
+PlayEveryWare.EpicOnlineServices.ListOfStringsToEnumConverter`1<Epic.OnlineServices.IntegratedPlatform.IntegratedPlatformManagementFlags>:FromNumberValue (Newtonsoft.Json.Linq.JToken) (at ./Packages/com.playeveryware.eos/Runtime/Core/Config/JsonConverter/ListOfStringsToEnumConverters.cs:200)
+PlayEveryWare.EpicOnlineServices.ListOfStringsToEnumConverter`1<Epic.OnlineServices.IntegratedPlatform.IntegratedPlatformManagementFlags>:ReadJson (Newtonsoft.Json.JsonReader,System.Type,object,Newtonsoft.Json.JsonSerializer) (at ./Packages/com.playeveryware.eos/Runtime/Core/Config/JsonConverter/ListOfStringsToEnumConverters.cs:150)
+Newtonsoft.Json.Serialization.JsonSerializerInternalReader:DeserializeConvertable (Newtonsoft.Json.JsonConverter,Newtonsoft.Json.JsonReader,System.Type,object)
+Newtonsoft.Json.Serialization.JsonSerializerInternalReader:SetPropertyValue (Newtonsoft.Json.Serialization.JsonProperty,Newtonsoft.Json.JsonConverter,Newtonsoft.Json.Serialization.JsonContainerContract,Newtonsoft.Json.Serialization.JsonProperty,Newtonsoft.Json.JsonReader,object)
+Newtonsoft.Json.Serialization.JsonSerializerInternalReader:PopulateObject (object,Newtonsoft.Json.JsonReader,Newtonsoft.Json.Serialization.JsonObjectContract,Newtonsoft.Json.Serialization.JsonProperty,string)
+Newtonsoft.Json.Serialization.JsonSerializerInternalReader:Populate (Newtonsoft.Json.JsonReader,object)
+Newtonsoft.Json.JsonSerializer:PopulateInternal (Newtonsoft.Json.JsonReader,object)
+Newtonsoft.Json.JsonSerializer:Populate (Newtonsoft.Json.JsonReader,object)
+Newtonsoft.Json.JsonConvert:PopulateObject (string,object,Newtonsoft.Json.JsonSerializerSettings)
+PlayEveryWare.EpicOnlineServices.Utility.JsonUtility:FromJsonOverwrite<PlayEveryWare.EpicOnlineServices.Config> (string,PlayEveryWare.EpicOnlineServices.Config) (at ./Packages/com.playeveryware.eos/Runtime/Core/Utility/JsonUtility.cs:160)
+PlayEveryWare.EpicOnlineServices.Config:Read () (at ./Packages/com.playeveryware.eos/Runtime/Core/Config/Config.cs:444)
+PlayEveryWare.EpicOnlineServices.Config:Get<PlayEveryWare.EpicOnlineServices.WindowsConfig> () (at ./Packages/com.playeveryware.eos/Runtime/Core/Config/Config.cs:383)
+PlayEveryWare.EpicOnlineServices.PlatformManager:GetPlatformConfig () (at ./Packages/com.playeveryware.eos/Runtime/Core/PlatformManager.cs:266)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsBuilder/<ConfigureAndInstallBootstrapper>d__3:MoveNext () (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:377)
+System.Runtime.CompilerServices.AsyncVoidMethodBuilder:Start<PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsBuilder/<ConfigureAndInstallBootstrapper>d__3> (PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsBuilder/<ConfigureAndInstallBootstrapper>d__3&)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsBuilder:ConfigureAndInstallBootstrapper (UnityEditor.Build.Reporting.BuildReport)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsBuilder:PostBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:365)
+PlayEveryWare.EpicOnlineServices.Editor.Build.BuildRunner:OnPostprocessBuild (UnityEditor.Build.Reporting.BuildReport) (at ./Packages/com.playeveryware.eos/Editor/Build/BuildRunner.cs:112)
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
+
+[Log] Build completed with a result of 'Succeeded' in 1695 seconds (1695469 ms) [9/19/2026 9:20:38 AM -> 9/19/2026 9:48:53 AM, 28m 15s]
+UnityEditor.BuildPlayerWindow/DefaultBuildMethods:BuildPlayer (UnityEditor.BuildPlayerOptions)
+PlayEveryWare.EpicOnlineServices.Editor.Build.WindowsArm64Define/BuildGuard:OnBuildPlayer (UnityEditor.BuildPlayerOptions) (at ./Packages/com.playeveryware.eos/Editor/Platforms/Windows/WindowsBuilder.cs:192)
+UnityEditor.BuildPlayerWindow:BuildPlayerAndRun ()
 
